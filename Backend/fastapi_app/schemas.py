@@ -15,3 +15,15 @@ class NoteOut(BaseModel):
 class NoteIn(BaseModel):
     title:str
     content:str
+    tags:list[str] = []
+    
+class TagIn(BaseModel):
+    name:str
+    
+class TagOut(BaseModel):
+    id:int
+    name:str
+    user_id:int
+    class Config:
+        orm_mode = True
+        
