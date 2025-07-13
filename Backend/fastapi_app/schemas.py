@@ -8,7 +8,8 @@ class NoteOut(BaseModel):
     created_at: datetime
     updated_at: datetime
     user_id: int
-
+    tags:list[str]
+    
     class Config:
         orm_mode = True
         
