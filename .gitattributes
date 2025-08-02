@@ -1,0 +1,21 @@
+# Set text files to use LF line endings
+* text=auto
+
+# Treat TypeScript, JavaScript, CSS, and HTML files as text
+*.ts   text
+*.tsx  text
+*.js   text
+*.jsx  text
+*.css  text
+*.html text
+
+# Prevent binary files from being modified
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.svg  text
+
+# Mark lock files as text
+package-lock.json text
+pnpm-lock.yaml   text
+yarn.lock        text

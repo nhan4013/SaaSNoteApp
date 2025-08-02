@@ -22,8 +22,6 @@ def get_current_user(token:Optional[str]=Depends(oauth2_scheme),db: Session = De
         )
     try:
         payload = jwt.decode(token,SECRET_KEY,algorithms=ALGORITHM)
-        logging.basicConfig(level=logging.DEBUG)
-        logging.debug(type(payload['user_id']))
         userId:int = payload.get('user_id')
         if userId is None:
             raise HTTPException(detail="Invalid credentials",status_code=401)
