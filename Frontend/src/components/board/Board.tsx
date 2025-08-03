@@ -1,4 +1,5 @@
 import React from "react"
+import AsideBar from "../aside/AsideBar"
 
 function Board() {
     return (
