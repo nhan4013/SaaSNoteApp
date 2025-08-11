@@ -1,21 +1,70 @@
 import { useEffect, useReducer, useState } from 'react'
 import './App.css'
 import { data } from './components/data/data';
-import { AppThemeContext, DataContext } from './components/contexts';
-import type { Note } from './components/type/types';
+import {DataContext} from './context';
+import type { Action, Note,NotesState,Tag } from './components/type/types';
+import { io, type Socket } from 'socket.io-client';
 
+const notesReducer = (state:NotesState,action:Action) => {
+  switch(action.type){
+    case "UPDATE_NOTE":
+      { const { id } = action.payload;
+      return {
+        ...state,
+        currentNoteId :id ,
+        showDetailed : true
+      }; }
+    case "UPDATE_TAG":
+      { const { tag } = action.payload;
+      return {
+        ...state,
+        currentTag: tag,
+      }; }
+    default :
+      return state; 
+  }
+}
 
 function App() {
-  const savedData: string | null = localStorage.getItem("notes");
-  const parsedData : Note[] | null = savedData ? JSON.parse(savedData) : null;
+  const [savedData, setSavedData] = useState<Note[]>([]);
+  const [TagsData, setTagsData] = useState<Tag[]>([])
+
+  useEffect(
+    () => {
+     const socket:Socket = io("http://localhost:8000",{
+      transports:["websocket"]
+     });
+
+     socket.on("connect",()=>{
+      console.log("Connected to Socket.IO server")
+     });
+
+     socket.on("notes_update", (data) => {
+      setSavedData(JSON.parse(data))
+     });
+
+     socket.on("tags_update",(data)=>{
+      setTagsData(JSON.parse(data))
+     })
+
+     socket.on("disconnect",()=>{
+      console.log("Disconnected from Socket.IO server");
+     });
+
+     return () =>{
+      socket.disconnect();
+     };
+    },[]
+  );
+
 
 
   const initialData = {
-    notesData: parsedData ? parsedData : data,
+    notesData: savedData ? savedData : data,
     asideCurrentTab: "allNotes",
     currentNoteId:
-      parsedData && parsedData?.length > 0
-        ? parsedData?.[0].id
+      savedData && savedData?.length > 0
+        ? savedData?.[0].id
         : data?.length > 0
           ? data[0].id
           : null,
@@ -25,8 +74,8 @@ function App() {
     showDetailed: false,
     modalData: {},
     fontTheme:
-      JSON.parse(localStorage.getItem("fontTheme")) || "'Inter', serif",
-    colorTheme: JSON.parse(localStorage.getItem("colorTheme")) || "lightMode",
+      JSON.parse(localStorage.getItem("fontTheme") || "'Inter', serif"),
+    colorTheme: JSON.parse(localStorage.getItem("colorTheme") || "lightMode"),
     showForm: false,
     form: {
       title: "",
@@ -68,11 +117,38 @@ function App() {
     (note:Note) => note?.id === notes?.currentNoteId
   );
 
+
   useEffect(
-    () => {
-      localStorage.setItem('notes', JSON.stringify(notes?.notesData))
-    }, [notes?.notesData]
-  );
+    ()=>{
+      
+    },[searchResult,notes?.currentNoteId]
+  )
+  const isDark = notes.colorTheme === "darkMode";
+
+  const getContent = () => {
+    let title = "";
+    let parag = "";
+    if (notes.asideCurrentTab === "allNotes") {
+      title = "All Notes";
+    }
+    if (notes.asideCurrentTab === "archivedNotes") {
+      title = "Archived Notes";
+      parag =
+        "All your archived notes are stored here. You can restore or delete them anytime.";
+    }
+    if (notes.asideCurrentTab === "tags") {
+      title = `Notes Tagged: ${notes.currentTag}`;
+      parag = `All notes tagged with '${notes.currentTag}' are stored here.`;
+    }
+    if (notes.asideCurrentTab === "searchTab") {
+      title = `Search`;
+      parag = `All notes matching "${query}" are displayed here.`;
+    }
+    if (notes.asideCurrentTab === "settingsTab") {
+      title = "Settings";
+    }
+    return { title, parag };
+  };
 
   return (
     <DataContext.Provider value={{

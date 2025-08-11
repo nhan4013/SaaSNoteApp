@@ -1,10 +1,29 @@
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.responses import JSONResponse
 from jose import JWTError
-from .notes_endpoint import notes_router as notes_router
-from .tags_endpoint import tags_router as tags_router
-app = FastAPI()
+import asyncio
+import socketio
+from core.redis_client import redis_client
+from api.notes import notes_router as notes_router
+from api.tags import tags_router as tags_router
+from utils.redis_pubsub import subscribe_update
+from contextlib import asynccontextmanager
 
+sio = socketio.AsyncServer(cors_allowed_origins=["*"], async_mode='asgi')
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    channels = ["notes","tags"]
+    task = [asyncio.create_task(subscribe_update(channel,sio)) for channel in channels]
+    yield
+    await redis_client.close()
+
+app = FastAPI(lifespan=lifespan)
+socket_manager = socketio.ASGIApp(sio, app)
+
+@app.get("/")
+async def root():
+    return {"message": "Welcome to the FastAPI + Socket.IO server!"}
 
 @app.exception_handler(HTTPException)
 async def custom_http_exception_handler(request: Request, exc: HTTPException):
@@ -25,7 +44,19 @@ async def jwt_exception_handler(request: Request, exc: JWTError):
         content={"detail": "Invalid token", "custom_message": "JWT error handled globally"},
     )
 
+@sio.event
+async def connect(sid, environ):
+    print(f"Socket connected: {sid}")
+    await sio.emit('welcome', {'message': 'Connected to server'}, to=sid)
 
+@sio.event
+async def disconnect(sid):
+    print(f"Socket disconnected: {sid}")
+
+@sio.event
+async def ping_server(sid, data):
+    print(f"Received from {sid}: {data}")
+    await sio.emit('pong_client', {'message': 'pong'}, to=sid)
 
 app.include_router(notes_router)
 app.include_router(tags_router)
