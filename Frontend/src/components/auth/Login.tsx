@@ -17,6 +17,9 @@ import ForgotPassword from './components/ForgotPassword';
 import AppTheme from './theme/AppTheme';
 import ColorModeSelect from './theme/ColorModeSelect';
 import { GoogleIcon, FacebookIcon, SitemarkIcon } from './components/CustomIcons';
+import axios from 'axios';
+import { Navigate, useNavigate } from 'react-router-dom';
+
 
 const Card = styled(MuiCard)(({ theme }) => ({
   display: 'flex',
@@ -66,6 +69,9 @@ export default function SignIn(props: { disableCustomTheme?: boolean }) {
   const [passwordError, setPasswordError] = React.useState(false);
   const [passwordErrorMessage, setPasswordErrorMessage] = React.useState('');
   const [open, setOpen] = React.useState(false);
+  const [email,setEmail] = React.useState('');
+  const [password,setPassword] = React.useState('');
+  const navigate = useNavigate()
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -75,16 +81,30 @@ export default function SignIn(props: { disableCustomTheme?: boolean }) {
     setOpen(false);
   };
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    if (emailError || passwordError) {
-      event.preventDefault();
-      return;
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    if(!validateInputs){
+        return;
     }
+    
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+    console.log('my email',data.get('email'))
+    console.log('my password',data.get('password'))
+    try {
+        const response = await axios.post('http://127.0.0.1:8001/auth/login',{
+            email:data.get('email'),
+            password :data.get('password'),
+        });
+        const {access,refresh} = response.data;
+        localStorage.setItem('access_token',access);
+        localStorage.setItem('refresh_token',refresh);
+        navigate('/')
+    } catch (error:any) {
+        console.error('Login failed:', error);
+        setPasswordError(true);
+        setPasswordErrorMessage('Invalid credentials');
+    }
   };
 
   const validateInputs = () => {
@@ -113,6 +133,8 @@ export default function SignIn(props: { disableCustomTheme?: boolean }) {
 
     return isValid;
   };
+
+  
 
   return (
     <AppTheme {...props}>
@@ -147,6 +169,7 @@ export default function SignIn(props: { disableCustomTheme?: boolean }) {
                 id="email"
                 type="email"
                 name="email"
+                value={email}
                 placeholder="your@email.com"
                 autoComplete="email"
                 autoFocus
@@ -154,6 +177,7 @@ export default function SignIn(props: { disableCustomTheme?: boolean }) {
                 fullWidth
                 variant="outlined"
                 color={emailError ? 'error' : 'primary'}
+                onChange={(e) => setEmail(e.target.value)}
               />
             </FormControl>
             <FormControl>
@@ -165,6 +189,8 @@ export default function SignIn(props: { disableCustomTheme?: boolean }) {
                 placeholder="••••••"
                 type="password"
                 id="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 autoComplete="current-password"
                 autoFocus
                 required

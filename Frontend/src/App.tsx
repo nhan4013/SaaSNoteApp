@@ -1,72 +1,78 @@
-import { useEffect, useReducer, useState } from 'react'
-import './App.css'
-import { data } from './components/data/data';
-import {DataContext} from './context';
-import type { Action, Note,NotesState,Tag } from './components/type/types';
-import { io, type Socket } from 'socket.io-client';
-import Board from './components/board/Board';
+import { useEffect, useReducer, useState } from "react";
+import "./App.css";
+import { data } from "./components/data/data";
+import { DataContext } from "./context";
+import type { Action, Note, NotesState, Tag } from "./components/type/types";
+import { io, type Socket } from "socket.io-client";
+import Board from "./components/board/Board";
 import axios from "axios";
+import { Route, Routes } from "react-router-dom";
+import Login from "./components/auth/Login";
+import ProtectedRouteProps from "./components/auth/ProtectedRoute";
 
-const notesReducer = (state:NotesState,action:Action) => {
-  switch(action.type){
-    case "UPDATE_NOTE":
-      { const { id } = action.payload;
+const notesReducer = (state: NotesState, action: Action) => {
+  switch (action.type) {
+    case "UPDATE_NOTE": {
+      const { id } = action.payload;
       return {
         ...state,
-        currentNoteId :id ,
-        showDetailed : true
-      }; }
-    case "UPDATE_TAG":
-      { const { tag } = action.payload;
+        currentNoteId: id,
+        showDetailed: true
+      };
+    }
+    case "UPDATE_TAG": {
+      const { tag } = action.payload;
       return {
         ...state,
-        currentTag: tag,
-      }; }
-    default :
-      return state; 
+        currentTag: tag
+      };
+    }
+    default:
+      return state;
   }
-}
+};
 
 function App() {
   const [savedData, setSavedData] = useState<Note[]>([]);
-  const [TagsData, setTagsData] = useState<Tag[]>([])
+  const [TagsData, setTagsData] = useState<Tag[]>([]);
 
-  useEffect(
-    () => {
-    axios.get("http://localhost:8000/notes/")
-    .then(res=>setSavedData(res.data))
-    .catch(err=>console.log("Failed to fetch notes:", err));
+  useEffect(() => {
+    axios
+      .get("http://localhost:8000/notes/",{
+        headers:{
+          Authorization : `Bearer ${localStorage.getItem('access_token')}`
+        }
+      })
+      .then((res) => setSavedData(res.data))
+      .catch((err) => console.log("Failed to fetch notes:", err));
 
-
-    const socket:Socket = io("http://localhost:8000",
-      {
+    const socket: Socket = io("http://localhost:8000", {
       transports: ["websocket"],
-    }
-     );
+      auth(cb) {
+          cb({token: localStorage.getItem("access_token")});
+      },
+    });
 
-     socket.on("connect",()=>{
-      console.log("Connected to Socket.IO server")
-     });
+    socket.on("connect", () => {
+      console.log("Connected to Socket.IO server");
+    });
 
-     socket.on("notes_update", (data) => {
-      setSavedData(JSON.parse(data))
-     });
+    socket.on("notes_update", (data) => {
+      setSavedData(JSON.parse(data));
+    });
 
-     socket.on("tags_update",(data)=>{
-      setTagsData(JSON.parse(data))
-     })
+    socket.on("tags_update", (data) => {
+      setTagsData(JSON.parse(data));
+    });
 
-     socket.on("disconnect",()=>{
+    socket.on("disconnect", () => {
       console.log("Disconnected from Socket.IO server");
-     });
+    });
 
-     return () =>{
+    return () => {
       socket.disconnect();
-     };
-    },[]
-  );
-
-
+    };
+  }, []);
 
   const initialData = {
     notesData: savedData ? savedData : data,
@@ -75,63 +81,56 @@ function App() {
       savedData && savedData?.length > 0
         ? savedData?.[0].id
         : data?.length > 0
-          ? data[0].id
-          : null,
+        ? data[0].id
+        : null,
     currentTag: "",
     settingsCurrentTab: "colorTheme",
     warningModal: false,
     showDetailed: false,
     modalData: {},
-    fontTheme:
-      JSON.parse(localStorage.getItem("fontTheme") || "'Inter', serif"),
-    colorTheme: JSON.parse(localStorage.getItem("colorTheme") || "lightMode"),
+    fontTheme: JSON.parse(
+      localStorage.getItem("fontTheme") || '"Inter, serif"'
+    ),
+    colorTheme: JSON.parse(localStorage.getItem("colorTheme") || '"lightMode"'),
     showForm: false,
     form: {
       title: "",
       tags: "",
       content: "",
-      lastEdited: "",
+      lastEdited: ""
     },
     isValid: {
       title: true,
       tags: true,
-      content: true,
-    },
+      content: true
+    }
   };
   const [notes, dispatchNotes] = useReducer(notesReducer, initialData);
   const [query, setQuery] = useState("");
   const [isTablet, setIsTablet] = useState(window.innerWidth <= 1200);
 
-  const filterData = notes?.notesData?.filter(
-    (note: Note) => {
-      if (notes?.asideCurrentTab === "archivedNotes") {
-        return note?.isArchived;
-      }
-      if (notes?.asideCurrentTab === "tags") {
-        return note?.tags?.includes(notes.currentTag) && !note.isArchived;
-      }
-      else {
-        return !note?.isArchived;
-      }
+  const filterData = notes?.notesData?.filter((note: Note) => {
+    if (notes?.asideCurrentTab === "archivedNotes") {
+      return note?.isArchived;
     }
-  )
+    if (notes?.asideCurrentTab === "tags") {
+      return note?.tags?.includes(notes.currentTag) && !note.isArchived;
+    } else {
+      return !note?.isArchived;
+    }
+  });
 
   const searchResult = filterData?.filter(
     (note: Note) =>
       note?.title.toLowerCase().includes(query?.toLowerCase()) ||
       note?.tags.some((tag) => tag.toLowerCase().includes(query.toLowerCase()))
-  )
-
-  const currentNoteObj = searchResult?.find(
-    (note:Note) => note?.id === notes?.currentNoteId
   );
 
+  const currentNoteObj = searchResult?.find(
+    (note: Note) => note?.id === notes?.currentNoteId
+  );
 
-  useEffect(
-    ()=>{
-      
-    },[searchResult,notes?.currentNoteId]
-  )
+  useEffect(() => {}, [searchResult, notes?.currentNoteId]);
   const isDark = notes.colorTheme === "darkMode";
 
   const getContent = () => {
@@ -159,28 +158,44 @@ function App() {
     return { title, parag };
   };
 
+  const isAuthenticated = () => {
+    return localStorage.getItem('access_token') !== null;
+  }
+
   return (
-    <DataContext.Provider value={{
-      notes,
-      dispatchNotes,
-      currentNoteObj,
-      searchResult,
-      query,
-      setQuery,
-      isDark,
-      isTablet,
-      setIsTablet,
-      getContent,
-    }}>
-      <main
-        className={`outer-container ${isDark && "dark-body-bg"}`}
-        style={{ fontFamily: `${notes.fontTheme}` }}
-      >
-        <p>ancnanc</p>
-        <Board />
-      </main>
+    <DataContext.Provider
+      value={{
+        notes,
+        dispatchNotes,
+        currentNoteObj,
+        searchResult,
+        query,
+        setQuery,
+        isDark,
+        isTablet,
+        setIsTablet,
+        getContent
+      }}
+    >
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route
+          path="/"
+          element={
+            <ProtectedRouteProps isAuthenticated={isAuthenticated()} redirectTo="/login">
+              <main
+                className={`outer-container ${isDark && "dark-body-bg"}`}
+                style={{ fontFamily: `${notes.fontTheme}` }}
+              >
+                <Board />
+                <p>asdadadas</p>
+              </main>
+             </ProtectedRouteProps>
+          }
+        />
+      </Routes>
     </DataContext.Provider>
-  )
+  );
 }
 
-export default App
+export default App;

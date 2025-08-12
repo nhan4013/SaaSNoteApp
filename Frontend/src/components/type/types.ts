@@ -37,6 +37,13 @@ export type NotesState = {
 };
 
 
+export interface ProtectedRouteProps {
+  children: React.ReactNode;
+  isAuthenticated: boolean;
+  redirectTo: string;
+}
+
+
 export type Action =
   | { type: "UPDATE_NOTE"; payload: Note }
   | { type: "ADD_NOTE"; payload: Note }

@@ -3,7 +3,8 @@ from rest_framework import viewsets
 from rest_framework.response import Response
 from django.contrib.auth import get_user_model
 from rest_framework.decorators import api_view, permission_classes
-from .serializers import RegisterSerializer
+from .serializers import RegisterSerializer , EmailTokenObtainPairSerializer
+from rest_framework_simplejwt.views import TokenObtainPairView
 # Create your views here.
 class RegisterViewSet(viewsets.ModelViewSet):
     queryset = get_user_model().objects.all()
@@ -19,3 +20,7 @@ def user_info(request):
         'username':user.username,
         'email':user.email,
     })
+    
+
+class LoginView(TokenObtainPairView):
+    serializer_class = EmailTokenObtainPairSerializer

@@ -8,8 +8,9 @@ from api.notes import notes_router as notes_router
 from api.tags import tags_router as tags_router
 from utils.redis_pubsub import subscribe_update
 from contextlib import asynccontextmanager
+from fastapi.middleware.cors import CORSMiddleware
 
-sio = socketio.AsyncServer(cors_allowed_origins=["*"], async_mode='asgi')
+sio = socketio.AsyncServer(cors_allowed_origins="http://localhost:5173",async_mode='asgi')
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -19,8 +20,18 @@ async def lifespan(app: FastAPI):
     await redis_client.close()
 
 app = FastAPI(lifespan=lifespan)
-socket_manager = socketio.ASGIApp(sio, app)
 
+origins = [
+    "http://localhost:5173",
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.exception_handler(HTTPException)
 async def custom_http_exception_handler(request: Request, exc: HTTPException):
@@ -41,9 +52,17 @@ async def jwt_exception_handler(request: Request, exc: JWTError):
         content={"detail": "Invalid token", "custom_message": "JWT error handled globally"},
     )
 
+app.include_router(notes_router)
+app.include_router(tags_router)
+
+
+socket_app = socketio.ASGIApp(sio, app)
+
 @sio.event
-async def connect(sid, environ):
+async def connect(sid, environ,auth):
+    token = auth.get("token") if auth else None
     print(f"Socket connected: {sid}")
+    print("Received token:", token)
     await sio.emit('welcome', {'message': 'Connected to server'}, to=sid)
 
 @sio.event
@@ -55,5 +74,3 @@ async def ping_server(sid, data):
     print(f"Received from {sid}: {data}")
     await sio.emit('pong_client', {'message': 'pong'}, to=sid)
 
-app.include_router(notes_router)
-app.include_router(tags_router)
