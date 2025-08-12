@@ -4,6 +4,8 @@ import { data } from './components/data/data';
 import {DataContext} from './context';
 import type { Action, Note,NotesState,Tag } from './components/type/types';
 import { io, type Socket } from 'socket.io-client';
+import Board from './components/board/Board';
+import axios from "axios";
 
 const notesReducer = (state:NotesState,action:Action) => {
   switch(action.type){
@@ -31,9 +33,16 @@ function App() {
 
   useEffect(
     () => {
-     const socket:Socket = io("http://localhost:8000",{
-      transports:["websocket"]
-     });
+    axios.get("http://localhost:8000/notes/")
+    .then(res=>setSavedData(res.data))
+    .catch(err=>console.log("Failed to fetch notes:", err));
+
+
+    const socket:Socket = io("http://localhost:8000",
+      {
+      transports: ["websocket"],
+    }
+     );
 
      socket.on("connect",()=>{
       console.log("Connected to Socket.IO server")
@@ -163,7 +172,13 @@ function App() {
       setIsTablet,
       getContent,
     }}>
-
+      <main
+        className={`outer-container ${isDark && "dark-body-bg"}`}
+        style={{ fontFamily: `${notes.fontTheme}` }}
+      >
+        <p>ancnanc</p>
+        <Board />
+      </main>
     </DataContext.Provider>
   )
 }

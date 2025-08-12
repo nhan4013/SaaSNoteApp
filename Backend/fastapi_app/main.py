@@ -21,9 +21,6 @@ async def lifespan(app: FastAPI):
 app = FastAPI(lifespan=lifespan)
 socket_manager = socketio.ASGIApp(sio, app)
 
-@app.get("/")
-async def root():
-    return {"message": "Welcome to the FastAPI + Socket.IO server!"}
 
 @app.exception_handler(HTTPException)
 async def custom_http_exception_handler(request: Request, exc: HTTPException):

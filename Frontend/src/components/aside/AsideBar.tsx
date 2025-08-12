@@ -1,6 +1,9 @@
 import React, { useContext } from "react";
+import logo from "../../assets/images/logo.svg";
+import logoDark from "../../assets/images/logo-dark.png";
 
 function AsideBar() {
+    const { notes, dispatchNotes,isDark } = useContext(DataContext)
     return (
         <aside className="aside-wrapper mobile">
             <header className="aside-header desktop">
