@@ -11,6 +11,7 @@ export interface Tag {
   name:string
 }
 
+
 export type NotesState = {
   notesData: Note[];
   asideCurrentTab: string;
@@ -45,9 +46,20 @@ export interface ProtectedRouteProps {
 
 
 export type Action =
-  | { type: "UPDATE_NOTE"; payload: Note }
-  | { type: "ADD_NOTE"; payload: Note }
+  | { type: "UPDATE_NOTE"; payload: { id: string } }
   | { type: "UPDATE_TAG"; payload: { tag: string } }
-  | { type: "DELETE_NOTE"; payload: string } // string = note id
-  | { type: "SET_NOTES"; payload: Note[] }
-  | { type: "SET_CURRENT_NOTE"; payload: string }; // string = note id
+  | { type: "UPDATE_TAB"; payload: { tab: string; key: string } }
+  | { type: "OPEN_MODAL"; payload: { modalId: string; icon: string; typeText: string; parag: string; modalTitle: string } }
+  | { type: "CLOSE_MODAL" }
+  | { type: "DELETE_NOTE" }
+  | { type: "ARCHIVE_NOTE" }
+  | { type: "SHOW_FORM" }
+  | { type: "HIDE_FORM" }
+  | { type: "UPDATE_FORM"; payload: { name: string; value: string } }
+  | { type: "VALIDATE_FORM"; payload: { isValid: { title: boolean; tags: boolean; content: boolean } } }
+  | { type: "CREATE_NOTE"; payload: { title: string; tags: string[]; content: string; lastEdited: string } }
+  | { type: "EDIT_NOTE"; payload: { editNoteId: string; title: string; tags: string[]; content: string; lastEdited: string } }
+  | { type: "TOGGLE_DETAILS_PAGE" };
+
+
+  

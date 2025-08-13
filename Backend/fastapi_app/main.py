@@ -1,14 +1,17 @@
+import logging
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.responses import JSONResponse
 from jose import JWTError
 import asyncio
 import socketio
+from core.config import SECRET_KEY,ALGORITHM
 from core.redis_client import redis_client
 from api.notes import notes_router as notes_router
 from api.tags import tags_router as tags_router
 from utils.redis_pubsub import subscribe_update
 from contextlib import asynccontextmanager
 from fastapi.middleware.cors import CORSMiddleware
+from jose import jwt, JWTError, ExpiredSignatureError
 
 sio = socketio.AsyncServer(cors_allowed_origins="http://localhost:5173",async_mode='asgi')
 
@@ -59,11 +62,25 @@ app.include_router(tags_router)
 socket_app = socketio.ASGIApp(sio, app)
 
 @sio.event
-async def connect(sid, environ,auth):
+async def connect(sid,environ,auth):
     token = auth.get("token") if auth else None
-    print(f"Socket connected: {sid}")
-    print("Received token:", token)
-    await sio.emit('welcome', {'message': 'Connected to server'}, to=sid)
+    if not token:
+        await sio.emit("token_expired", {"detail": "No token provided"}, to=sid)
+        print("No Token provided")
+        
+    try:
+        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+        print(f"User connected: {payload}")
+    except ExpiredSignatureError:
+        await sio.emit("token_expired", {"detail": "Token expired"}, to=sid)
+        logging.info("Token expired")
+        print("Token expired")
+        
+    except JWTError:
+        await sio.emit("token_expired", {"detail": "Invalid token"}, to=sid)
+        print("Invalid token")
+       
+
 
 @sio.event
 async def disconnect(sid):

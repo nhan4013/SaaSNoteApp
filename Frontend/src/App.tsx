@@ -9,6 +9,7 @@ import axios from "axios";
 import { Route, Routes } from "react-router-dom";
 import Login from "./components/auth/Login";
 import ProtectedRouteProps from "./components/auth/ProtectedRoute";
+import { v4 as uuidv4 } from 'uuid';
 
 const notesReducer = (state: NotesState, action: Action) => {
   switch (action.type) {
@@ -27,29 +28,175 @@ const notesReducer = (state: NotesState, action: Action) => {
         currentTag: tag
       };
     }
+    case "UPDATE_TAB":{
+      const { tab, key } = action.payload;
+      return {
+        ...state,
+        [key]: tab,
+        currentTag: tab === "tags" ? state.currentTag : "",
+        showForm: false,
+      };
+    }
+    case "OPEN_MODAL":
+      { const { modalId, icon, typeText, parag, modalTitle } = action.payload;
+      return {
+        ...state,
+        warningModal: true,
+        modalData: { modalId, icon, typeText, parag, modalTitle },
+      }; }
+    case "CLOSE_MODAL":
+      return {
+        ...state,
+        warningModal: false,
+        modalData: {},
+      };
+    case "DELETE_NOTE":
+      return {
+        ...state,
+        notesData: state.notesData.filter(
+          (note) => note?.id !== state?.currentNoteId
+        ),
+        warningModal: false,
+        modalData: {},
+      };
+    case "ARCHIVE_NOTE":
+      return {
+        ...state,
+        notesData: state.notesData.map((note) =>
+          note.id === state.currentNoteId
+            ? {
+                ...note,
+                isArchived: !note.isArchived,
+              }
+            : note
+        ),
+        warningModal: false,
+        modalData: {},
+      };
+
+    case "SHOW_FORM":
+      return {
+        ...state,
+        showForm: true,
+        asideCurrentTab: "allNotes",
+        currentTag: "",
+      };
+    case "HIDE_FORM":
+      return {
+        ...state,
+        showForm: false,
+        asideCurrentTab: "allNotes",
+      };
+    case "UPDATE_FORM":
+      { const { name, value } = action.payload;
+      return {
+        ...state,
+        form: {
+          ...state.form,
+          [name]: value,
+        },
+        isValid: {
+          ...state.isValid,
+          [name]: true,
+        },
+      }; }
+    case "VALIDATE_FORM":
+      { const { isValid } = action.payload;
+      return {
+        ...state,
+        isValid: {
+          ...isValid,
+        },
+      }; }
+    case "CREATE_NOTE":
+      { const { title, tags, content, lastEdited } = action.payload;
+      return {
+        ...state,
+        notesData: [
+          { id: uuidv4(), title, tags, lastEdited, content, isArchived: false },
+          ...state.notesData,
+        ],
+        showForm: false,
+        form: {
+          title: "",
+          tags: "",
+          content: "",
+          lastEdited: "",
+        },
+        isValid: {
+          title: true,
+          tags: true,
+          content: true,
+        },
+      }; }
+    case "EDIT_NOTE":
+      { const {
+        editNoteId,
+        title: editTitle,
+        tags: editTags,
+        content: editContent,
+        lastEdited: newData,
+      } = action.payload;
+      return {
+        ...state,
+        notesData: state.notesData.map((note) =>
+          note.id === editNoteId
+            ? {
+                ...note,
+                title: editTitle,
+                tags: editTags,
+                content: editContent,
+                lastEdited: newData,
+              }
+            : note
+        ),
+        currentNoteId: editNoteId,
+      }; }
+    case "TOGGLE_DETAILS_PAGE":{
+      return {
+        ...state,
+        showDetailed: false,
+      };
+    }
+      
     default:
       return state;
   }
 };
+
+
+const api = axios.create({
+    baseURL: 'http://localhost:8000'
+  })
+
+  api.interceptors.request.use(
+    (config) => {
+      const token = localStorage.getItem('access_token');
+      if (token) {
+        config.headers.Authorization = `Bearer ${token}`;
+      }
+      return config;
+    },
+    (error) => {
+      return Promise.reject(error);
+    }
+  );
 
 function App() {
   const [savedData, setSavedData] = useState<Note[]>([]);
   const [TagsData, setTagsData] = useState<Tag[]>([]);
 
   useEffect(() => {
-    axios
-      .get("http://localhost:8000/notes/",{
-        headers:{
-          Authorization : `Bearer ${localStorage.getItem('access_token')}`
-        }
-      })
+    api.get("/notes/")
       .then((res) => setSavedData(res.data))
       .catch((err) => console.log("Failed to fetch notes:", err));
+  }, []);
 
+  useEffect(() => {
     const socket: Socket = io("http://localhost:8000", {
       transports: ["websocket"],
       auth(cb) {
-          cb({token: localStorage.getItem("access_token")});
+          cb({ token: localStorage.getItem("access_token") });
       },
     });
 
@@ -58,11 +205,47 @@ function App() {
     });
 
     socket.on("notes_update", (data) => {
+      console.log("update notes");
       setSavedData(JSON.parse(data));
     });
 
     socket.on("tags_update", (data) => {
       setTagsData(JSON.parse(data));
+    });
+
+    socket.on("token_expired", async (data) => {
+      console.log("asa");
+      const refresh = localStorage.getItem("refresh_token");
+      if (refresh) {
+        try {
+          console.log(data);
+          const response = await axios.post(
+            "http://127.0.0.1:8001/auth/token/refresh",
+            { refresh }
+          );
+          const { access } = response.data;
+          localStorage.setItem("access_token", access);
+          socket.auth = { token: access };
+          socket.connect();
+          axios
+        .get("http://localhost:8000/notes/", {
+          headers: {
+            Authorization: `Bearer ${access}`
+          }
+        })
+        .then((res) => setSavedData(res.data))
+        .catch((err) => console.log("Failed to fetch notes:", err));
+          
+          
+        } catch (err) {
+          console.log(err);
+          localStorage.removeItem("access_token");
+          localStorage.removeItem("refresh_token");
+          window.location.href = "/login";
+        }
+      } else {
+        window.location.href = "/login";
+      }
     });
 
     socket.on("disconnect", () => {
@@ -159,8 +342,8 @@ function App() {
   };
 
   const isAuthenticated = () => {
-    return localStorage.getItem('access_token') !== null;
-  }
+    return localStorage.getItem("access_token") !== null;
+  };
 
   return (
     <DataContext.Provider
@@ -182,7 +365,10 @@ function App() {
         <Route
           path="/"
           element={
-            <ProtectedRouteProps isAuthenticated={isAuthenticated()} redirectTo="/login">
+            <ProtectedRouteProps
+              isAuthenticated={isAuthenticated()}
+              redirectTo="/login"
+            >
               <main
                 className={`outer-container ${isDark && "dark-body-bg"}`}
                 style={{ fontFamily: `${notes.fontTheme}` }}
@@ -190,7 +376,7 @@ function App() {
                 <Board />
                 <p>asdadadas</p>
               </main>
-             </ProtectedRouteProps>
+            </ProtectedRouteProps>
           }
         />
       </Routes>

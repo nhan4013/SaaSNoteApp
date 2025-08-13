@@ -10,7 +10,8 @@ async def after_note_change(db, user):
     notes = db.query(AppNotes).filter(
         AppNotes.user_id == user.id).all()
     notes_data = [note_to_schema(note) for note in notes]
-    await publish_update("notes",json.dumps(notes_data))
+    json_data = "[" + ",".join([note.model_dump_json() for note in notes_data]) + "]"
+    await publish_update("notes",json_data)
 
 async def get_notes(db, user):
     notes = db.query(AppNotes).filter(
