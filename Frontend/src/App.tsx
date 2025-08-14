@@ -10,6 +10,7 @@ import { Route, Routes } from "react-router-dom";
 import Login from "./components/auth/Login";
 import ProtectedRouteProps from "./components/auth/ProtectedRoute";
 import { v4 as uuidv4 } from 'uuid';
+import { isTokenStatus } from "./hooks/useTokenStatus";
 
 const notesReducer = (state: NotesState, action: Action) => {
   switch (action.type) {
@@ -21,6 +22,15 @@ const notesReducer = (state: NotesState, action: Action) => {
         showDetailed: true
       };
     }
+    case "SET_NOTES":{
+      const {notes} = action.payload;
+      return {
+        ...state,
+        notesData : Array.isArray(notes) ? notes : [],
+        currentNoteId: Array.isArray(notes) && notes.length > 0 ? notes[0].id : null,
+      }
+    }
+
     case "UPDATE_TAG": {
       const { tag } = action.payload;
       return {
@@ -28,7 +38,7 @@ const notesReducer = (state: NotesState, action: Action) => {
         currentTag: tag
       };
     }
-    case "UPDATE_TAB":{
+    case "UPDATE_TAB": {
       const { tab, key } = action.payload;
       return {
         ...state,
@@ -38,12 +48,14 @@ const notesReducer = (state: NotesState, action: Action) => {
       };
     }
     case "OPEN_MODAL":
-      { const { modalId, icon, typeText, parag, modalTitle } = action.payload;
-      return {
-        ...state,
-        warningModal: true,
-        modalData: { modalId, icon, typeText, parag, modalTitle },
-      }; }
+      {
+        const { modalId, icon, typeText, parag, modalTitle } = action.payload;
+        return {
+          ...state,
+          warningModal: true,
+          modalData: { modalId, icon, typeText, parag, modalTitle },
+        };
+      }
     case "CLOSE_MODAL":
       return {
         ...state,
@@ -65,9 +77,9 @@ const notesReducer = (state: NotesState, action: Action) => {
         notesData: state.notesData.map((note) =>
           note.id === state.currentNoteId
             ? {
-                ...note,
-                isArchived: !note.isArchived,
-              }
+              ...note,
+              isArchived: !note.isArchived,
+            }
             : note
         ),
         warningModal: false,
@@ -88,90 +100,130 @@ const notesReducer = (state: NotesState, action: Action) => {
         asideCurrentTab: "allNotes",
       };
     case "UPDATE_FORM":
-      { const { name, value } = action.payload;
-      return {
-        ...state,
-        form: {
-          ...state.form,
-          [name]: value,
-        },
-        isValid: {
-          ...state.isValid,
-          [name]: true,
-        },
-      }; }
+      {
+        const { name, value } = action.payload;
+        return {
+          ...state,
+          form: {
+            ...state.form,
+            [name]: value,
+          },
+          isValid: {
+            ...state.isValid,
+            [name]: true,
+          },
+        };
+      }
     case "VALIDATE_FORM":
-      { const { isValid } = action.payload;
-      return {
-        ...state,
-        isValid: {
-          ...isValid,
-        },
-      }; }
+      {
+        const { isValid } = action.payload;
+        return {
+          ...state,
+          isValid: {
+            ...isValid,
+          },
+        };
+      }
     case "CREATE_NOTE":
-      { const { title, tags, content, lastEdited } = action.payload;
-      return {
-        ...state,
-        notesData: [
-          { id: uuidv4(), title, tags, lastEdited, content, isArchived: false },
-          ...state.notesData,
-        ],
-        showForm: false,
-        form: {
-          title: "",
-          tags: "",
-          content: "",
-          lastEdited: "",
-        },
-        isValid: {
-          title: true,
-          tags: true,
-          content: true,
-        },
-      }; }
+      {
+        const { title, tags, content, lastEdited } = action.payload;
+        return {
+          ...state,
+          notesData: [
+            { id: uuidv4(), title, tags, lastEdited, content, isArchived: false },
+            ...state.notesData,
+          ],
+          showForm: false,
+          form: {
+            title: "",
+            tags: "",
+            content: "",
+            lastEdited: "",
+          },
+          isValid: {
+            title: true,
+            tags: true,
+            content: true,
+          },
+        };
+      }
     case "EDIT_NOTE":
-      { const {
-        editNoteId,
-        title: editTitle,
-        tags: editTags,
-        content: editContent,
-        lastEdited: newData,
-      } = action.payload;
-      return {
-        ...state,
-        notesData: state.notesData.map((note) =>
-          note.id === editNoteId
-            ? {
+      {
+        const {
+          editNoteId,
+          title: editTitle,
+          tags: editTags,
+          content: editContent,
+          lastEdited: newData,
+        } = action.payload;
+        return {
+          ...state,
+          notesData: state.notesData.map((note) =>
+            note.id === editNoteId
+              ? {
                 ...note,
                 title: editTitle,
                 tags: editTags,
                 content: editContent,
                 lastEdited: newData,
               }
-            : note
-        ),
-        currentNoteId: editNoteId,
-      }; }
-    case "TOGGLE_DETAILS_PAGE":{
+              : note
+          ),
+          currentNoteId: editNoteId,
+        };
+      }
+    case "TOGGLE_DETAILS_PAGE": {
       return {
         ...state,
         showDetailed: false,
       };
     }
-      
+
     default:
       return state;
   }
 };
 
 
-const api = axios.create({
+
+
+function App() {
+  const [savedData, setSavedData] = useState<Note[]>([]);
+  const [TagsData, setTagsData] = useState<Tag[]>([]);
+
+  
+
+  const api = axios.create({
     baseURL: 'http://localhost:8000'
   })
 
+  const refreshAccessToken = async () => {
+    const refresh = localStorage.getItem("refresh_token");
+    if (!refresh) return null;
+    try {
+      const response = await axios.post(
+        "http://127.0.0.1:8001/auth/token/refresh",
+        { refresh }
+      );
+      const { access } = response.data;
+      localStorage.setItem("access_token", access);
+      return access;
+    } catch (err) {
+      localStorage.removeItem("access_token");
+      localStorage.removeItem("refresh_token");
+      window.location.href = "/login";
+      return null;
+    }
+  };
+  
+
   api.interceptors.request.use(
-    (config) => {
-      const token = localStorage.getItem('access_token');
+    async (config) => {
+      let token = localStorage.getItem('access_token');
+      
+      if(isTokenStatus(token)){
+        token = await refreshAccessToken();
+      }
       if (token) {
         config.headers.Authorization = `Bearer ${token}`;
       }
@@ -182,21 +234,23 @@ const api = axios.create({
     }
   );
 
-function App() {
-  const [savedData, setSavedData] = useState<Note[]>([]);
-  const [TagsData, setTagsData] = useState<Tag[]>([]);
-
   useEffect(() => {
+
     api.get("/notes/")
-      .then((res) => setSavedData(res.data))
+      .then((res) => {
+        setSavedData(res.data)
+        dispatchNotes({type:"SET_NOTES", payload:{notes : res.data}})
+        console.log(res.data)
+      })
       .catch((err) => console.log("Failed to fetch notes:", err));
-  }, []);
+  }
+  , []);
 
   useEffect(() => {
     const socket: Socket = io("http://localhost:8000", {
       transports: ["websocket"],
       auth(cb) {
-          cb({ token: localStorage.getItem("access_token") });
+        cb({ token: localStorage.getItem("access_token") });
       },
     });
 
@@ -214,11 +268,11 @@ function App() {
     });
 
     socket.on("token_expired", async (data) => {
-      console.log("asa");
+
       const refresh = localStorage.getItem("refresh_token");
       if (refresh) {
         try {
-          console.log(data);
+
           const response = await axios.post(
             "http://127.0.0.1:8001/auth/token/refresh",
             { refresh }
@@ -228,15 +282,15 @@ function App() {
           socket.auth = { token: access };
           socket.connect();
           axios
-        .get("http://localhost:8000/notes/", {
-          headers: {
-            Authorization: `Bearer ${access}`
-          }
-        })
-        .then((res) => setSavedData(res.data))
-        .catch((err) => console.log("Failed to fetch notes:", err));
-          
-          
+            .get("http://localhost:8000/notes/", {
+              headers: {
+                Authorization: `Bearer ${access}`
+              }
+            })
+            .then((res) => setSavedData(res.data))
+            .catch((err) => console.log("Failed to fetch notes:", err));
+
+
         } catch (err) {
           console.log(err);
           localStorage.removeItem("access_token");
@@ -258,14 +312,14 @@ function App() {
   }, []);
 
   const initialData = {
-    notesData: savedData ? savedData : data,
+    notesData: savedData.length > 0 ? savedData : data,
     asideCurrentTab: "allNotes",
     currentNoteId:
       savedData && savedData?.length > 0
         ? savedData?.[0].id
         : data?.length > 0
-        ? data[0].id
-        : null,
+          ? data[0].id
+          : null,
     currentTag: "",
     settingsCurrentTab: "colorTheme",
     warningModal: false,
@@ -313,7 +367,7 @@ function App() {
     (note: Note) => note?.id === notes?.currentNoteId
   );
 
-  useEffect(() => {}, [searchResult, notes?.currentNoteId]);
+  useEffect(() => { }, [searchResult, notes?.currentNoteId]);
   const isDark = notes.colorTheme === "darkMode";
 
   const getContent = () => {
@@ -363,7 +417,7 @@ function App() {
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route
-          path="/"
+          path="/*"
           element={
             <ProtectedRouteProps
               isAuthenticated={isAuthenticated()}
@@ -374,7 +428,7 @@ function App() {
                 style={{ fontFamily: `${notes.fontTheme}` }}
               >
                 <Board />
-                <p>asdadadas</p>
+
               </main>
             </ProtectedRouteProps>
           }

@@ -1,0 +1,126 @@
+.note-form,.note-form-field,.lastEdited{
+    width: 100%;
+}
+.note-form{
+    padding: 2rem 2.4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.8rem;
+
+}
+.note-form-field,.tag-label,.lastEdited{
+    display: flex;
+    align-items: center;
+    
+}
+
+.title-input,.tags-input,.title-label{
+    width: 100%;
+    min-height: max-content;
+    display: flex;
+    align-items: center;
+    font-size: 1.4rem;
+}
+.title-input{
+    font-size: 2.4rem;
+}
+
+.title-input:focus,.tags-input:focus{
+    outline: none;
+    border-bottom: 1px solid var(--neutral-200);
+    transition: .3s ease-in-out;
+}
+/* DARK MODE ACTIVE STATE */
+.title-input.dark-title:focus,.tags-input.dark-tags:focus{
+    outline: none;
+    border-bottom: 1px solid var(--neutral-800);
+    transition: .3s ease-in-out;
+    color: rgb(61, 80, 170);
+    caret-color: var(--neutral-0);
+}
+.dark-title,.dark-tags{
+    color: rgb(61, 80, 170);
+
+}
+.tags-lastEdited-wrapper{
+    width: 100%;
+    padding: 1.6rem 0;
+    border-bottom: 1px solid var(--neutral-200);
+}
+.tag-label,.edit-label{
+    gap: .6rem;
+    max-width: 115px;
+    width: 100%;
+    font-size: 1.4rem;
+}
+
+.lastEdited,.edit-label{
+    display: flex!important;
+    align-items: center;
+}
+.lastEdited{
+    margin-top: 1rem;
+}
+.lastEdited-text{
+    font-size: 1.4rem;
+    color: var(--neutral-500);
+}
+.note-form-field.content,.textarea-input{
+width: 100%;
+}
+.note-form-field.content{
+    border-bottom: 1px solid var(--neutral-200);
+   
+}
+.textarea-input{
+margin: 1.6rem 0;
+background-color: inherit;
+border: none;
+resize: none;
+min-height: 567px;
+}
+.textarea-input:focus{
+    outline: none;
+    border: 1px solid var(--neutral-200);
+    padding: 1.6rem;
+    transition: .3s ease-in-out;
+    border-radius: .64rem;
+}
+.textarea-input.dark-content:focus{
+    border: 1px solid var(--neutral-800)!important;
+    caret-color: var(--blue-500);
+    color: rgb(65, 82, 131);
+    font-size: 1.6rem;
+    caret-color: var(--neutral-0);
+
+}
+.form-btn-wrapper{
+    margin-top: 1.6rem;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: .8rem;
+}
+.form-btn{
+    width: fit-content;
+    padding: 0 1.6rem;
+    height: 4.1rem;
+    border-radius: .8rem;
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: var(--neutral-0)!important;
+}
+.save{
+    background-color: var(--blue-500);
+    color: var(--neutral-0);
+
+}
+.cancel{
+    background-color: var(--neutral-100);
+    color: var(--neutral-950)!important;
+}
+
+.error-message{
+    color: red;
+    min-width: max-content;
+}

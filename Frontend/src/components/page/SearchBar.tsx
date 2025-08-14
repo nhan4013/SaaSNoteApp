@@ -1,6 +1,7 @@
 import { useContext, useId } from "react";
 import { DataContext } from "../../context";
 import { SearchOutlined } from "@mui/icons-material";
+import NoteCards from "../NoteCard/NoteCards";
 
 function SearchBar() {
   const context = useContext(DataContext);

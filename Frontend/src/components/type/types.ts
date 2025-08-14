@@ -1,3 +1,7 @@
+import { Note } from "@mui/icons-material";
+import type { OverridableComponent } from "@mui/material/OverridableComponent";
+import type { SvgIconTypeMap } from "@mui/material/SvgIcon";
+
 export interface Note {
   id: string;
   title: string;
@@ -11,6 +15,16 @@ export interface Tag {
   name:string
 }
 
+export type ThemeTab = "colorTheme" | "fontTheme";
+
+export interface ModalData {
+  modalId: string | null;
+  icon?: React.ElementType;
+  typeText: string;
+  parag: string;
+  modalTitle: string;
+}
+
 
 export type NotesState = {
   notesData: Note[];
@@ -20,7 +34,7 @@ export type NotesState = {
   settingsCurrentTab: string;
   warningModal: boolean;
   showDetailed: boolean;
-  modalData: object;
+  modalData: ModalData;
   fontTheme: string;
   colorTheme: string;
   showForm: boolean;
@@ -49,7 +63,7 @@ export type Action =
   | { type: "UPDATE_NOTE"; payload: { id: string } }
   | { type: "UPDATE_TAG"; payload: { tag: string } }
   | { type: "UPDATE_TAB"; payload: { tab: string; key: string } }
-  | { type: "OPEN_MODAL"; payload: { modalId: string; icon: string; typeText: string; parag: string; modalTitle: string } }
+  | { type: "OPEN_MODAL"; payload: { modalId: string | null; icon: string; typeText: string; parag: string; modalTitle: string } }
   | { type: "CLOSE_MODAL" }
   | { type: "DELETE_NOTE" }
   | { type: "ARCHIVE_NOTE" }
@@ -59,7 +73,37 @@ export type Action =
   | { type: "VALIDATE_FORM"; payload: { isValid: { title: boolean; tags: boolean; content: boolean } } }
   | { type: "CREATE_NOTE"; payload: { title: string; tags: string[]; content: string; lastEdited: string } }
   | { type: "EDIT_NOTE"; payload: { editNoteId: string; title: string; tags: string[]; content: string; lastEdited: string } }
-  | { type: "TOGGLE_DETAILS_PAGE" };
+  | { type: "TOGGLE_DETAILS_PAGE" }
+  | { type: "SET_NOTES"; payload: { notes: Note[] } };
 
+  export type ColorThemeOption = {
+  id: string;
+  icon: OverridableComponent<SvgIconTypeMap<{}, "svg">> & { muiName: string };
+  label: string;
+  parag: string;
+};
+
+export type FontThemeOption = {
+  id: string;
+  text: string;
+  label: string;
+  parag: string;
+}
+
+
+export type ThemeData = {
+  colorTheme: {
+    id: "colorTheme";
+    text: string;
+    parag: string;
+    options: ColorThemeOption[];
+  };
+  fontTheme: {
+    id: "fontTheme";
+    text: string;
+    parag: string;
+    options: FontThemeOption[];
+  };
+};
 
   

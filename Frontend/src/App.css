@@ -1,42 +1,41 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+.outer-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: var(--neutral-0);
+  position: relative;
+  color: var(--neutral-950);
+  transition: 0.3s ease-in-out;
+  z-index: 5;
+  /* padding: 0 2.4rem; */
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+/* DARK MODE..................... */
+.dark-body-bg {
+  background-color: var(--neutral-950)!important;
+  color: var(--neutral-0)!important;
+  transition: 0.3s ease-in-out!important;
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+.dark-card-bg{
+  background-color: var(--neutral-800)!important;
+  color: var(--neutral-0)!important;
+  transition: 0.3s ease-in-out!important;
 }
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
+.dark-text-secondary{
+  color: var(--neutral-200)!important;
+  transition: 0.3s ease-in-out!important;
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }
+.dark-text-primary{
+  color: var(--neutral-0)!important;
+  transition: 0.3s ease-in-out!important;
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
 }
-
-.card {
-  padding: 2em;
+@media (width > 1500px) {
+.board-wrapper {
+  border-radius: 1.2rem;
 }
-
-.read-the-docs {
-  color: #888;
+  
 }

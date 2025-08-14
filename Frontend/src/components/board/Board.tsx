@@ -1,29 +1,40 @@
-import React, { useContext, useEffect } from "react"
-import AsideBar from "../aside/AsideBar"
+import { useContext, useEffect } from "react";
+import AsideBar from "../aside/AsideBar";
 import { DataContext } from "../../context";
 import {
   Add,
   ArchiveOutlined,
-  ArrowBack,
   DeleteOutlineOutlined,
   KeyboardArrowLeft,
   RestartAltOutlined,
-  Settings,
+  Settings
 } from "@mui/icons-material";
-import { useLocation } from "react-router-dom";
 import SearchBar from "../page/SearchBar";
+import { Routes, Route, Link, NavLink, useLocation } from "react-router-dom";
+import NoteCards from "../NoteCard/NoteCards";
+import NoteForm from "../NoteForm/NoteForm";
+import DetailedNote from "../DetailedNote/DetailedNote";
+import Button from "../page/Button";
+import SettingsPage from "../settings/SettingsPage";
+import logo from "../../assets/images/logo.svg";
+import logoDark from "../../assets/images/logo-dark.png";
+import { AnimatePresence, motion } from "framer-motion";
+import { detailedVariants } from "../../variant";
+import TagList from "../page/TagList";
+import WarningModal from "../WarningModal/WarningModal";
+import "./Board.css"
 
 function Board() {
-    const context = useContext(DataContext);
-    if (!context) throw new Error("DataContext not found");
-    const {
-        notes,
-        dispatchNotes,
-        searchResults,
-        setIsTablet,
-        isTablet,
-        getContent,
-        isDark,
+  const context = useContext(DataContext);
+  if (!context) throw new Error("DataContext not found");
+  const {
+    notes,
+    dispatchNotes,
+    searchResult,
+    setIsTablet,
+    isTablet,
+    getContent,
+    isDark
   } = context;
 
   const archiveData = {
@@ -40,7 +51,7 @@ function Board() {
     parag:
       notes.asideCurrentTab !== "archivedNotes"
         ? "Are you sure you want to archive this note? You can find it in the Archived Notes section and restore it anytime."
-        : "Are you sure you want to restore this note? This note will be restored to All Notes section.",
+        : "Are you sure you want to restore this note? This note will be restored to All Notes section."
   };
 
   const deleteData = {
@@ -48,14 +59,14 @@ function Board() {
     icon: DeleteOutlineOutlined,
     actionType: "DELETE_NOTE",
     parag:
-      "Are you sure you want to delete this note? This action cannot be undone.",
+      "Are you sure you want to delete this note? This action cannot be undone."
   };
 
   const newNoteData = {
     text: "Create New Note",
     icon: Add,
     actionType: "SHOW_FORM",
-    parag: "",
+    parag: ""
   };
   const isSettings = notes.asideCurrentTab === "settingsTab";
 
@@ -67,12 +78,12 @@ function Board() {
 
   const location = useLocation();
 
-    return (
-        <div className={`board-wrapper mobile ${isDark && "dark-border"}`}>
-            <div className="aside desktop">
-                <AsideBar />
-            </div>
-            <section
+  return (
+    <div className={`board-wrapper mobile ${isDark && "dark-border"}`}>
+      <div className="aside desktop">
+        <AsideBar />
+      </div>
+      <section
         className={`content-wrapper desktop ${isDark && "dark-bl"}`}
         aria-labelledby="main-title"
       >
@@ -92,7 +103,7 @@ function Board() {
               onClick={() => {
                 dispatchNotes({
                   type: "UPDATE_TAB",
-                  payload: { tab: "settingsTab", key: "asideCurrentTab" },
+                  payload: { tab: "settingsTab", key: "asideCurrentTab" }
                 });
               }}
               to={`/settingsTab`}
@@ -120,7 +131,7 @@ function Board() {
                 {getContent().parag}
               </p>
 
-              <NoteCards data={searchResults} aria-label="Search Results" />
+              <NoteCards data={searchResult} aria-label="Search Results" />
             </div>
 
             <div
@@ -145,9 +156,160 @@ function Board() {
             )}
           </div>
         )}
-      </section>    
+      </section>
+      <section
+        className={`tablet-mobile-board ${isDark && "dark-body-bg"}`}
+        aria-labelledby="mobile-board-title"
+      >
+        <header
+          className={`aside-header ${isDark && "dark-card-bg"}`}
+          aria-label="App Header"
+        >
+          <img
+            src={isDark ? logoDark : logo}
+            alt="Notes App logo"
+            className="logo"
+          />
+        </header>
+        <div
+          className={`notes-wrapper ${isDark && "dark-body-bg"}`}
+          aria-label="Notes Content Wrapper"
+        >
+          {notes.asideCurrentTab !== "settingsTab" &&
+            isTablet &&
+            !notes.showForm && (
+              <div
+                className="mobile-newNote"
+                aria-label="Create New Note Section"
+              >
+                <Button data={newNoteData} aria-label="Create New Note" />
+              </div>
+            )}
+          <AnimatePresence mode="wait">
+            <Routes location={location} key={location.key}>
+              <Route
+                path="/"
+                element={
+                  <motion.div
+                    variants={detailedVariants}
+                    initial="initial"
+                    animate="animate"
+                  >
+                    <NoteCards
+                      data={searchResult}
+                      aria-label="Notes List for All Notes"
+                    />
+                  </motion.div>
+                }
+              />
+              <Route
+                path="/archivedNotes"
+                element={
+                  <motion.div
+                    variants={detailedVariants}
+                    initial="initial"
+                    animate="animate"
+                  >
+                    <NoteCards
+                      data={searchResult}
+                      aria-label="Notes List for Archived Notes"
+                    />
+                  </motion.div>
+                }
+              />
+              <Route
+                path="/tags"
+                element={
+                  <motion.div
+                    variants={detailedVariants}
+                    initial="initial"
+                    animate="animate"
+                    className="tags-list-route"
+                  >
+                    <TagList aria-label="Tags List" />
+                  </motion.div>
+                }
+              />
+              <Route
+                path={`/filteredTags`}
+                element={
+                  <NoteCards
+                    data={searchResult}
+                    aria-label="Notes List for Filtered Tags"
+                  />
+                }
+              />
+              <Route
+                path={`/searchTab`}
+                element={
+                  <motion.div
+                    variants={detailedVariants}
+                    initial="initial"
+                    animate="animate"
+                    className="search-tab-route"
+                  >
+                    <SearchBar aria-label="Search Notes" />
+                  </motion.div>
+                }
+              />
+              <Route
+                path={`/details`}
+                element={
+                  <div
+                    className="detailed-mobile-wrapper"
+                    aria-label="Detailed Note View"
+                  >
+                    <div
+                      className={`detailed-mobile-actions-container ${
+                        isDark && "dark-bb"
+                      }`}
+                      aria-label="Action Buttons for Detailed Note"
+                    >
+                      <Link
+                        to={`${
+                          notes.asideCurrentTab === "allNotes"
+                            ? "/"
+                            : `/${notes.asideCurrentTab}`
+                        }`}
+                        className="go-back-link"
+                        aria-label="Go Back to Previous View"
+                      >
+                        <KeyboardArrowLeft aria-hidden="true" /> Go Back
+                      </Link>
+                      <div
+                        className="detailed-delete-archive"
+                        aria-label="Delete and Archive Actions"
+                      >
+                        <Button data={deleteData} aria-label="Delete Note" />
+                        <Button data={archiveData} aria-label="Archive Note" />
+                      </div>
+                    </div>
+                    <DetailedNote aria-label="Detailed Note Content" />
+                  </div>
+                }
+              />
+              <Route
+                path="/newNote"
+                element={<NoteForm aria-label="New Note Form" />}
+              />
+              <Route
+                path="/settingsTab"
+                element={<SettingsPage aria-label="Settings Page" />}
+              />
+            </Routes>
+          </AnimatePresence>
         </div>
-    )
+
+        <div
+          className={`mobile-bottom-bar ${isDark && "dark-body-bg"}`}
+          aria-label="Bottom Navigation Bar"
+        >
+          <AsideBar />
+        </div>
+      </section>
+      {notes.warningModal && <WarningModal />}
+    </div>
+  );
 }
 
-export default Board
+export default Board;
