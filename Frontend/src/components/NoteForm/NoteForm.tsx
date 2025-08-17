@@ -3,6 +3,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { DataContext } from "../../context";
 import { AccessTimeOutlined, SellOutlined } from "@mui/icons-material";
 import './NoteForm.css'
+import axios from "axios";
+import api from "../../api";
 
 function NoteForm() {
   const context = useContext(DataContext);
@@ -21,22 +23,27 @@ function NoteForm() {
     const { name, value } = e.target;
     dispatchNotes({ type: "UPDATE_FORM", payload: { name, value } });
   };
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
+   
     e.preventDefault();
+  
     if (validateForm()) {
-      dispatchNotes({
-        type: "CREATE_NOTE",
-        payload: {
+      try{
+        
+        await api.post("/notes/",{
           title,
           tags: tags.split(",").map((tag) => tag.trim()),
           content,
-          lastEdited: new Date().toISOString(),
-        },
-      });
+          is_archived : false
+        });
+        dispatchNotes({ type: "RESET_FORM" });
+      }catch(error){
+        console.error(error)
+      }
     } else {
       return;
     }
-    navigate("/");
+    
   };
 
   const validateForm = () => {

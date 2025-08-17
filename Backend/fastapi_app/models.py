@@ -104,7 +104,7 @@ class AppNotes(Base):
     created_at: Mapped[datetime.datetime] = mapped_column(DateTime(True))
     updated_at: Mapped[datetime.datetime] = mapped_column(DateTime(True))
     user_id: Mapped[int] = mapped_column(Integer)
-
+    is_archived: Mapped[bool] = mapped_column(Boolean, default=False)
     user: Mapped['AuthUser'] = relationship('AuthUser', back_populates='app_notes')
     app_notes_tags: Mapped[List['AppNotesTags']] = relationship('AppNotesTags', back_populates='notes')
 
@@ -120,7 +120,6 @@ class AppTags(Base):
     id: Mapped[int] = mapped_column(BigInteger, Identity(start=1, increment=1, minvalue=1, maxvalue=9223372036854775807, cycle=False, cache=1), primary_key=True)
     name: Mapped[str] = mapped_column(String(200))
     user_id: Mapped[int] = mapped_column(Integer)
-    is_archived: Mapped[bool] = mapped_column(Boolean, default=False)
     user: Mapped['AuthUser'] = relationship('AuthUser', back_populates='app_tags')
     app_notes_tags: Mapped[List['AppNotesTags']] = relationship('AppNotesTags', back_populates='tags')
 

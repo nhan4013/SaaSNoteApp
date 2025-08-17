@@ -89,8 +89,7 @@ export default function SignIn(props: { disableCustomTheme?: boolean }) {
     }
     
     const data = new FormData(event.currentTarget);
-    console.log('my email',data.get('email'))
-    console.log('my password',data.get('password'))
+  
     try {
         const response = await axios.post('http://127.0.0.1:8001/auth/login',{
             email:data.get('email'),
@@ -99,6 +98,8 @@ export default function SignIn(props: { disableCustomTheme?: boolean }) {
         const {access,refresh} = response.data;
         localStorage.setItem('access_token',access);
         localStorage.setItem('refresh_token',refresh);
+        console.log('my email',data.get('email'))
+        console.log('my password',data.get('password'))
         navigate('/')
     } catch (error:any) {
         console.error('Login failed:', error);

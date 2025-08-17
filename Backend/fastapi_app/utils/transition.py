@@ -9,5 +9,6 @@ def note_to_schema(note: AppNotes) -> NoteOut:
         created_at=note.created_at,
         updated_at=note.updated_at,
         user_id=note.user_id,
+        is_archived=note.is_archived,
         tags=[tag.tags.name for tag in note.app_notes_tags]
     )

@@ -9,13 +9,14 @@ class NoteOut(BaseModel):
     updated_at: datetime
     user_id: int
     tags:list[str]
-    
+    is_archived: bool = False
     class Config:
         orm_mode = True
         
 class NoteIn(BaseModel):
     title:str
     content:str
+    is_archived: bool = False
     tags:list[str] = []
     
 class TagIn(BaseModel):

@@ -3,7 +3,6 @@ from fastapi import HTTPException
 from utils.transition import note_to_schema
 from models import AppNotes, AppNotesTags, AppTags
 from utils.redis_pubsub import publish_update
-import json
 
 
 async def after_note_change(db, user):
@@ -39,6 +38,7 @@ async def update_note(id, note_in, db, user):
     note.title = note_in.title
     note.content = note_in.content
     note.updated_at = datetime.now(timezone.utc)
+    note.is_archived = getattr(note_in, "is_archived", note.is_archived) 
     note.app_notes_tags.clear()
     db.commit()
     for tag_name in note_in.tags:
@@ -74,7 +74,7 @@ async def create_node(note_in, db, user):
     now = datetime.now(timezone.utc)
     new_note = AppNotes(
         title=note_in.title, content=note_in.content, user_id=user.id, created_at=now,
-        updated_at=now)
+        updated_at=now,is_archived = False)
     for tag_name in note_in.tags:
         tag = db.query(AppTags).filter_by(
             name=tag_name, user_id=user.id).first()
@@ -87,6 +87,7 @@ async def create_node(note_in, db, user):
     db.add(new_note)
     db.commit()
     db.refresh(new_note)
+    print("Publishing notes update")
     await after_note_change(db,user)
     return note_to_schema(new_note)
 

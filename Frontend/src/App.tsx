@@ -9,8 +9,9 @@ import axios from "axios";
 import { Route, Routes } from "react-router-dom";
 import Login from "./components/auth/Login";
 import ProtectedRouteProps from "./components/auth/ProtectedRoute";
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from "uuid";
 import { isTokenStatus } from "./hooks/useTokenStatus";
+
 
 const notesReducer = (state: NotesState, action: Action) => {
   switch (action.type) {
@@ -22,13 +23,14 @@ const notesReducer = (state: NotesState, action: Action) => {
         showDetailed: true
       };
     }
-    case "SET_NOTES":{
-      const {notes} = action.payload;
+    case "SET_NOTES": {
+      const { notes } = action.payload;
       return {
         ...state,
-        notesData : Array.isArray(notes) ? notes : [],
-        currentNoteId: Array.isArray(notes) && notes.length > 0 ? notes[0].id : null,
-      }
+        notesData: Array.isArray(notes) ? notes : [],
+        currentNoteId:
+          Array.isArray(notes) && notes.length > 0 ? notes[0].id : null
+      };
     }
 
     case "UPDATE_TAG": {
@@ -44,23 +46,22 @@ const notesReducer = (state: NotesState, action: Action) => {
         ...state,
         [key]: tab,
         currentTag: tab === "tags" ? state.currentTag : "",
-        showForm: false,
+        showForm: false
       };
     }
-    case "OPEN_MODAL":
-      {
-        const { modalId, icon, typeText, parag, modalTitle } = action.payload;
-        return {
-          ...state,
-          warningModal: true,
-          modalData: { modalId, icon, typeText, parag, modalTitle },
-        };
-      }
+    case "OPEN_MODAL": {
+      const { modalId, icon, typeText, parag, modalTitle } = action.payload;
+      return {
+        ...state,
+        warningModal: true,
+        modalData: { modalId, icon, typeText, parag, modalTitle }
+      };
+    }
     case "CLOSE_MODAL":
       return {
         ...state,
         warningModal: false,
-        modalData: {},
+        modalData: {}
       };
     case "DELETE_NOTE":
       return {
@@ -69,7 +70,7 @@ const notesReducer = (state: NotesState, action: Action) => {
           (note) => note?.id !== state?.currentNoteId
         ),
         warningModal: false,
-        modalData: {},
+        modalData: {}
       };
     case "ARCHIVE_NOTE":
       return {
@@ -77,13 +78,19 @@ const notesReducer = (state: NotesState, action: Action) => {
         notesData: state.notesData.map((note) =>
           note.id === state.currentNoteId
             ? {
-              ...note,
-              isArchived: !note.isArchived,
-            }
+                ...note,
+                isArchived: !note.isArchived
+              }
             : note
         ),
         warningModal: false,
-        modalData: {},
+        modalData: {}
+      };
+    case "RESET_FORM":
+      return {
+        ...state,
+        form: { title: "", tags: "", content: "" },
+        isValid: { title: true, tags: true, content: true }
       };
 
     case "SHOW_FORM":
@@ -91,91 +98,87 @@ const notesReducer = (state: NotesState, action: Action) => {
         ...state,
         showForm: true,
         asideCurrentTab: "allNotes",
-        currentTag: "",
+        currentTag: ""
       };
     case "HIDE_FORM":
       return {
         ...state,
         showForm: false,
-        asideCurrentTab: "allNotes",
+        asideCurrentTab: "allNotes"
       };
-    case "UPDATE_FORM":
-      {
-        const { name, value } = action.payload;
-        return {
-          ...state,
-          form: {
-            ...state.form,
-            [name]: value,
-          },
-          isValid: {
-            ...state.isValid,
-            [name]: true,
-          },
-        };
-      }
-    case "VALIDATE_FORM":
-      {
-        const { isValid } = action.payload;
-        return {
-          ...state,
-          isValid: {
-            ...isValid,
-          },
-        };
-      }
-    case "CREATE_NOTE":
-      {
-        const { title, tags, content, lastEdited } = action.payload;
-        return {
-          ...state,
-          notesData: [
-            { id: uuidv4(), title, tags, lastEdited, content, isArchived: false },
-            ...state.notesData,
-          ],
-          showForm: false,
-          form: {
-            title: "",
-            tags: "",
-            content: "",
-            lastEdited: "",
-          },
-          isValid: {
-            title: true,
-            tags: true,
-            content: true,
-          },
-        };
-      }
-    case "EDIT_NOTE":
-      {
-        const {
-          editNoteId,
-          title: editTitle,
-          tags: editTags,
-          content: editContent,
-          lastEdited: newData,
-        } = action.payload;
-        return {
-          ...state,
-          notesData: state.notesData.map((note) =>
-            note.id === editNoteId
-              ? {
+    case "UPDATE_FORM": {
+      const { name, value } = action.payload;
+      return {
+        ...state,
+        form: {
+          ...state.form,
+          [name]: value
+        },
+        isValid: {
+          ...state.isValid,
+          [name]: true
+        }
+      };
+    }
+    case "VALIDATE_FORM": {
+      const { isValid } = action.payload;
+      return {
+        ...state,
+        isValid: {
+          ...isValid
+        }
+      };
+    }
+    case "CREATE_NOTE": {
+      const { title, tags, content, lastEdited } = action.payload;
+      return {
+        ...state,
+        notesData: [
+          { id: uuidv4(), title, tags, lastEdited, content, isArchived: false },
+          ...state.notesData
+        ],
+        showForm: false,
+        form: {
+          title: "",
+          tags: "",
+          content: "",
+          lastEdited: ""
+        },
+        isValid: {
+          title: true,
+          tags: true,
+          content: true
+        }
+      };
+    }
+    case "EDIT_NOTE": {
+      const {
+        editNoteId,
+        title: editTitle,
+        tags: editTags,
+        content: editContent,
+        lastEdited: newData
+      } = action.payload;
+      return {
+        ...state,
+        notesData: state.notesData.map((note) =>
+          note.id === editNoteId
+            ? {
                 ...note,
                 title: editTitle,
                 tags: editTags,
                 content: editContent,
-                lastEdited: newData,
+                lastEdited: newData
               }
-              : note
-          ),
-          currentNoteId: editNoteId,
-        };
-      }
+            : note
+        ),
+        currentNoteId: editNoteId
+      };
+    }
     case "TOGGLE_DETAILS_PAGE": {
       return {
         ...state,
-        showDetailed: false,
+        showDetailed: false
       };
     }
 
@@ -184,18 +187,13 @@ const notesReducer = (state: NotesState, action: Action) => {
   }
 };
 
-
-
-
 function App() {
   const [savedData, setSavedData] = useState<Note[]>([]);
   const [TagsData, setTagsData] = useState<Tag[]>([]);
 
-  
-
   const api = axios.create({
-    baseURL: 'http://localhost:8000'
-  })
+    baseURL: "http://localhost:8000"
+  });
 
   const refreshAccessToken = async () => {
     const refresh = localStorage.getItem("refresh_token");
@@ -215,13 +213,12 @@ function App() {
       return null;
     }
   };
-  
 
   api.interceptors.request.use(
     async (config) => {
-      let token = localStorage.getItem('access_token');
-      
-      if(isTokenStatus(token)){
+      let token = localStorage.getItem("access_token");
+
+      if (isTokenStatus(token)) {
         token = await refreshAccessToken();
       }
       if (token) {
@@ -233,25 +230,29 @@ function App() {
       return Promise.reject(error);
     }
   );
+    const isAuthenticated = () => {
+      return localStorage.getItem("access_token") !== null;
+  }
 
   useEffect(() => {
-
-    api.get("/notes/")
+    if (!isAuthenticated()) return;
+    console.log(!isAuthenticated())
+    api
+      .get("/notes/")
       .then((res) => {
-        setSavedData(res.data)
-        dispatchNotes({type:"SET_NOTES", payload:{notes : res.data}})
-        console.log(res.data)
+        setSavedData(res.data);
+        dispatchNotes({ type: "SET_NOTES", payload: { notes: res.data } });
+        console.log(res.data);
       })
       .catch((err) => console.log("Failed to fetch notes:", err));
-  }
-  , []);
+  }, []);
 
   useEffect(() => {
     const socket: Socket = io("http://localhost:8000", {
       transports: ["websocket"],
       auth(cb) {
         cb({ token: localStorage.getItem("access_token") });
-      },
+      }
     });
 
     socket.on("connect", () => {
@@ -261,6 +262,7 @@ function App() {
     socket.on("notes_update", (data) => {
       console.log("update notes");
       setSavedData(JSON.parse(data));
+      dispatchNotes({ type: "SET_NOTES", payload: { notes: JSON.parse(data) } });
     });
 
     socket.on("tags_update", (data) => {
@@ -268,11 +270,9 @@ function App() {
     });
 
     socket.on("token_expired", async (data) => {
-
       const refresh = localStorage.getItem("refresh_token");
       if (refresh) {
         try {
-
           const response = await axios.post(
             "http://127.0.0.1:8001/auth/token/refresh",
             { refresh }
@@ -289,8 +289,6 @@ function App() {
             })
             .then((res) => setSavedData(res.data))
             .catch((err) => console.log("Failed to fetch notes:", err));
-
-
         } catch (err) {
           console.log(err);
           localStorage.removeItem("access_token");
@@ -318,8 +316,8 @@ function App() {
       savedData && savedData?.length > 0
         ? savedData?.[0].id
         : data?.length > 0
-          ? data[0].id
-          : null,
+        ? data[0].id
+        : null,
     currentTag: "",
     settingsCurrentTab: "colorTheme",
     warningModal: false,
@@ -367,7 +365,7 @@ function App() {
     (note: Note) => note?.id === notes?.currentNoteId
   );
 
-  useEffect(() => { }, [searchResult, notes?.currentNoteId]);
+  useEffect(() => {}, [searchResult, notes?.currentNoteId]);
   const isDark = notes.colorTheme === "darkMode";
 
   const getContent = () => {
@@ -395,9 +393,8 @@ function App() {
     return { title, parag };
   };
 
-  const isAuthenticated = () => {
-    return localStorage.getItem("access_token") !== null;
-  };
+
+  
 
   return (
     <DataContext.Provider
@@ -428,7 +425,6 @@ function App() {
                 style={{ fontFamily: `${notes.fontTheme}` }}
               >
                 <Board />
-
               </main>
             </ProtectedRouteProps>
           }
