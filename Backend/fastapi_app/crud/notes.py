@@ -1,5 +1,6 @@
 from datetime import datetime, timezone
 from fastapi import HTTPException
+from core import redis_client
 from utils.transition import note_to_schema
 from models import AppNotes, AppNotesTags, AppTags
 from utils.redis_pubsub import publish_update
@@ -53,6 +54,10 @@ async def update_note(id, note_in, db, user):
         note.app_notes_tags.append(tag)
     db.commit()
     db.refresh(note)
+    try:
+        await redis_client.delete(f"user:{user.id}:notes")
+    except Exception:
+        pass
     await after_note_change(db,user)
     return note_to_schema(note)
 
@@ -66,6 +71,10 @@ async def delete_note(id, db, user):
         raise HTTPException(status_code=404, detail="Note not found")
     db.delete(note)
     db.commit()
+    try:
+        await redis_client.delete(f"user:{user.id}:notes")
+    except Exception:
+        pass
     await after_note_change(db,user)
     return {"message": f"Note {id} deleted successfully"}
 
@@ -87,7 +96,10 @@ async def create_node(note_in, db, user):
     db.add(new_note)
     db.commit()
     db.refresh(new_note)
-    print("Publishing notes update")
+    try:
+        await redis_client.delete(f"user:{user.id}:notes")
+    except Exception:
+        pass
     await after_note_change(db,user)
     return note_to_schema(new_note)
 

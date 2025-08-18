@@ -6,13 +6,19 @@ from schemas import NoteOut, NoteIn
 from dependencies import get_current_user
 from fastapi import status
 from crud import notes as crud_notes
+from utils.cache import redis_cache
 
 notes_router = APIRouter(prefix="/notes", tags=["notes"])
 
 # GET /notes/ — List all notes of the current user
 
+def key_builder(*args, **kwargs):
+    user = kwargs.get("current_user") or (args[1] if len(args) > 1 else None)
+    return f"user:{user.id}:notes"
+
 
 @notes_router.get("/", response_model=list[NoteOut])
+@redis_cache(key_builder, expire=300)
 async def list_notes(
     db: Session = Depends(get_db),
     current_user: AuthUser = Depends(get_current_user)
@@ -23,6 +29,7 @@ async def list_notes(
 
 
 @notes_router.get("/{id}", response_model=NoteOut)
+@redis_cache(key_builder, expire=300)
 async def get_note(
     id: int,
     db: Session = Depends(get_db),
@@ -63,7 +70,7 @@ async def create_note(note: NoteIn, db: Session = Depends(get_db), current_user:
 
 # Search notes by tag name or by title or content for the current user
 
-
+@redis_cache(key_builder, expire=300)
 @notes_router.get("/search", response_model=list[NoteOut])
 async def search_notes_by_tag(
     tag: str = Query(..., description="Tag name to search for"),

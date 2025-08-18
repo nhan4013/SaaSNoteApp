@@ -12,6 +12,8 @@ from utils.redis_pubsub import subscribe_update
 from contextlib import asynccontextmanager
 from fastapi.middleware.cors import CORSMiddleware
 from jose import jwt, JWTError, ExpiredSignatureError
+from prometheus_fastapi_instrumentator import Instrumentator
+
 
 sio = socketio.AsyncServer(cors_allowed_origins="http://localhost:5173",async_mode='asgi')
 
@@ -90,4 +92,6 @@ async def disconnect(sid):
 async def ping_server(sid, data):
     print(f"Received from {sid}: {data}")
     await sio.emit('pong_client', {'message': 'pong'}, to=sid)
-
+    
+    
+Instrumentator().instrument(app).expose(app)
