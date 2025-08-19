@@ -1,0 +1,9 @@
+filebeat.inputs:
+  - type: log
+    enabled: true
+    paths:
+      - /logs/django_app.log
+      - /logs/fastapi_app.log
+
+output.logstash:
+  hosts: ["logstash:5044"]

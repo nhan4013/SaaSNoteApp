@@ -1,0 +1,18 @@
+2025-08-19 12:34:58,468 INFO django.utils.autoreload Watching for file changes with StatReloader
+2025-08-19 12:53:25,702 WARNING django.request Not Found: /
+2025-08-19 12:53:25,899 WARNING django.request Not Found: /favicon.ico
+2025-08-19 12:53:29,577 WARNING django.request Not Found: /
+2025-08-19 12:53:29,735 WARNING django.request Not Found: /
+2025-08-19 12:53:29,873 WARNING django.request Not Found: /
+2025-08-19 12:53:30,030 WARNING django.request Not Found: /
+2025-08-19 12:53:30,172 WARNING django.request Not Found: /
+2025-08-19 12:53:30,314 WARNING django.request Not Found: /
+2025-08-19 12:53:30,452 WARNING django.request Not Found: /
+2025-08-19 12:53:30,625 WARNING django.request Not Found: /
+2025-08-19 12:53:30,755 WARNING django.request Not Found: /
+2025-08-19 12:56:01,880 WARNING django.request Bad Request: /auth/login
+2025-08-19 12:56:03,268 WARNING django.request Bad Request: /auth/login
+2025-08-19 12:56:04,287 WARNING django.request Bad Request: /auth/login
+2025-08-19 12:56:04,900 WARNING django.request Bad Request: /auth/login
+2025-08-19 12:56:05,709 WARNING django.request Bad Request: /auth/login
+2025-08-19 13:01:14,853 WARNING django.request Bad Request: /auth/login

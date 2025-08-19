@@ -13,7 +13,8 @@ from contextlib import asynccontextmanager
 from fastapi.middleware.cors import CORSMiddleware
 from jose import jwt, JWTError, ExpiredSignatureError
 from prometheus_fastapi_instrumentator import Instrumentator
-
+import os
+import sys
 
 sio = socketio.AsyncServer(cors_allowed_origins="http://localhost:5173",async_mode='asgi')
 
@@ -95,3 +96,36 @@ async def ping_server(sid, data):
     
     
 Instrumentator().instrument(app).expose(app)
+
+os.makedirs("../../logs", exist_ok=True)
+try:
+    import colorlog
+    color_formatter = colorlog.ColoredFormatter(
+        "%(log_color)s%(asctime)s %(levelname)s %(name)s %(message)s",
+        log_colors={
+            "DEBUG": "cyan",
+            "INFO": "green",
+            "WARNING": "yellow",
+            "ERROR": "red",
+            "CRITICAL": "bold_red",
+        },
+    )
+    stream_handler = colorlog.StreamHandler(sys.stdout)
+    stream_handler.setFormatter(color_formatter)
+except ImportError:
+    stream_handler = logging.StreamHandler(sys.stdout)
+    stream_handler.setFormatter(logging.Formatter("%(asctime)s %(levelname)s %(name)s %(message)s"))
+
+file_handler = logging.FileHandler("../../logs/fastapi_app.log")
+file_handler.setFormatter(logging.Formatter("%(asctime)s %(levelname)s %(name)s %(message)s"))
+
+
+logging.basicConfig(
+    level=logging.INFO,
+    handlers=[file_handler, stream_handler]
+)
+
+for logger_name in ("uvicorn", "uvicorn.error", "uvicorn.access"):
+    logger = logging.getLogger(logger_name)
+    logger.handlers = []
+    logger.propagate = True
