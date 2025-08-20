@@ -11,6 +11,7 @@ import Login from "./components/auth/Login";
 import ProtectedRouteProps from "./components/auth/ProtectedRoute";
 import { v4 as uuidv4 } from "uuid";
 import { isTokenStatus } from "./hooks/useTokenStatus";
+import CollaborativeNote from "./components/NoteForm/CollaborativeNote";
 
 
 const notesReducer = (state: NotesState, action: Action) => {
@@ -413,6 +414,7 @@ function App() {
     >
       <Routes>
         <Route path="/login" element={<Login />} />
+        <Route path="/notes/:noteId/collaborate" element={<CollaborativeNote />} />
         <Route
           path="/*"
           element={

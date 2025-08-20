@@ -120,3 +120,561 @@ redis.exceptions.ConnectionError: Error Multiple exceptions: [Errno 10061] Conne
 2025-08-19 13:12:46,027 INFO uvicorn.error Waiting for application shutdown.
 2025-08-19 13:12:46,028 INFO uvicorn.error Application shutdown complete.
 2025-08-19 13:12:46,029 INFO uvicorn.error Finished server process [39544]
+2025-08-19 13:14:12,044 INFO uvicorn.error Started server process [30672]
+2025-08-19 13:14:12,044 INFO uvicorn.error Waiting for application startup.
+2025-08-19 13:14:12,047 INFO uvicorn.error Application startup complete.
+2025-08-19 13:14:18,649 INFO uvicorn.access 127.0.0.1:52108 - "GET /metrics HTTP/1.1" 200
+2025-08-19 13:14:24,362 INFO uvicorn.error Shutting down
+2025-08-19 13:14:24,470 INFO uvicorn.error Waiting for application shutdown.
+2025-08-19 13:14:24,473 INFO uvicorn.error Application shutdown complete.
+2025-08-19 13:14:24,474 INFO uvicorn.error Finished server process [30672]
+2025-08-19 20:56:27,391 INFO uvicorn.error Started server process [36072]
+2025-08-19 20:56:27,391 INFO uvicorn.error Waiting for application startup.
+2025-08-19 20:56:27,393 INFO uvicorn.error Application startup complete.
+2025-08-19 20:57:20,269 INFO uvicorn.error 127.0.0.1:51599 - "WebSocket /socket.io/?EIO=4&transport=websocket" [accepted]
+2025-08-19 20:57:20,272 INFO uvicorn.error connection open
+2025-08-19 20:57:20,303 ERROR engineio.server message async handler error
+Traceback (most recent call last):
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\engineio\async_server.py", line 509, in run_async_handler
+    return await self.handlers[event](*args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\socketio\async_server.py", line 688, in _handle_eio_message
+    await self._handle_connect(eio_sid, pkt.namespace, pkt.data)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\socketio\async_server.py", line 552, in _handle_connect
+    success = await self._trigger_event(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\socketio\async_server.py", line 640, in _trigger_event
+    ret = await handler(*args)
+          ^^^^^^^^^^^^^^^^^^^^
+  File "E:\vscode\mvp_project\note_app\Backend\fastapi_app\main.py", line 75, in connect
+    payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\jose\jwt.py", line 159, in decode
+    payload = jws.verify(token, key, algorithms, verify=verify_signature)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\jose\jws.py", line 74, in verify
+    header, payload, signing_input, signature = _load(token)
+                                                ^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\jose\jws.py", line 180, in _load
+    signing_input, crypto_segment = jwt.rsplit(b".", 1)
+                                    ^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'rsplit'
+2025-08-19 20:57:20,364 INFO uvicorn.error connection closed
+2025-08-19 20:57:22,104 INFO uvicorn.error 127.0.0.1:51620 - "WebSocket /socket.io/?EIO=4&transport=websocket" [accepted]
+2025-08-19 20:57:22,107 INFO uvicorn.error connection open
+2025-08-19 20:57:22,149 ERROR engineio.server message async handler error
+Traceback (most recent call last):
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\engineio\async_server.py", line 509, in run_async_handler
+    return await self.handlers[event](*args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\socketio\async_server.py", line 688, in _handle_eio_message
+    await self._handle_connect(eio_sid, pkt.namespace, pkt.data)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\socketio\async_server.py", line 552, in _handle_connect
+    success = await self._trigger_event(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\socketio\async_server.py", line 640, in _trigger_event
+    ret = await handler(*args)
+          ^^^^^^^^^^^^^^^^^^^^
+  File "E:\vscode\mvp_project\note_app\Backend\fastapi_app\main.py", line 75, in connect
+    payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\jose\jwt.py", line 159, in decode
+    payload = jws.verify(token, key, algorithms, verify=verify_signature)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\jose\jws.py", line 74, in verify
+    header, payload, signing_input, signature = _load(token)
+                                                ^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\jose\jws.py", line 180, in _load
+    signing_input, crypto_segment = jwt.rsplit(b".", 1)
+                                    ^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'rsplit'
+2025-08-19 20:57:26,650 INFO uvicorn.access 127.0.0.1:51624 - "GET /metrics HTTP/1.1" 200
+2025-08-19 20:57:32,721 INFO uvicorn.error connection closed
+2025-08-19 20:57:33,392 INFO uvicorn.error 127.0.0.1:51647 - "WebSocket /socket.io/?EIO=4&transport=websocket" [accepted]
+2025-08-19 20:57:33,393 INFO uvicorn.error connection open
+2025-08-19 20:57:33,396 INFO uvicorn.access 127.0.0.1:51648 - "OPTIONS /notes/ HTTP/1.1" 200
+2025-08-19 20:57:33,398 INFO uvicorn.access 127.0.0.1:51649 - "OPTIONS /notes/ HTTP/1.1" 200
+2025-08-19 20:57:33,686 INFO uvicorn.access 127.0.0.1:51648 - "GET /notes/ HTTP/1.1" 200
+2025-08-19 20:57:33,700 INFO uvicorn.access 127.0.0.1:51649 - "GET /notes/ HTTP/1.1" 200
+2025-08-19 20:58:26,638 INFO uvicorn.access 127.0.0.1:51687 - "GET /metrics HTTP/1.1" 200
+2025-08-19 20:59:26,626 INFO uvicorn.access 127.0.0.1:51695 - "GET /metrics HTTP/1.1" 200
+2025-08-19 21:00:26,618 INFO uvicorn.access 127.0.0.1:51706 - "GET /metrics HTTP/1.1" 200
+2025-08-19 21:01:26,622 INFO uvicorn.access 127.0.0.1:51714 - "GET /metrics HTTP/1.1" 200
+2025-08-19 21:02:26,347 INFO uvicorn.error connection closed
+2025-08-19 21:02:26,614 INFO uvicorn.access 127.0.0.1:51723 - "GET /metrics HTTP/1.1" 200
+2025-08-19 21:02:58,139 INFO uvicorn.error 127.0.0.1:51749 - "WebSocket /socket.io/?EIO=4&transport=websocket" [accepted]
+2025-08-19 21:02:58,140 INFO uvicorn.error connection open
+2025-08-19 21:02:58,316 INFO uvicorn.access 127.0.0.1:51751 - "GET /notes/ HTTP/1.1" 200
+2025-08-19 21:02:58,321 INFO uvicorn.access 127.0.0.1:51751 - "GET /notes/ HTTP/1.1" 200
+2025-08-19 21:03:26,605 INFO uvicorn.access 127.0.0.1:51774 - "GET /metrics HTTP/1.1" 200
+2025-08-19 21:04:26,598 INFO uvicorn.access 127.0.0.1:51818 - "GET /metrics HTTP/1.1" 200
+2025-08-19 21:05:26,594 INFO uvicorn.access 127.0.0.1:51855 - "GET /metrics HTTP/1.1" 200
+2025-08-19 21:06:26,588 INFO uvicorn.access 127.0.0.1:51887 - "GET /metrics HTTP/1.1" 200
+2025-08-19 21:06:54,132 INFO uvicorn.error 127.0.0.1:51935 - "WebSocket /socket.io/?EIO=4&transport=websocket" [accepted]
+2025-08-19 21:06:54,134 INFO uvicorn.error connection open
+2025-08-19 21:06:54,148 INFO uvicorn.access 127.0.0.1:51936 - "GET /notes/ HTTP/1.1" 200
+2025-08-19 21:06:54,167 INFO uvicorn.access 127.0.0.1:51936 - "GET /notes/ HTTP/1.1" 200
+2025-08-19 21:07:26,584 INFO uvicorn.access 127.0.0.1:51959 - "GET /metrics HTTP/1.1" 200
+2025-08-19 21:07:30,698 INFO uvicorn.error 127.0.0.1:51973 - "WebSocket /socket.io/?EIO=4&transport=websocket" [accepted]
+2025-08-19 21:07:30,699 INFO uvicorn.error connection open
+2025-08-19 21:07:30,703 ERROR engineio.server message async handler error
+Traceback (most recent call last):
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\engineio\async_server.py", line 509, in run_async_handler
+    return await self.handlers[event](*args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\socketio\async_server.py", line 688, in _handle_eio_message
+    await self._handle_connect(eio_sid, pkt.namespace, pkt.data)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\socketio\async_server.py", line 552, in _handle_connect
+    success = await self._trigger_event(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\socketio\async_server.py", line 640, in _trigger_event
+    ret = await handler(*args)
+          ^^^^^^^^^^^^^^^^^^^^
+  File "E:\vscode\mvp_project\note_app\Backend\fastapi_app\main.py", line 75, in connect
+    payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\jose\jwt.py", line 159, in decode
+    payload = jws.verify(token, key, algorithms, verify=verify_signature)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\jose\jws.py", line 74, in verify
+    header, payload, signing_input, signature = _load(token)
+                                                ^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\jose\jws.py", line 180, in _load
+    signing_input, crypto_segment = jwt.rsplit(b".", 1)
+                                    ^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'rsplit'
+2025-08-19 21:07:41,314 INFO uvicorn.error connection closed
+2025-08-19 21:08:26,592 INFO uvicorn.access 127.0.0.1:52007 - "GET /metrics HTTP/1.1" 200
+2025-08-19 21:09:26,576 INFO uvicorn.access 127.0.0.1:52040 - "GET /metrics HTTP/1.1" 200
+2025-08-19 21:09:46,820 INFO uvicorn.error connection closed
+2025-08-19 21:09:49,413 INFO uvicorn.error 127.0.0.1:52073 - "WebSocket /socket.io/?EIO=4&transport=websocket" [accepted]
+2025-08-19 21:09:49,413 INFO uvicorn.error connection open
+2025-08-19 21:09:49,418 ERROR engineio.server message async handler error
+Traceback (most recent call last):
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\engineio\async_server.py", line 509, in run_async_handler
+    return await self.handlers[event](*args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\socketio\async_server.py", line 688, in _handle_eio_message
+    await self._handle_connect(eio_sid, pkt.namespace, pkt.data)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\socketio\async_server.py", line 552, in _handle_connect
+    success = await self._trigger_event(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\socketio\async_server.py", line 640, in _trigger_event
+    ret = await handler(*args)
+          ^^^^^^^^^^^^^^^^^^^^
+  File "E:\vscode\mvp_project\note_app\Backend\fastapi_app\main.py", line 75, in connect
+    payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\jose\jwt.py", line 159, in decode
+    payload = jws.verify(token, key, algorithms, verify=verify_signature)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\jose\jws.py", line 74, in verify
+    header, payload, signing_input, signature = _load(token)
+                                                ^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\jose\jws.py", line 180, in _load
+    signing_input, crypto_segment = jwt.rsplit(b".", 1)
+                                    ^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'rsplit'
+2025-08-19 21:10:26,568 INFO uvicorn.access 127.0.0.1:52103 - "GET /metrics HTTP/1.1" 200
+2025-08-19 21:11:26,567 INFO uvicorn.access 127.0.0.1:52147 - "GET /metrics HTTP/1.1" 200
+2025-08-19 21:11:53,970 INFO uvicorn.error 127.0.0.1:52176 - "WebSocket /socket.io/?EIO=4&transport=websocket" [accepted]
+2025-08-19 21:11:53,972 INFO uvicorn.error connection open
+2025-08-19 21:11:53,977 ERROR engineio.server message async handler error
+Traceback (most recent call last):
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\engineio\async_server.py", line 509, in run_async_handler
+    return await self.handlers[event](*args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\socketio\async_server.py", line 688, in _handle_eio_message
+    await self._handle_connect(eio_sid, pkt.namespace, pkt.data)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\socketio\async_server.py", line 552, in _handle_connect
+    success = await self._trigger_event(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\socketio\async_server.py", line 640, in _trigger_event
+    ret = await handler(*args)
+          ^^^^^^^^^^^^^^^^^^^^
+  File "E:\vscode\mvp_project\note_app\Backend\fastapi_app\main.py", line 75, in connect
+    payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\jose\jwt.py", line 159, in decode
+    payload = jws.verify(token, key, algorithms, verify=verify_signature)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\jose\jws.py", line 74, in verify
+    header, payload, signing_input, signature = _load(token)
+                                                ^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\jose\jws.py", line 180, in _load
+    signing_input, crypto_segment = jwt.rsplit(b".", 1)
+                                    ^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'rsplit'
+2025-08-19 21:12:16,315 INFO uvicorn.error connection closed
+2025-08-19 21:12:26,558 INFO uvicorn.access 127.0.0.1:52192 - "GET /metrics HTTP/1.1" 200
+2025-08-19 21:12:38,571 INFO uvicorn.error connection closed
+2025-08-19 21:12:41,157 INFO uvicorn.error 127.0.0.1:52208 - "WebSocket /socket.io/?EIO=4&transport=websocket" [accepted]
+2025-08-19 21:12:41,159 INFO uvicorn.error connection open
+2025-08-19 21:12:41,159 ERROR engineio.server message async handler error
+Traceback (most recent call last):
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\engineio\async_server.py", line 509, in run_async_handler
+    return await self.handlers[event](*args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\socketio\async_server.py", line 688, in _handle_eio_message
+    await self._handle_connect(eio_sid, pkt.namespace, pkt.data)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\socketio\async_server.py", line 552, in _handle_connect
+    success = await self._trigger_event(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\socketio\async_server.py", line 640, in _trigger_event
+    ret = await handler(*args)
+          ^^^^^^^^^^^^^^^^^^^^
+  File "E:\vscode\mvp_project\note_app\Backend\fastapi_app\main.py", line 75, in connect
+    payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\jose\jwt.py", line 159, in decode
+    payload = jws.verify(token, key, algorithms, verify=verify_signature)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\jose\jws.py", line 74, in verify
+    header, payload, signing_input, signature = _load(token)
+                                                ^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\jose\jws.py", line 180, in _load
+    signing_input, crypto_segment = jwt.rsplit(b".", 1)
+                                    ^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'rsplit'
+2025-08-19 21:13:26,571 INFO uvicorn.access 127.0.0.1:52245 - "GET /metrics HTTP/1.1" 200
+2025-08-19 21:14:12,643 INFO uvicorn.error 127.0.0.1:52299 - "WebSocket /socket.io/?EIO=4&transport=websocket" [accepted]
+2025-08-19 21:14:12,644 INFO uvicorn.error connection open
+2025-08-19 21:14:12,720 INFO uvicorn.access 127.0.0.1:52301 - "OPTIONS /notes/ HTTP/1.1" 200
+2025-08-19 21:14:12,720 INFO uvicorn.access 127.0.0.1:52302 - "OPTIONS /notes/ HTTP/1.1" 200
+2025-08-19 21:14:12,803 INFO uvicorn.access 127.0.0.1:52302 - "GET /notes/ HTTP/1.1" 200
+2025-08-19 21:14:12,809 INFO uvicorn.access 127.0.0.1:52301 - "GET /notes/ HTTP/1.1" 200
+2025-08-19 21:14:26,553 INFO uvicorn.access 127.0.0.1:52332 - "GET /metrics HTTP/1.1" 200
+2025-08-19 21:15:26,546 INFO uvicorn.access 127.0.0.1:52366 - "GET /metrics HTTP/1.1" 200
+2025-08-19 21:16:19,270 INFO uvicorn.error connection closed
+2025-08-19 21:16:26,545 INFO uvicorn.access 127.0.0.1:52401 - "GET /metrics HTTP/1.1" 200
+2025-08-19 21:17:26,536 INFO uvicorn.access 127.0.0.1:52406 - "GET /metrics HTTP/1.1" 200
+2025-08-19 21:17:42,519 INFO uvicorn.error connection closed
+2025-08-19 21:18:26,530 INFO uvicorn.access 127.0.0.1:52453 - "GET /metrics HTTP/1.1" 200
+2025-08-19 21:19:26,526 INFO uvicorn.access 127.0.0.1:52468 - "GET /metrics HTTP/1.1" 200
+2025-08-19 21:20:13,957 INFO uvicorn.error Shutting down
+2025-08-19 21:20:13,957 INFO uvicorn.error connection closed
+2025-08-19 21:20:14,058 INFO uvicorn.error Waiting for application shutdown.
+2025-08-19 21:20:14,062 INFO uvicorn.error Application shutdown complete.
+2025-08-19 21:20:14,064 INFO uvicorn.error Finished server process [36072]
+2025-08-19 21:20:56,549 INFO uvicorn.error Started server process [24372]
+2025-08-19 21:20:56,549 INFO uvicorn.error Waiting for application startup.
+2025-08-19 21:20:56,554 INFO uvicorn.error Application startup complete.
+2025-08-19 21:20:56,562 INFO uvicorn.error 127.0.0.1:52504 - "WebSocket /socket.io/?EIO=4&transport=websocket" [accepted]
+2025-08-19 21:20:56,562 INFO uvicorn.error 127.0.0.1:52486 - "WebSocket /socket.io/?EIO=4&transport=websocket" [accepted]
+2025-08-19 21:20:56,565 INFO uvicorn.error connection open
+2025-08-19 21:20:56,565 INFO uvicorn.error connection closed
+2025-08-19 21:20:56,575 INFO root Token expired
+2025-08-19 21:20:57,080 INFO uvicorn.access 127.0.0.1:52521 - "GET /notes/ HTTP/1.1" 200
+2025-08-19 21:21:26,526 INFO uvicorn.access 127.0.0.1:52535 - "GET /metrics HTTP/1.1" 200
+2025-08-19 21:21:48,285 INFO uvicorn.error Shutting down
+2025-08-19 21:21:48,288 INFO uvicorn.error connection closed
+2025-08-19 21:21:48,390 INFO uvicorn.error Waiting for application shutdown.
+2025-08-19 21:21:48,391 INFO uvicorn.error Application shutdown complete.
+2025-08-19 21:21:48,392 INFO uvicorn.error Finished server process [24372]
+2025-08-19 21:21:49,561 INFO uvicorn.error Started server process [37056]
+2025-08-19 21:21:49,561 INFO uvicorn.error Waiting for application startup.
+2025-08-19 21:21:49,561 INFO uvicorn.error Application startup complete.
+2025-08-19 21:21:50,599 INFO uvicorn.error 127.0.0.1:52550 - "WebSocket /socket.io/?EIO=4&transport=websocket" [accepted]
+2025-08-19 21:21:50,599 INFO uvicorn.error connection open
+2025-08-19 21:22:26,516 INFO uvicorn.access 127.0.0.1:52572 - "GET /metrics HTTP/1.1" 200
+2025-08-19 21:23:26,513 INFO uvicorn.access 127.0.0.1:52586 - "GET /metrics HTTP/1.1" 200
+2025-08-19 21:24:26,503 INFO uvicorn.access 127.0.0.1:52590 - "GET /metrics HTTP/1.1" 200
+2025-08-19 21:24:50,891 INFO uvicorn.error Shutting down
+2025-08-19 21:24:50,891 INFO uvicorn.error connection closed
+2025-08-19 21:24:51,002 INFO uvicorn.error Waiting for application shutdown.
+2025-08-19 21:24:51,004 INFO uvicorn.error Application shutdown complete.
+2025-08-19 21:24:51,004 INFO uvicorn.error Finished server process [37056]
+2025-08-19 21:24:52,204 INFO uvicorn.error Started server process [27736]
+2025-08-19 21:24:52,204 INFO uvicorn.error Waiting for application startup.
+2025-08-19 21:24:52,204 INFO uvicorn.error Application startup complete.
+2025-08-19 21:24:53,608 INFO uvicorn.error 127.0.0.1:52617 - "WebSocket /socket.io/?EIO=4&transport=websocket" [accepted]
+2025-08-19 21:24:53,608 INFO uvicorn.error connection open
+2025-08-19 21:25:26,505 INFO uvicorn.access 127.0.0.1:52622 - "GET /metrics HTTP/1.1" 200
+2025-08-19 21:26:26,496 INFO uvicorn.access 127.0.0.1:52753 - "GET /metrics HTTP/1.1" 200
+2025-08-19 21:27:13,990 INFO uvicorn.error connection closed
+2025-08-19 21:27:14,634 INFO uvicorn.error 127.0.0.1:52777 - "WebSocket /socket.io/?EIO=4&transport=websocket" [accepted]
+2025-08-19 21:27:14,634 INFO uvicorn.error connection open
+2025-08-19 21:27:14,744 INFO uvicorn.access 127.0.0.1:52779 - "OPTIONS /notes/ HTTP/1.1" 200
+2025-08-19 21:27:14,749 INFO uvicorn.access 127.0.0.1:52779 - "OPTIONS /notes/ HTTP/1.1" 200
+2025-08-19 21:27:14,945 INFO uvicorn.access 127.0.0.1:52780 - "GET /notes/ HTTP/1.1" 200
+2025-08-19 21:27:14,961 INFO uvicorn.access 127.0.0.1:52779 - "GET /notes/ HTTP/1.1" 200
+2025-08-19 21:27:21,097 INFO uvicorn.access 127.0.0.1:52784 - "GET /notes/ HTTP/1.1" 200
+2025-08-19 21:27:21,107 INFO uvicorn.access 127.0.0.1:52784 - "GET /notes/ HTTP/1.1" 200
+2025-08-19 21:27:21,392 INFO uvicorn.error 127.0.0.1:52821 - "WebSocket /socket.io/?EIO=4&transport=websocket" [accepted]
+2025-08-19 21:27:21,404 INFO uvicorn.error connection open
+2025-08-19 21:27:26,507 INFO uvicorn.access 127.0.0.1:52823 - "GET /metrics HTTP/1.1" 200
+2025-08-19 21:27:38,670 INFO uvicorn.error 127.0.0.1:52841 - "WebSocket /socket.io/?EIO=4&transport=websocket" [accepted]
+2025-08-19 21:27:38,673 INFO uvicorn.error connection open
+2025-08-19 21:27:38,680 ERROR engineio.server message async handler error
+Traceback (most recent call last):
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\engineio\async_server.py", line 509, in run_async_handler
+    return await self.handlers[event](*args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\socketio\async_server.py", line 688, in _handle_eio_message
+    await self._handle_connect(eio_sid, pkt.namespace, pkt.data)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\socketio\async_server.py", line 552, in _handle_connect
+    success = await self._trigger_event(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\socketio\async_server.py", line 640, in _trigger_event
+    ret = await handler(*args)
+          ^^^^^^^^^^^^^^^^^^^^
+  File "E:\vscode\mvp_project\note_app\Backend\fastapi_app\main.py", line 78, in connect
+    payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\jose\jwt.py", line 159, in decode
+    payload = jws.verify(token, key, algorithms, verify=verify_signature)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\jose\jws.py", line 74, in verify
+    header, payload, signing_input, signature = _load(token)
+                                                ^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\jose\jws.py", line 180, in _load
+    signing_input, crypto_segment = jwt.rsplit(b".", 1)
+                                    ^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'rsplit'
+2025-08-19 21:27:48,313 INFO uvicorn.access 127.0.0.1:52822 - "GET /notes/ HTTP/1.1" 200
+2025-08-19 21:27:48,321 INFO uvicorn.access 127.0.0.1:52822 - "GET /notes/ HTTP/1.1" 200
+2025-08-19 21:27:48,609 INFO uvicorn.error 127.0.0.1:52854 - "WebSocket /socket.io/?EIO=4&transport=websocket" [accepted]
+2025-08-19 21:27:48,611 INFO uvicorn.error connection open
+2025-08-19 21:27:49,758 INFO uvicorn.error connection closed
+2025-08-19 21:28:26,488 INFO uvicorn.access 127.0.0.1:52917 - "GET /metrics HTTP/1.1" 200
+2025-08-19 21:28:45,161 INFO uvicorn.error 127.0.0.1:63540 - "WebSocket /socket.io/?EIO=4&transport=websocket" [accepted]
+2025-08-19 21:28:45,162 INFO uvicorn.error connection open
+2025-08-19 21:28:45,168 INFO uvicorn.error connection closed
+2025-08-19 21:28:45,900 INFO uvicorn.error 127.0.0.1:60672 - "WebSocket /socket.io/?EIO=4&transport=websocket" [accepted]
+2025-08-19 21:28:45,901 INFO uvicorn.error connection open
+2025-08-19 21:28:45,913 ERROR engineio.server message async handler error
+Traceback (most recent call last):
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\engineio\async_server.py", line 509, in run_async_handler
+    return await self.handlers[event](*args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\socketio\async_server.py", line 688, in _handle_eio_message
+    await self._handle_connect(eio_sid, pkt.namespace, pkt.data)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\socketio\async_server.py", line 552, in _handle_connect
+    success = await self._trigger_event(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\socketio\async_server.py", line 640, in _trigger_event
+    ret = await handler(*args)
+          ^^^^^^^^^^^^^^^^^^^^
+  File "E:\vscode\mvp_project\note_app\Backend\fastapi_app\main.py", line 78, in connect
+    payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\jose\jwt.py", line 159, in decode
+    payload = jws.verify(token, key, algorithms, verify=verify_signature)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\jose\jws.py", line 74, in verify
+    header, payload, signing_input, signature = _load(token)
+                                                ^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\jose\jws.py", line 180, in _load
+    signing_input, crypto_segment = jwt.rsplit(b".", 1)
+                                    ^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'rsplit'
+2025-08-19 21:28:54,668 INFO uvicorn.error connection closed
+2025-08-19 21:28:55,339 INFO uvicorn.access 127.0.0.1:55227 - "OPTIONS /notes/ HTTP/1.1" 200
+2025-08-19 21:28:55,341 INFO uvicorn.error 127.0.0.1:62970 - "WebSocket /socket.io/?EIO=4&transport=websocket" [accepted]
+2025-08-19 21:28:55,342 INFO uvicorn.access 127.0.0.1:49619 - "OPTIONS /notes/ HTTP/1.1" 200
+2025-08-19 21:28:55,345 INFO uvicorn.error connection open
+2025-08-19 21:28:55,362 INFO uvicorn.access 127.0.0.1:55227 - "GET /notes/ HTTP/1.1" 200
+2025-08-19 21:28:55,374 INFO uvicorn.access 127.0.0.1:49619 - "GET /notes/ HTTP/1.1" 200
+2025-08-19 21:29:04,657 INFO uvicorn.error connection closed
+2025-08-19 21:29:05,197 INFO uvicorn.error 127.0.0.1:60673 - "WebSocket /socket.io/?EIO=4&transport=websocket" [accepted]
+2025-08-19 21:29:05,199 INFO uvicorn.error connection open
+2025-08-19 21:29:05,221 INFO uvicorn.access 127.0.0.1:62937 - "GET /notes/ HTTP/1.1" 200
+2025-08-19 21:29:05,239 INFO uvicorn.access 127.0.0.1:62937 - "GET /notes/ HTTP/1.1" 200
+2025-08-19 21:29:26,484 INFO uvicorn.access 127.0.0.1:58370 - "GET /metrics HTTP/1.1" 200
+2025-08-19 21:29:38,751 INFO uvicorn.error connection closed
+2025-08-19 21:29:39,383 INFO uvicorn.error 127.0.0.1:53740 - "WebSocket /socket.io/?EIO=4&transport=websocket" [accepted]
+2025-08-19 21:29:39,383 INFO uvicorn.error connection open
+2025-08-19 21:29:39,389 INFO uvicorn.access 127.0.0.1:60055 - "GET /notes/ HTTP/1.1" 200
+2025-08-19 21:29:39,397 INFO uvicorn.access 127.0.0.1:60055 - "GET /notes/ HTTP/1.1" 200
+2025-08-19 21:29:54,077 INFO uvicorn.error connection closed
+2025-08-19 21:30:00,574 INFO uvicorn.error connection closed
+2025-08-19 21:30:26,490 INFO uvicorn.access 127.0.0.1:56074 - "GET /metrics HTTP/1.1" 200
+2025-08-19 21:31:26,482 INFO uvicorn.access 127.0.0.1:59329 - "GET /metrics HTTP/1.1" 200
+2025-08-19 21:31:43,987 INFO uvicorn.error connection closed
+2025-08-19 21:31:44,643 INFO uvicorn.error 127.0.0.1:49960 - "WebSocket /socket.io/?EIO=4&transport=websocket" [accepted]
+2025-08-19 21:31:44,644 INFO uvicorn.error connection open
+2025-08-19 21:31:44,655 INFO uvicorn.access 127.0.0.1:53428 - "GET /notes/ HTTP/1.1" 200
+2025-08-19 21:31:44,666 INFO uvicorn.access 127.0.0.1:53428 - "GET /notes/ HTTP/1.1" 200
+2025-08-19 21:32:26,481 INFO uvicorn.access 127.0.0.1:63999 - "GET /metrics HTTP/1.1" 200
+2025-08-19 21:32:32,282 INFO uvicorn.error connection closed
+2025-08-19 21:32:32,931 INFO uvicorn.error 127.0.0.1:52724 - "WebSocket /socket.io/?EIO=4&transport=websocket" [accepted]
+2025-08-19 21:32:32,932 INFO uvicorn.error connection open
+2025-08-19 21:32:33,007 INFO uvicorn.access 127.0.0.1:53784 - "GET /notes/ HTTP/1.1" 200
+2025-08-19 21:32:33,014 INFO uvicorn.access 127.0.0.1:53784 - "GET /notes/ HTTP/1.1" 200
+2025-08-19 21:33:26,469 INFO uvicorn.access 127.0.0.1:49973 - "GET /metrics HTTP/1.1" 200
+2025-08-19 21:33:50,496 INFO uvicorn.error connection closed
+2025-08-19 21:33:51,150 INFO uvicorn.error 127.0.0.1:51088 - "WebSocket /socket.io/?EIO=4&transport=websocket" [accepted]
+2025-08-19 21:33:51,152 INFO uvicorn.error connection open
+2025-08-19 21:33:51,164 INFO uvicorn.access 127.0.0.1:50922 - "GET /notes/ HTTP/1.1" 200
+2025-08-19 21:33:51,174 INFO uvicorn.access 127.0.0.1:50922 - "GET /notes/ HTTP/1.1" 200
+2025-08-19 21:34:26,481 INFO uvicorn.access 127.0.0.1:62756 - "GET /metrics HTTP/1.1" 200
+2025-08-19 21:35:26,466 INFO uvicorn.access 127.0.0.1:62770 - "GET /metrics HTTP/1.1" 200
+2025-08-19 21:35:59,563 INFO uvicorn.error connection closed
+2025-08-19 21:36:00,250 INFO uvicorn.error 127.0.0.1:54151 - "WebSocket /socket.io/?EIO=4&transport=websocket" [accepted]
+2025-08-19 21:36:00,251 INFO uvicorn.error connection open
+2025-08-19 21:36:00,338 INFO uvicorn.access 127.0.0.1:56319 - "GET /notes/ HTTP/1.1" 200
+2025-08-19 21:36:00,345 INFO uvicorn.access 127.0.0.1:56319 - "GET /notes/ HTTP/1.1" 200
+2025-08-19 21:36:26,458 INFO uvicorn.access 127.0.0.1:56527 - "GET /metrics HTTP/1.1" 200
+2025-08-19 21:37:26,453 INFO uvicorn.access 127.0.0.1:56534 - "GET /metrics HTTP/1.1" 200
+2025-08-19 21:38:26,457 INFO uvicorn.access 127.0.0.1:56561 - "GET /metrics HTTP/1.1" 200
+2025-08-19 21:39:00,009 INFO uvicorn.error connection closed
+2025-08-19 21:39:00,660 INFO uvicorn.error 127.0.0.1:61182 - "WebSocket /socket.io/?EIO=4&transport=websocket" [accepted]
+2025-08-19 21:39:00,660 INFO uvicorn.access 127.0.0.1:61980 - "OPTIONS /notes/ HTTP/1.1" 200
+2025-08-19 21:39:00,661 INFO uvicorn.access 127.0.0.1:57387 - "OPTIONS /notes/ HTTP/1.1" 200
+2025-08-19 21:39:00,661 INFO uvicorn.error connection open
+2025-08-19 21:39:00,734 INFO uvicorn.access 127.0.0.1:57387 - "GET /notes/ HTTP/1.1" 200
+2025-08-19 21:39:00,739 INFO uvicorn.access 127.0.0.1:61980 - "GET /notes/ HTTP/1.1" 200
+2025-08-19 21:39:26,445 INFO uvicorn.access 127.0.0.1:59264 - "GET /metrics HTTP/1.1" 200
+2025-08-19 21:40:26,447 INFO uvicorn.access 127.0.0.1:59330 - "GET /metrics HTTP/1.1" 200
+2025-08-19 21:41:26,441 INFO uvicorn.access 127.0.0.1:64482 - "GET /metrics HTTP/1.1" 200
+2025-08-19 21:42:26,446 INFO uvicorn.access 127.0.0.1:64487 - "GET /metrics HTTP/1.1" 200
+2025-08-19 21:43:26,438 INFO uvicorn.access 127.0.0.1:64513 - "GET /metrics HTTP/1.1" 200
+2025-08-19 21:43:36,341 INFO uvicorn.error connection closed
+2025-08-19 21:43:37,057 INFO uvicorn.error 127.0.0.1:53646 - "WebSocket /socket.io/?EIO=4&transport=websocket" [accepted]
+2025-08-19 21:43:37,057 INFO uvicorn.error connection open
+2025-08-19 21:43:37,158 INFO uvicorn.access 127.0.0.1:60672 - "GET /notes/ HTTP/1.1" 200
+2025-08-19 21:43:37,172 INFO uvicorn.access 127.0.0.1:60672 - "GET /notes/ HTTP/1.1" 200
+2025-08-19 21:43:39,212 INFO uvicorn.error connection closed
+2025-08-19 21:44:26,430 INFO uvicorn.access 127.0.0.1:54629 - "GET /metrics HTTP/1.1" 200
+2025-08-19 21:45:26,429 INFO uvicorn.access 127.0.0.1:54638 - "GET /metrics HTTP/1.1" 200
+2025-08-19 21:46:26,432 INFO uvicorn.access 127.0.0.1:54650 - "GET /metrics HTTP/1.1" 200
+2025-08-19 21:47:26,416 INFO uvicorn.access 127.0.0.1:54651 - "GET /metrics HTTP/1.1" 200
+2025-08-19 21:48:26,418 INFO uvicorn.access 127.0.0.1:54710 - "GET /metrics HTTP/1.1" 200
+2025-08-19 21:49:26,412 INFO uvicorn.access 127.0.0.1:54717 - "GET /metrics HTTP/1.1" 200
+2025-08-19 21:50:26,410 INFO uvicorn.access 127.0.0.1:54730 - "GET /metrics HTTP/1.1" 200
+2025-08-19 21:51:26,414 INFO uvicorn.access 127.0.0.1:54742 - "GET /metrics HTTP/1.1" 200
+2025-08-19 21:52:26,406 INFO uvicorn.access 127.0.0.1:54752 - "GET /metrics HTTP/1.1" 200
+2025-08-19 21:53:26,415 INFO uvicorn.access 127.0.0.1:54759 - "GET /metrics HTTP/1.1" 200
+2025-08-19 21:54:26,397 INFO uvicorn.access 127.0.0.1:54761 - "GET /metrics HTTP/1.1" 200
+2025-08-19 21:55:26,391 INFO uvicorn.access 127.0.0.1:54771 - "GET /metrics HTTP/1.1" 200
+2025-08-19 21:56:26,390 INFO uvicorn.access 127.0.0.1:54786 - "GET /metrics HTTP/1.1" 200
+2025-08-19 21:57:26,391 INFO uvicorn.access 127.0.0.1:54788 - "GET /metrics HTTP/1.1" 200
+2025-08-19 21:58:26,387 INFO uvicorn.access 127.0.0.1:54832 - "GET /metrics HTTP/1.1" 200
+2025-08-19 21:59:26,383 INFO uvicorn.access 127.0.0.1:54843 - "GET /metrics HTTP/1.1" 200
+2025-08-19 22:00:26,375 INFO uvicorn.access 127.0.0.1:54847 - "GET /metrics HTTP/1.1" 200
+2025-08-19 22:01:26,372 INFO uvicorn.access 127.0.0.1:54893 - "GET /metrics HTTP/1.1" 200
+2025-08-19 22:02:26,374 INFO uvicorn.access 127.0.0.1:54897 - "GET /metrics HTTP/1.1" 200
+2025-08-19 22:03:26,373 INFO uvicorn.access 127.0.0.1:54906 - "GET /metrics HTTP/1.1" 200
+2025-08-19 22:04:26,359 INFO uvicorn.access 127.0.0.1:54914 - "GET /metrics HTTP/1.1" 200
+2025-08-19 22:05:26,361 INFO uvicorn.access 127.0.0.1:54929 - "GET /metrics HTTP/1.1" 200
+2025-08-19 22:06:26,358 INFO uvicorn.access 127.0.0.1:54955 - "GET /metrics HTTP/1.1" 200
+2025-08-19 22:07:26,349 INFO uvicorn.access 127.0.0.1:54957 - "GET /metrics HTTP/1.1" 200
+2025-08-19 22:08:26,352 INFO uvicorn.access 127.0.0.1:54960 - "GET /metrics HTTP/1.1" 200
+2025-08-19 22:09:26,349 INFO uvicorn.access 127.0.0.1:54981 - "GET /metrics HTTP/1.1" 200
+2025-08-19 22:10:26,338 INFO uvicorn.access 127.0.0.1:55000 - "GET /metrics HTTP/1.1" 200
+2025-08-19 22:11:26,343 INFO uvicorn.access 127.0.0.1:55011 - "GET /metrics HTTP/1.1" 200
+2025-08-19 22:12:26,337 INFO uvicorn.access 127.0.0.1:55082 - "GET /metrics HTTP/1.1" 200
+2025-08-19 22:13:26,336 INFO uvicorn.access 127.0.0.1:55130 - "GET /metrics HTTP/1.1" 200
+2025-08-19 22:14:26,326 INFO uvicorn.access 127.0.0.1:55149 - "GET /metrics HTTP/1.1" 200
+2025-08-19 22:15:26,317 INFO uvicorn.access 127.0.0.1:55185 - "GET /metrics HTTP/1.1" 200
+2025-08-19 22:16:26,317 INFO uvicorn.access 127.0.0.1:55196 - "GET /metrics HTTP/1.1" 200
+2025-08-19 22:17:26,313 INFO uvicorn.access 127.0.0.1:55199 - "GET /metrics HTTP/1.1" 200
+2025-08-19 22:18:26,307 INFO uvicorn.access 127.0.0.1:55240 - "GET /metrics HTTP/1.1" 200
+2025-08-19 22:19:26,306 INFO uvicorn.access 127.0.0.1:55245 - "GET /metrics HTTP/1.1" 200
+2025-08-19 22:20:26,305 INFO uvicorn.access 127.0.0.1:55255 - "GET /metrics HTTP/1.1" 200
+2025-08-19 22:21:26,296 INFO uvicorn.access 127.0.0.1:55279 - "GET /metrics HTTP/1.1" 200
+2025-08-19 22:22:26,292 INFO uvicorn.access 127.0.0.1:49223 - "GET /metrics HTTP/1.1" 200
+2025-08-19 22:23:26,291 INFO uvicorn.access 127.0.0.1:49232 - "GET /metrics HTTP/1.1" 200
+2025-08-19 22:24:26,286 INFO uvicorn.access 127.0.0.1:49239 - "GET /metrics HTTP/1.1" 200
+2025-08-19 22:25:26,287 INFO uvicorn.access 127.0.0.1:49245 - "GET /metrics HTTP/1.1" 200
+2025-08-19 22:26:26,281 INFO uvicorn.access 127.0.0.1:49255 - "GET /metrics HTTP/1.1" 200
+2025-08-19 22:27:26,289 INFO uvicorn.access 127.0.0.1:49263 - "GET /metrics HTTP/1.1" 200
+2025-08-19 22:28:26,278 INFO uvicorn.access 127.0.0.1:49298 - "GET /metrics HTTP/1.1" 200
+2025-08-19 22:29:26,275 INFO uvicorn.access 127.0.0.1:49299 - "GET /metrics HTTP/1.1" 200
+2025-08-19 22:30:26,267 INFO uvicorn.access 127.0.0.1:49350 - "GET /metrics HTTP/1.1" 200
+2025-08-19 22:31:26,267 INFO uvicorn.access 127.0.0.1:49358 - "GET /metrics HTTP/1.1" 200
+2025-08-19 22:32:26,270 INFO uvicorn.access 127.0.0.1:49366 - "GET /metrics HTTP/1.1" 200
+2025-08-19 22:33:26,260 INFO uvicorn.access 127.0.0.1:49379 - "GET /metrics HTTP/1.1" 200
+2025-08-19 22:34:26,255 INFO uvicorn.access 127.0.0.1:49406 - "GET /metrics HTTP/1.1" 200
+2025-08-19 22:35:26,250 INFO uvicorn.access 127.0.0.1:49411 - "GET /metrics HTTP/1.1" 200
+2025-08-19 22:36:26,248 INFO uvicorn.access 127.0.0.1:49414 - "GET /metrics HTTP/1.1" 200
+2025-08-19 22:37:26,247 INFO uvicorn.access 127.0.0.1:49420 - "GET /metrics HTTP/1.1" 200
+2025-08-19 22:38:26,239 INFO uvicorn.access 127.0.0.1:49444 - "GET /metrics HTTP/1.1" 200
+2025-08-19 22:39:26,238 INFO uvicorn.access 127.0.0.1:49446 - "GET /metrics HTTP/1.1" 200
+2025-08-19 22:40:26,234 INFO uvicorn.access 127.0.0.1:49453 - "GET /metrics HTTP/1.1" 200
+2025-08-19 22:41:26,233 INFO uvicorn.access 127.0.0.1:49543 - "GET /metrics HTTP/1.1" 200
+2025-08-19 22:42:26,228 INFO uvicorn.access 127.0.0.1:49557 - "GET /metrics HTTP/1.1" 200
+2025-08-19 22:43:26,230 INFO uvicorn.access 127.0.0.1:49587 - "GET /metrics HTTP/1.1" 200
+2025-08-19 22:44:26,221 INFO uvicorn.access 127.0.0.1:49594 - "GET /metrics HTTP/1.1" 200
+2025-08-19 22:45:26,217 INFO uvicorn.access 127.0.0.1:49663 - "GET /metrics HTTP/1.1" 200
+2025-08-19 22:46:26,221 INFO uvicorn.access 127.0.0.1:49675 - "GET /metrics HTTP/1.1" 200
+2025-08-19 22:47:26,212 INFO uvicorn.access 127.0.0.1:49680 - "GET /metrics HTTP/1.1" 200
+2025-08-19 22:48:26,211 INFO uvicorn.access 127.0.0.1:49707 - "GET /metrics HTTP/1.1" 200
+2025-08-19 22:49:26,207 INFO uvicorn.access 127.0.0.1:49711 - "GET /metrics HTTP/1.1" 200
+2025-08-19 22:50:26,205 INFO uvicorn.access 127.0.0.1:49725 - "GET /metrics HTTP/1.1" 200
+2025-08-19 22:51:26,198 INFO uvicorn.access 127.0.0.1:49728 - "GET /metrics HTTP/1.1" 200
+2025-08-19 22:52:26,198 INFO uvicorn.access 127.0.0.1:49740 - "GET /metrics HTTP/1.1" 200
+2025-08-19 22:53:26,194 INFO uvicorn.access 127.0.0.1:50069 - "GET /metrics HTTP/1.1" 200
+2025-08-19 22:54:26,191 INFO uvicorn.access 127.0.0.1:50072 - "GET /metrics HTTP/1.1" 200
+2025-08-19 22:55:26,193 INFO uvicorn.access 127.0.0.1:50078 - "GET /metrics HTTP/1.1" 200
+2025-08-19 22:56:26,187 INFO uvicorn.access 127.0.0.1:50102 - "GET /metrics HTTP/1.1" 200
+2025-08-19 22:57:26,182 INFO uvicorn.access 127.0.0.1:50105 - "GET /metrics HTTP/1.1" 200
+2025-08-19 22:58:26,182 INFO uvicorn.access 127.0.0.1:50148 - "GET /metrics HTTP/1.1" 200
+2025-08-19 22:59:26,180 INFO uvicorn.access 127.0.0.1:50158 - "GET /metrics HTTP/1.1" 200
+2025-08-19 23:00:26,174 INFO uvicorn.access 127.0.0.1:50162 - "GET /metrics HTTP/1.1" 200
+2025-08-19 23:01:26,173 INFO uvicorn.access 127.0.0.1:50171 - "GET /metrics HTTP/1.1" 200
+2025-08-19 23:02:26,302 INFO uvicorn.access 127.0.0.1:50177 - "GET /metrics HTTP/1.1" 200
+2025-08-19 23:03:26,164 INFO uvicorn.access 127.0.0.1:50188 - "GET /metrics HTTP/1.1" 200
+2025-08-19 23:04:26,160 INFO uvicorn.access 127.0.0.1:50194 - "GET /metrics HTTP/1.1" 200
+2025-08-19 23:05:26,157 INFO uvicorn.access 127.0.0.1:50203 - "GET /metrics HTTP/1.1" 200
+2025-08-19 23:06:26,151 INFO uvicorn.access 127.0.0.1:50209 - "GET /metrics HTTP/1.1" 200
+2025-08-19 23:07:26,148 INFO uvicorn.access 127.0.0.1:50220 - "GET /metrics HTTP/1.1" 200
+2025-08-19 23:08:26,146 INFO uvicorn.access 127.0.0.1:50233 - "GET /metrics HTTP/1.1" 200
+2025-08-19 23:09:26,141 INFO uvicorn.access 127.0.0.1:50275 - "GET /metrics HTTP/1.1" 200
+2025-08-19 23:10:26,146 INFO uvicorn.access 127.0.0.1:50340 - "GET /metrics HTTP/1.1" 200
+2025-08-19 23:11:26,137 INFO uvicorn.access 127.0.0.1:50357 - "GET /metrics HTTP/1.1" 200
+2025-08-19 23:12:26,127 INFO uvicorn.access 127.0.0.1:50365 - "GET /metrics HTTP/1.1" 200
+2025-08-19 23:13:26,124 INFO uvicorn.access 127.0.0.1:50393 - "GET /metrics HTTP/1.1" 200
+2025-08-19 23:14:26,126 INFO uvicorn.access 127.0.0.1:50407 - "GET /metrics HTTP/1.1" 200
+2025-08-19 23:15:26,121 INFO uvicorn.access 127.0.0.1:50411 - "GET /metrics HTTP/1.1" 200
+2025-08-19 23:16:26,112 INFO uvicorn.access 127.0.0.1:50420 - "GET /metrics HTTP/1.1" 200
+2025-08-19 23:17:26,108 INFO uvicorn.access 127.0.0.1:50436 - "GET /metrics HTTP/1.1" 200
+2025-08-19 23:18:26,102 INFO uvicorn.access 127.0.0.1:50448 - "GET /metrics HTTP/1.1" 200
+2025-08-19 23:19:26,098 INFO uvicorn.access 127.0.0.1:50460 - "GET /metrics HTTP/1.1" 200
+2025-08-19 23:20:26,096 INFO uvicorn.access 127.0.0.1:50762 - "GET /metrics HTTP/1.1" 200
+2025-08-19 23:21:26,091 INFO uvicorn.access 127.0.0.1:50771 - "GET /metrics HTTP/1.1" 200
+2025-08-19 23:22:26,094 INFO uvicorn.access 127.0.0.1:50781 - "GET /metrics HTTP/1.1" 200
+2025-08-19 23:23:26,083 INFO uvicorn.access 127.0.0.1:50789 - "GET /metrics HTTP/1.1" 200
+2025-08-19 23:24:26,081 INFO uvicorn.access 127.0.0.1:50804 - "GET /metrics HTTP/1.1" 200
+2025-08-19 23:25:26,082 INFO uvicorn.access 127.0.0.1:50809 - "GET /metrics HTTP/1.1" 200
+2025-08-19 23:26:26,072 INFO uvicorn.access 127.0.0.1:50819 - "GET /metrics HTTP/1.1" 200
+2025-08-19 23:27:26,069 INFO uvicorn.access 127.0.0.1:50825 - "GET /metrics HTTP/1.1" 200
+2025-08-19 23:28:26,071 INFO uvicorn.access 127.0.0.1:50844 - "GET /metrics HTTP/1.1" 200
+2025-08-19 23:29:26,062 INFO uvicorn.access 127.0.0.1:50853 - "GET /metrics HTTP/1.1" 200
+2025-08-19 23:30:26,066 INFO uvicorn.access 127.0.0.1:50859 - "GET /metrics HTTP/1.1" 200
+2025-08-19 23:31:26,054 INFO uvicorn.access 127.0.0.1:50865 - "GET /metrics HTTP/1.1" 200
+2025-08-19 23:32:26,052 INFO uvicorn.access 127.0.0.1:50872 - "GET /metrics HTTP/1.1" 200
+2025-08-19 23:33:26,047 INFO uvicorn.access 127.0.0.1:50878 - "GET /metrics HTTP/1.1" 200
+2025-08-19 23:34:26,052 INFO uvicorn.access 127.0.0.1:50886 - "GET /metrics HTTP/1.1" 200
+2025-08-19 23:35:26,044 INFO uvicorn.access 127.0.0.1:50899 - "GET /metrics HTTP/1.1" 200
+2025-08-19 23:36:26,052 INFO uvicorn.access 127.0.0.1:50901 - "GET /metrics HTTP/1.1" 200
+2025-08-19 23:37:26,031 INFO uvicorn.access 127.0.0.1:50910 - "GET /metrics HTTP/1.1" 200
+2025-08-19 23:38:26,034 INFO uvicorn.access 127.0.0.1:50918 - "GET /metrics HTTP/1.1" 200
+2025-08-19 23:39:26,027 INFO uvicorn.access 127.0.0.1:50922 - "GET /metrics HTTP/1.1" 200
+2025-08-19 23:40:26,033 INFO uvicorn.access 127.0.0.1:50927 - "GET /metrics HTTP/1.1" 200
+2025-08-19 23:41:26,016 INFO uvicorn.access 127.0.0.1:50929 - "GET /metrics HTTP/1.1" 200
+2025-08-19 23:42:26,017 INFO uvicorn.access 127.0.0.1:50937 - "GET /metrics HTTP/1.1" 200
+2025-08-19 23:43:26,015 INFO uvicorn.access 127.0.0.1:50953 - "GET /metrics HTTP/1.1" 200
+2025-08-19 23:44:26,010 INFO uvicorn.access 127.0.0.1:50960 - "GET /metrics HTTP/1.1" 200
+2025-08-19 23:45:26,008 INFO uvicorn.access 127.0.0.1:50962 - "GET /metrics HTTP/1.1" 200
+2025-08-19 23:46:26,014 INFO uvicorn.access 127.0.0.1:50975 - "GET /metrics HTTP/1.1" 200
+2025-08-19 23:47:26,002 INFO uvicorn.access 127.0.0.1:50986 - "GET /metrics HTTP/1.1" 200
+2025-08-19 23:48:30,733 INFO uvicorn.access 127.0.0.1:51144 - "GET /metrics HTTP/1.1" 200
+2025-08-19 23:49:30,729 INFO uvicorn.access 127.0.0.1:58955 - "GET /metrics HTTP/1.1" 200
+2025-08-19 23:50:30,717 INFO uvicorn.access 127.0.0.1:58964 - "GET /metrics HTTP/1.1" 200
+2025-08-19 23:51:30,715 INFO uvicorn.access 127.0.0.1:59644 - "GET /metrics HTTP/1.1" 200
+2025-08-19 23:52:30,711 INFO uvicorn.access 127.0.0.1:59650 - "GET /metrics HTTP/1.1" 200
+2025-08-19 23:53:30,722 INFO uvicorn.access 127.0.0.1:59658 - "GET /metrics HTTP/1.1" 200
+2025-08-19 23:54:30,707 INFO uvicorn.access 127.0.0.1:59660 - "GET /metrics HTTP/1.1" 200
+2025-08-19 23:55:30,709 INFO uvicorn.access 127.0.0.1:59667 - "GET /metrics HTTP/1.1" 200
+2025-08-19 23:56:30,699 INFO uvicorn.access 127.0.0.1:59670 - "GET /metrics HTTP/1.1" 200
+2025-08-19 23:57:30,681 INFO uvicorn.access 127.0.0.1:59674 - "GET /metrics HTTP/1.1" 200
+2025-08-19 23:58:30,674 INFO uvicorn.access 127.0.0.1:59706 - "GET /metrics HTTP/1.1" 200
+2025-08-19 23:59:30,657 INFO uvicorn.access 127.0.0.1:59844 - "GET /metrics HTTP/1.1" 200
+2025-08-20 00:00:30,652 INFO uvicorn.access 127.0.0.1:56717 - "GET /metrics HTTP/1.1" 200
+2025-08-20 00:01:30,648 INFO uvicorn.access 127.0.0.1:56737 - "GET /metrics HTTP/1.1" 200
+2025-08-20 00:01:39,567 INFO uvicorn.error Shutting down
+2025-08-20 00:01:39,576 INFO uvicorn.error connection closed
+2025-08-20 00:01:39,671 INFO uvicorn.error Waiting for application shutdown.
+2025-08-20 00:01:39,699 INFO uvicorn.error Application shutdown complete.
+2025-08-20 00:01:39,701 INFO uvicorn.error Finished server process [27736]

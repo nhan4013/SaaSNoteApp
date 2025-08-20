@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { DataContext } from "../../context";
 import { AccessTimeOutlined, SellOutlined } from "@mui/icons-material";
@@ -18,6 +18,7 @@ function NoteForm() {
   } = notes.isValid;
 
   const navigate = useNavigate();
+  const idempotencyKeyRef = useRef<string | null>(null);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -26,6 +27,10 @@ function NoteForm() {
   const handleSubmit = async (e) => {
    
     e.preventDefault();
+
+    if (!idempotencyKeyRef.current) {
+      idempotencyKeyRef.current = crypto.randomUUID();
+    }
   
     if (validateForm()) {
       try{
@@ -35,8 +40,15 @@ function NoteForm() {
           tags: tags.split(",").map((tag) => tag.trim()),
           content,
           is_archived : false
-        });
+        },
+        {
+          headers: {
+            "Idempotency-Key": idempotencyKeyRef.current,
+          },
+        }
+      );
         dispatchNotes({ type: "RESET_FORM" });
+        idempotencyKeyRef.current = null;
       }catch(error){
         console.error(error)
       }

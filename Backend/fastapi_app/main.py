@@ -1,11 +1,12 @@
 import logging
+from typing import Dict
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.responses import JSONResponse
 from jose import JWTError
 import asyncio
 import socketio
 from core.config import SECRET_KEY,ALGORITHM
-from core.redis_client import redis_client
+from core.redis_client import redis_client 
 from api.notes import notes_router as notes_router
 from api.tags import tags_router as tags_router
 from utils.redis_pubsub import subscribe_update
@@ -15,6 +16,8 @@ from jose import jwt, JWTError, ExpiredSignatureError
 from prometheus_fastapi_instrumentator import Instrumentator
 import os
 import sys
+from fastapi import APIRouter, WebSocket, WebSocketDisconnect
+
 
 sio = socketio.AsyncServer(cors_allowed_origins="http://localhost:5173",async_mode='asgi')
 
@@ -93,7 +96,59 @@ async def disconnect(sid):
 async def ping_server(sid, data):
     print(f"Received from {sid}: {data}")
     await sio.emit('pong_client', {'message': 'pong'}, to=sid)
-    
+
+# Store active users per note
+active_docs: Dict[str, Dict[str, dict]] = {}
+
+@sio.event
+async def join_document(sid, data):
+    note_id = data.get('noteId')
+    user_info = data.get('user', {})
+    if not note_id:
+        return {'error': 'noteId is required'}
+    await sio.enter_room(sid, f"doc:{note_id}")
+    if note_id not in active_docs:
+        active_docs[note_id] = {}
+    active_docs[note_id][sid] = user_info
+    await sio.emit('user_joined', {
+        'user': user_info,
+        'activeUsers': list(active_docs[note_id].values())
+    }, room=f"doc:{note_id}", skip_sid=sid)
+    return {'activeUsers': list(active_docs[note_id].values())}
+
+@sio.event
+async def leave_document(sid, data):
+    note_id = data.get('noteId')
+    if not note_id:
+        return
+    await sio.leave_room(sid, f"doc:{note_id}")
+    if note_id in active_docs and sid in active_docs[note_id]:
+        user_info = active_docs[note_id][sid]
+        del active_docs[note_id][sid]
+        await sio.emit('user_left', {
+            'user': user_info,
+            'activeUsers': list(active_docs[note_id].values())
+        }, room=f"doc:{note_id}")
+
+@sio.event
+async def sync_document(sid, data):
+    note_id = data.get('noteId')
+    update = data.get('update')
+    if not note_id or not update:
+        return {'error': 'noteId and update are required'}
+    # Optionally, persist update in Redis here
+    await sio.emit('document_update', {
+        'noteId': note_id,
+        'update': update
+    }, room=f"doc:{note_id}", skip_sid=sid)
+    return {'success': True}
+
+@sio.event
+async def get_document(sid, data):
+    note_id = data.get('noteId')
+    # Optionally, fetch updates from Redis if you want persistence
+    return {'noteId': note_id, 'updates': []}
+        
     
 Instrumentator().instrument(app).expose(app)
 

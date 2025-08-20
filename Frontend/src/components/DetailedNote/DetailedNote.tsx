@@ -67,6 +67,7 @@ function DetailedNote() {
     month: "long",
     year: "numeric"
   });
+
   return (
     <>
       {searchResult?.length > 0 ? (
@@ -107,6 +108,7 @@ function DetailedNote() {
                     >
                       <Close />
                     </button>
+                    
                   </div>
                 </fieldset>
               ) : (

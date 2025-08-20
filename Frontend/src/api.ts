@@ -4,6 +4,8 @@ const api = axios.create({
   baseURL: "http://localhost:8000",
 });
 
+
+
 // Add a request interceptor
 api.interceptors.request.use(
   (config) => {
@@ -11,6 +13,7 @@ api.interceptors.request.use(
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
+    
     return config;
   },
   (error) => Promise.reject(error)

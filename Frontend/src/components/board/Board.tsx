@@ -76,7 +76,16 @@ function Board() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  const noteId = notes.currentNoteId;
+
   const location = useLocation();
+
+  const handleShareNote = () => {
+  const collaborativeUrl = `${window.location.origin}/notes/${noteId}/collaborate`;
+  navigator.clipboard.writeText(collaborativeUrl);
+  // Show toast or notification that the link was copied
+  alert("Collaborative link copied to clipboard!");
+};
 
   return (
     <div className={`board-wrapper mobile ${isDark && "dark-border"}`}>
@@ -152,6 +161,10 @@ function Board() {
               >
                 <Button data={archiveData} aria-label="Archive Notes" />
                 <Button data={deleteData} aria-label="Delete Notes" />
+                <button onClick={handleShareNote} className="share-button">
+                      <img src="/assets/images/icon-share.svg" alt="Share" />
+                      Share for collaboration
+                </button>
               </div>
             )}
           </div>

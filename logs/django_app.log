@@ -16,3 +16,8 @@
 2025-08-19 12:56:04,900 WARNING django.request Bad Request: /auth/login
 2025-08-19 12:56:05,709 WARNING django.request Bad Request: /auth/login
 2025-08-19 13:01:14,853 WARNING django.request Bad Request: /auth/login
+2025-08-19 20:56:19,334 INFO django.utils.autoreload Watching for file changes with StatReloader
+2025-08-19 20:57:20,082 WARNING django.request Unauthorized: /auth/token/refresh
+2025-08-19 20:57:20,082 WARNING django.request Unauthorized: /auth/token/refresh
+2025-08-19 21:28:44,874 WARNING django.request Unauthorized: /auth/token/refresh
+2025-08-19 21:28:44,876 WARNING django.request Unauthorized: /auth/token/refresh
