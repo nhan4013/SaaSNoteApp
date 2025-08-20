@@ -12,14 +12,38 @@ def redis_cache(key_builder, expire=300):
             cached = await redis_client.get(key)
             if cached:
                 print(cached)
-                return json.loads(cached)
-            result = await func(*args, **kwargs)
-            if isinstance(result,list):
-                data = [item.dict() for item in result]
+                return JSONResponse(content=json.loads(cached), status_code=200)
+            lock = redis_client.lock(f"lock:{key}", timeout=10)
+            if await lock.acquire(blocking=True, blocking_timeout=5):
+                try:
+                    cached = await redis_client.get(key)
+                    if cached:
+                        return JSONResponse(content=json.loads(cached), status_code=200)
+                    result = await func(*args, **kwargs)
+                    if isinstance(result, list):
+                        data = [item.dict() for item in result]
+                    else:
+                        data = result.dict() if hasattr(result, 'dict') else result
+                    await redis_client.set(key, json.dumps(data, default=str), ex=expire)
+                    return JSONResponse(content=data, status_code=200)
+                finally:
+                    await lock.release()
             else:
-                data = result.dict() if hasattr(result, 'dict') else result
-            await redis_client.set(key, json.dumps(data , default=str), ex=expire)
-            return data
+                import asyncio
+                for _ in range(10):  # Wait up to 1 second (10 x 0.1s)
+                    await asyncio.sleep(0.1)
+                    cached = await redis_client.get(key)
+                    if cached:
+                        return JSONResponse(content=json.loads(cached), status_code=200)
+                # Fallback: call the function and cache result
+                result = await func(*args, **kwargs)
+                if isinstance(result, list):
+                    data = [item.dict() for item in result]
+                else:
+                    data = result.dict() if hasattr(result, 'dict') else result
+                await redis_client.set(key, json.dumps(data, default=str), ex=expire)
+                return JSONResponse(content=data, status_code=200)
+           
         return wrapper
     return decorator
 

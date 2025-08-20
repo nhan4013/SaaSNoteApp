@@ -1,4 +1,4 @@
-from fastapi import Depends, APIRouter, Query
+from fastapi import Depends, APIRouter, Query, Request
 from sqlalchemy.orm import Session
 from database import get_db
 from models import AuthUser
@@ -7,6 +7,7 @@ from dependencies import get_current_user
 from fastapi import status
 from crud import notes as crud_notes
 from utils.cache import redis_cache
+from utils.limiter import limiter
 
 notes_router = APIRouter(prefix="/notes", tags=["notes"])
 
@@ -19,18 +20,22 @@ def key_builder(*args, **kwargs):
 
 @notes_router.get("/", response_model=list[NoteOut])
 @redis_cache(key_builder, expire=300)
+@limiter.limit("20/minute")
 async def list_notes(
+    request: Request,
     db: Session = Depends(get_db),
     current_user: AuthUser = Depends(get_current_user)
+    
 ):
     return await crud_notes.get_notes(db, current_user)
 
   # Get the note by ID and check if it belongs to the user
 
-
+@limiter.limit("20/minute")
 @notes_router.get("/{id}", response_model=NoteOut)
 @redis_cache(key_builder, expire=300)
 async def get_note(
+    request: Request,
     id: int,
     db: Session = Depends(get_db),
     current_user: AuthUser = Depends(get_current_user)
@@ -40,9 +45,10 @@ async def get_note(
 
 # PUT /notes/{id} — Update a note
 
-
+@limiter.limit("20/minute")
 @notes_router.put("/{id}", response_model=NoteOut)
 async def update_note(
+    request: Request,
     id: int,
     note_in: NoteIn,
     db: Session = Depends(get_db),

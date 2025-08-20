@@ -5,6 +5,7 @@ from fastapi.responses import JSONResponse
 from jose import JWTError
 import asyncio
 import socketio
+from utils.limiter import limiter
 from core.config import SECRET_KEY,ALGORITHM
 from core.redis_client import redis_client 
 from api.notes import notes_router as notes_router
@@ -17,9 +18,15 @@ from prometheus_fastapi_instrumentator import Instrumentator
 import os
 import sys
 from fastapi import APIRouter, WebSocket, WebSocketDisconnect
+from slowapi import Limiter, _rate_limit_exceeded_handler
+from slowapi.util import get_remote_address
+from slowapi.errors import RateLimitExceeded
 
 
 sio = socketio.AsyncServer(cors_allowed_origins="http://localhost:5173",async_mode='asgi')
+
+# Create a Limiter instance, using the client's IP address as the key
+
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -42,6 +49,8 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+app.state.limiter = limiter
+
 @app.exception_handler(HTTPException)
 async def custom_http_exception_handler(request: Request, exc: HTTPException):
     if exc.status_code == 401:
@@ -63,7 +72,7 @@ async def jwt_exception_handler(request: Request, exc: JWTError):
 
 app.include_router(notes_router)
 app.include_router(tags_router)
-
+app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 
 socket_app = socketio.ASGIApp(sio, app)
 

@@ -678,3 +678,97 @@ AttributeError: 'NoneType' object has no attribute 'rsplit'
 2025-08-20 00:01:39,671 INFO uvicorn.error Waiting for application shutdown.
 2025-08-20 00:01:39,699 INFO uvicorn.error Application shutdown complete.
 2025-08-20 00:01:39,701 INFO uvicorn.error Finished server process [27736]
+2025-08-20 16:31:24,427 INFO uvicorn.error Started server process [13952]
+2025-08-20 16:31:24,428 INFO uvicorn.error Waiting for application startup.
+2025-08-20 16:31:24,430 INFO uvicorn.error Application startup complete.
+2025-08-20 16:37:32,021 INFO uvicorn.error Shutting down
+2025-08-20 16:37:32,130 INFO uvicorn.error Waiting for application shutdown.
+2025-08-20 16:37:32,132 ERROR asyncio Task exception was never retrieved
+future: <Task finished name='Task-4' coro=<subscribe_update() done, defined at E:\vscode\mvp_project\note_app\Backend\fastapi_app\utils\redis_pubsub.py:18> exception=ConnectionError("Error Multiple exceptions: [Errno 10061] Connect call failed ('::1', 6379, 0, 0), [Errno 10061] Connect call failed ('127.0.0.1', 6379) connecting to localhost:6379.")>
+Traceback (most recent call last):
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\connection.py", line 305, in connect_check_health
+    await self.retry.call_with_retry(
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\retry.py", line 50, in call_with_retry
+    return await do()
+           ^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\connection.py", line 760, in _connect
+    reader, writer = await asyncio.open_connection(
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\asyncio\streams.py", line 48, in open_connection
+    transport, _ = await loop.create_connection(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\asyncio\base_events.py", line 1140, in create_connection
+    raise OSError('Multiple exceptions: {}'.format(
+OSError: Multiple exceptions: [Errno 10061] Connect call failed ('::1', 6379, 0, 0), [Errno 10061] Connect call failed ('127.0.0.1', 6379)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\vscode\mvp_project\note_app\Backend\fastapi_app\utils\redis_pubsub.py", line 24, in subscribe_update
+    await pubSub.subscribe(channel)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\client.py", line 1071, in subscribe
+    ret_val = await self.execute_command("SUBSCRIBE", *new_channels.keys())
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\client.py", line 924, in execute_command
+    await self.connect()
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\client.py", line 934, in connect
+    self.connection = await self.connection_pool.get_connection()
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\connection.py", line 1149, in get_connection
+    await self.ensure_connection(connection)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\connection.py", line 1182, in ensure_connection
+    await connection.connect()
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\connection.py", line 296, in connect
+    await self.connect_check_health(check_health=True)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\connection.py", line 315, in connect_check_health
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error Multiple exceptions: [Errno 10061] Connect call failed ('::1', 6379, 0, 0), [Errno 10061] Connect call failed ('127.0.0.1', 6379) connecting to localhost:6379.
+2025-08-20 16:37:32,156 ERROR asyncio Task exception was never retrieved
+future: <Task finished name='Task-3' coro=<subscribe_update() done, defined at E:\vscode\mvp_project\note_app\Backend\fastapi_app\utils\redis_pubsub.py:18> exception=ConnectionError("Error Multiple exceptions: [Errno 10061] Connect call failed ('::1', 6379, 0, 0), [Errno 10061] Connect call failed ('127.0.0.1', 6379) connecting to localhost:6379.")>
+Traceback (most recent call last):
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\connection.py", line 305, in connect_check_health
+    await self.retry.call_with_retry(
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\retry.py", line 50, in call_with_retry
+    return await do()
+           ^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\connection.py", line 760, in _connect
+    reader, writer = await asyncio.open_connection(
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\asyncio\streams.py", line 48, in open_connection
+    transport, _ = await loop.create_connection(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\asyncio\base_events.py", line 1140, in create_connection
+    raise OSError('Multiple exceptions: {}'.format(
+OSError: Multiple exceptions: [Errno 10061] Connect call failed ('::1', 6379, 0, 0), [Errno 10061] Connect call failed ('127.0.0.1', 6379)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\vscode\mvp_project\note_app\Backend\fastapi_app\utils\redis_pubsub.py", line 24, in subscribe_update
+    await pubSub.subscribe(channel)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\client.py", line 1071, in subscribe
+    ret_val = await self.execute_command("SUBSCRIBE", *new_channels.keys())
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\client.py", line 924, in execute_command
+    await self.connect()
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\client.py", line 934, in connect
+    self.connection = await self.connection_pool.get_connection()
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\connection.py", line 1149, in get_connection
+    await self.ensure_connection(connection)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\connection.py", line 1182, in ensure_connection
+    await connection.connect()
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\connection.py", line 296, in connect
+    await self.connect_check_health(check_health=True)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\connection.py", line 315, in connect_check_health
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error Multiple exceptions: [Errno 10061] Connect call failed ('::1', 6379, 0, 0), [Errno 10061] Connect call failed ('127.0.0.1', 6379) connecting to localhost:6379.
+2025-08-20 16:37:32,157 INFO uvicorn.error Application shutdown complete.
+2025-08-20 16:37:32,157 INFO uvicorn.error Finished server process [13952]
+2025-08-20 16:37:58,377 INFO uvicorn.error Started server process [15944]
+2025-08-20 16:37:58,378 INFO uvicorn.error Waiting for application startup.
+2025-08-20 16:37:58,380 INFO uvicorn.error Application startup complete.
+2025-08-20 16:38:00,857 INFO uvicorn.error Shutting down
+2025-08-20 16:38:00,966 INFO uvicorn.error Waiting for application shutdown.
+2025-08-20 16:38:00,967 INFO uvicorn.error Application shutdown complete.
+2025-08-20 16:38:00,967 INFO uvicorn.error Finished server process [15944]
