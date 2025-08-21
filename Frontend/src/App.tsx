@@ -12,6 +12,8 @@ import ProtectedRouteProps from "./components/auth/ProtectedRoute";
 import { v4 as uuidv4 } from "uuid";
 import { isTokenStatus } from "./hooks/useTokenStatus";
 import CollaborativeNote from "./components/NoteForm/CollaborativeNote";
+import createCache from '@emotion/cache';
+import LoginRouteWrapper from "./LoginRouteWrapper";
 
 
 const notesReducer = (state: NotesState, action: Action) => {
@@ -394,10 +396,11 @@ function App() {
     return { title, parag };
   };
 
-
+const cache = createCache({ key: 'css', prepend: true });
   
 
   return (
+    
     <DataContext.Provider
       value={{
         notes,
@@ -412,12 +415,16 @@ function App() {
         getContent
       }}
     >
+
       <Routes>
-        <Route path="/login" element={<Login />} />
+       
+        <Route path="/login" element={<LoginRouteWrapper />} />
+        
         <Route path="/notes/:noteId/collaborate" element={<CollaborativeNote />} />
         <Route
           path="/*"
           element={
+            
             <ProtectedRouteProps
               isAuthenticated={isAuthenticated()}
               redirectTo="/login"
@@ -429,10 +436,12 @@ function App() {
                 <Board />
               </main>
             </ProtectedRouteProps>
+           
           }
         />
       </Routes>
     </DataContext.Provider>
+    
   );
 }
 

@@ -772,3 +772,2033 @@ redis.exceptions.ConnectionError: Error Multiple exceptions: [Errno 10061] Conne
 2025-08-20 16:38:00,966 INFO uvicorn.error Waiting for application shutdown.
 2025-08-20 16:38:00,967 INFO uvicorn.error Application shutdown complete.
 2025-08-20 16:38:00,967 INFO uvicorn.error Finished server process [15944]
+2025-08-20 23:58:31,653 INFO uvicorn.error Started server process [17764]
+2025-08-20 23:58:31,654 INFO uvicorn.error Waiting for application startup.
+2025-08-20 23:58:31,655 INFO uvicorn.error Application startup complete.
+2025-08-20 23:58:32,107 INFO uvicorn.error 127.0.0.1:56448 - "WebSocket /socket.io/?EIO=4&transport=websocket" [accepted]
+2025-08-20 23:58:32,107 INFO uvicorn.error connection open
+2025-08-20 23:58:32,114 ERROR engineio.server message async handler error
+Traceback (most recent call last):
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\engineio\async_server.py", line 509, in run_async_handler
+    return await self.handlers[event](*args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\socketio\async_server.py", line 688, in _handle_eio_message
+    await self._handle_connect(eio_sid, pkt.namespace, pkt.data)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\socketio\async_server.py", line 552, in _handle_connect
+    success = await self._trigger_event(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\socketio\async_server.py", line 640, in _trigger_event
+    ret = await handler(*args)
+          ^^^^^^^^^^^^^^^^^^^^
+  File "E:\vscode\mvp_project\note_app\Backend\fastapi_app\main.py", line 87, in connect
+    payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\jose\jwt.py", line 159, in decode
+    payload = jws.verify(token, key, algorithms, verify=verify_signature)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\jose\jws.py", line 74, in verify
+    header, payload, signing_input, signature = _load(token)
+                                                ^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\jose\jws.py", line 180, in _load
+    signing_input, crypto_segment = jwt.rsplit(b".", 1)
+                                    ^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'rsplit'
+2025-08-20 23:58:53,609 INFO uvicorn.error connection closed
+2025-08-20 23:58:54,198 INFO uvicorn.error 127.0.0.1:56462 - "WebSocket /socket.io/?EIO=4&transport=websocket" [accepted]
+2025-08-20 23:58:54,199 INFO uvicorn.error connection open
+2025-08-20 23:58:54,201 ERROR engineio.server message async handler error
+Traceback (most recent call last):
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\engineio\async_server.py", line 509, in run_async_handler
+    return await self.handlers[event](*args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\socketio\async_server.py", line 688, in _handle_eio_message
+    await self._handle_connect(eio_sid, pkt.namespace, pkt.data)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\socketio\async_server.py", line 552, in _handle_connect
+    success = await self._trigger_event(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\socketio\async_server.py", line 640, in _trigger_event
+    ret = await handler(*args)
+          ^^^^^^^^^^^^^^^^^^^^
+  File "E:\vscode\mvp_project\note_app\Backend\fastapi_app\main.py", line 87, in connect
+    payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\jose\jwt.py", line 159, in decode
+    payload = jws.verify(token, key, algorithms, verify=verify_signature)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\jose\jws.py", line 74, in verify
+    header, payload, signing_input, signature = _load(token)
+                                                ^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\jose\jws.py", line 180, in _load
+    signing_input, crypto_segment = jwt.rsplit(b".", 1)
+                                    ^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'rsplit'
+2025-08-20 23:59:02,786 INFO uvicorn.error connection closed
+2025-08-20 23:59:03,337 INFO uvicorn.error 127.0.0.1:56480 - "WebSocket /socket.io/?EIO=4&transport=websocket" [accepted]
+2025-08-20 23:59:03,338 INFO uvicorn.error connection open
+2025-08-20 23:59:03,352 INFO uvicorn.access 127.0.0.1:56481 - "OPTIONS /notes/ HTTP/1.1" 200
+2025-08-20 23:59:03,352 INFO uvicorn.access 127.0.0.1:56482 - "OPTIONS /notes/ HTTP/1.1" 200
+2025-08-20 23:59:07,678 INFO uvicorn.access 127.0.0.1:56481 - "GET /notes/ HTTP/1.1" 500
+2025-08-20 23:59:07,680 ERROR uvicorn.error Exception in ASGI application
+Traceback (most recent call last):
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\connection.py", line 305, in connect_check_health
+    await self.retry.call_with_retry(
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\retry.py", line 50, in call_with_retry
+    return await do()
+           ^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\connection.py", line 760, in _connect
+    reader, writer = await asyncio.open_connection(
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\asyncio\streams.py", line 48, in open_connection
+    transport, _ = await loop.create_connection(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\asyncio\base_events.py", line 1140, in create_connection
+    raise OSError('Multiple exceptions: {}'.format(
+OSError: Multiple exceptions: [Errno 10061] Connect call failed ('::1', 6379, 0, 0), [Errno 10061] Connect call failed ('127.0.0.1', 6379)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\uvicorn\protocols\http\httptools_impl.py", line 409, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\uvicorn\middleware\proxy_headers.py", line 60, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\engineio\async_drivers\asgi.py", line 75, in __call__
+    await self.other_asgi_app(scope, receive, send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\fastapi\applications.py", line 1054, in __call__
+    await super().__call__(scope, receive, send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\applications.py", line 112, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\middleware\errors.py", line 187, in __call__
+    raise exc
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\middleware\errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\prometheus_fastapi_instrumentator\middleware.py", line 177, in __call__
+    raise exc
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\prometheus_fastapi_instrumentator\middleware.py", line 175, in __call__
+    await self.app(scope, receive, send_wrapper)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\middleware\cors.py", line 93, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\middleware\cors.py", line 144, in simple_response
+    await self.app(scope, receive, send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\middleware\exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\routing.py", line 714, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\routing.py", line 734, in app
+    await route.handle(scope, receive, send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\routing.py", line 73, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\fastapi\routing.py", line 302, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\fastapi\routing.py", line 213, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\vscode\mvp_project\note_app\Backend\fastapi_app\utils\cache.py", line 12, in wrapper
+    cached = await redis_client.get(key)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\client.py", line 672, in execute_command
+    conn = self.connection or await pool.get_connection()
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\connection.py", line 1149, in get_connection
+    await self.ensure_connection(connection)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\connection.py", line 1182, in ensure_connection
+    await connection.connect()
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\connection.py", line 296, in connect
+    await self.connect_check_health(check_health=True)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\connection.py", line 315, in connect_check_health
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error Multiple exceptions: [Errno 10061] Connect call failed ('::1', 6379, 0, 0), [Errno 10061] Connect call failed ('127.0.0.1', 6379) connecting to localhost:6379.
+2025-08-20 23:59:12,277 INFO uvicorn.access 127.0.0.1:56482 - "GET /notes/ HTTP/1.1" 500
+2025-08-20 23:59:12,277 ERROR uvicorn.error Exception in ASGI application
+Traceback (most recent call last):
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\connection.py", line 305, in connect_check_health
+    await self.retry.call_with_retry(
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\retry.py", line 50, in call_with_retry
+    return await do()
+           ^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\connection.py", line 760, in _connect
+    reader, writer = await asyncio.open_connection(
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\asyncio\streams.py", line 48, in open_connection
+    transport, _ = await loop.create_connection(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\asyncio\base_events.py", line 1140, in create_connection
+    raise OSError('Multiple exceptions: {}'.format(
+OSError: Multiple exceptions: [Errno 10061] Connect call failed ('::1', 6379, 0, 0), [Errno 10061] Connect call failed ('127.0.0.1', 6379)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\uvicorn\protocols\http\httptools_impl.py", line 409, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\uvicorn\middleware\proxy_headers.py", line 60, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\engineio\async_drivers\asgi.py", line 75, in __call__
+    await self.other_asgi_app(scope, receive, send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\fastapi\applications.py", line 1054, in __call__
+    await super().__call__(scope, receive, send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\applications.py", line 112, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\middleware\errors.py", line 187, in __call__
+    raise exc
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\middleware\errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\prometheus_fastapi_instrumentator\middleware.py", line 177, in __call__
+    raise exc
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\prometheus_fastapi_instrumentator\middleware.py", line 175, in __call__
+    await self.app(scope, receive, send_wrapper)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\middleware\cors.py", line 93, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\middleware\cors.py", line 144, in simple_response
+    await self.app(scope, receive, send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\middleware\exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\routing.py", line 714, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\routing.py", line 734, in app
+    await route.handle(scope, receive, send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\routing.py", line 73, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\fastapi\routing.py", line 302, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\fastapi\routing.py", line 213, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\vscode\mvp_project\note_app\Backend\fastapi_app\utils\cache.py", line 12, in wrapper
+    cached = await redis_client.get(key)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\client.py", line 672, in execute_command
+    conn = self.connection or await pool.get_connection()
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\connection.py", line 1149, in get_connection
+    await self.ensure_connection(connection)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\connection.py", line 1182, in ensure_connection
+    await connection.connect()
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\connection.py", line 296, in connect
+    await self.connect_check_health(check_health=True)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\connection.py", line 315, in connect_check_health
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error Multiple exceptions: [Errno 10061] Connect call failed ('::1', 6379, 0, 0), [Errno 10061] Connect call failed ('127.0.0.1', 6379) connecting to localhost:6379.
+2025-08-21 00:00:01,840 INFO uvicorn.error connection closed
+2025-08-21 00:00:02,461 INFO uvicorn.error 127.0.0.1:56524 - "WebSocket /socket.io/?EIO=4&transport=websocket" [accepted]
+2025-08-21 00:00:02,462 INFO uvicorn.error connection open
+2025-08-21 00:00:04,806 INFO uvicorn.error 127.0.0.1:56541 - "WebSocket /socket.io/?EIO=4&transport=websocket" [accepted]
+2025-08-21 00:00:04,808 INFO uvicorn.error connection open
+2025-08-21 00:00:04,816 ERROR engineio.server message async handler error
+Traceback (most recent call last):
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\engineio\async_server.py", line 509, in run_async_handler
+    return await self.handlers[event](*args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\socketio\async_server.py", line 688, in _handle_eio_message
+    await self._handle_connect(eio_sid, pkt.namespace, pkt.data)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\socketio\async_server.py", line 552, in _handle_connect
+    success = await self._trigger_event(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\socketio\async_server.py", line 640, in _trigger_event
+    ret = await handler(*args)
+          ^^^^^^^^^^^^^^^^^^^^
+  File "E:\vscode\mvp_project\note_app\Backend\fastapi_app\main.py", line 87, in connect
+    payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\jose\jwt.py", line 159, in decode
+    payload = jws.verify(token, key, algorithms, verify=verify_signature)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\jose\jws.py", line 74, in verify
+    header, payload, signing_input, signature = _load(token)
+                                                ^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\jose\jws.py", line 180, in _load
+    signing_input, crypto_segment = jwt.rsplit(b".", 1)
+                                    ^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'rsplit'
+2025-08-21 00:00:06,214 INFO uvicorn.access 127.0.0.1:56486 - "GET /notes/ HTTP/1.1" 500
+2025-08-21 00:00:06,215 ERROR uvicorn.error Exception in ASGI application
+Traceback (most recent call last):
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\connection.py", line 305, in connect_check_health
+    await self.retry.call_with_retry(
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\retry.py", line 50, in call_with_retry
+    return await do()
+           ^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\connection.py", line 760, in _connect
+    reader, writer = await asyncio.open_connection(
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\asyncio\streams.py", line 48, in open_connection
+    transport, _ = await loop.create_connection(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\asyncio\base_events.py", line 1140, in create_connection
+    raise OSError('Multiple exceptions: {}'.format(
+OSError: Multiple exceptions: [Errno 10061] Connect call failed ('::1', 6379, 0, 0), [Errno 10061] Connect call failed ('127.0.0.1', 6379)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\uvicorn\protocols\http\httptools_impl.py", line 409, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\uvicorn\middleware\proxy_headers.py", line 60, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\engineio\async_drivers\asgi.py", line 75, in __call__
+    await self.other_asgi_app(scope, receive, send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\fastapi\applications.py", line 1054, in __call__
+    await super().__call__(scope, receive, send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\applications.py", line 112, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\middleware\errors.py", line 187, in __call__
+    raise exc
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\middleware\errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\prometheus_fastapi_instrumentator\middleware.py", line 177, in __call__
+    raise exc
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\prometheus_fastapi_instrumentator\middleware.py", line 175, in __call__
+    await self.app(scope, receive, send_wrapper)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\middleware\cors.py", line 93, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\middleware\cors.py", line 144, in simple_response
+    await self.app(scope, receive, send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\middleware\exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\routing.py", line 714, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\routing.py", line 734, in app
+    await route.handle(scope, receive, send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\routing.py", line 73, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\fastapi\routing.py", line 302, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\fastapi\routing.py", line 213, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\vscode\mvp_project\note_app\Backend\fastapi_app\utils\cache.py", line 12, in wrapper
+    cached = await redis_client.get(key)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\client.py", line 672, in execute_command
+    conn = self.connection or await pool.get_connection()
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\connection.py", line 1149, in get_connection
+    await self.ensure_connection(connection)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\connection.py", line 1182, in ensure_connection
+    await connection.connect()
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\connection.py", line 296, in connect
+    await self.connect_check_health(check_health=True)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\connection.py", line 315, in connect_check_health
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error Multiple exceptions: [Errno 10061] Connect call failed ('::1', 6379, 0, 0), [Errno 10061] Connect call failed ('127.0.0.1', 6379) connecting to localhost:6379.
+2025-08-21 00:00:06,411 INFO uvicorn.error connection closed
+2025-08-21 00:00:06,960 INFO uvicorn.error 127.0.0.1:56550 - "WebSocket /socket.io/?EIO=4&transport=websocket" [accepted]
+2025-08-21 00:00:06,960 INFO uvicorn.error connection open
+2025-08-21 00:00:06,962 ERROR engineio.server message async handler error
+Traceback (most recent call last):
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\engineio\async_server.py", line 509, in run_async_handler
+    return await self.handlers[event](*args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\socketio\async_server.py", line 688, in _handle_eio_message
+    await self._handle_connect(eio_sid, pkt.namespace, pkt.data)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\socketio\async_server.py", line 552, in _handle_connect
+    success = await self._trigger_event(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\socketio\async_server.py", line 640, in _trigger_event
+    ret = await handler(*args)
+          ^^^^^^^^^^^^^^^^^^^^
+  File "E:\vscode\mvp_project\note_app\Backend\fastapi_app\main.py", line 87, in connect
+    payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\jose\jwt.py", line 159, in decode
+    payload = jws.verify(token, key, algorithms, verify=verify_signature)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\jose\jws.py", line 74, in verify
+    header, payload, signing_input, signature = _load(token)
+                                                ^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\jose\jws.py", line 180, in _load
+    signing_input, crypto_segment = jwt.rsplit(b".", 1)
+                                    ^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'rsplit'
+2025-08-21 00:00:10,586 INFO uvicorn.access 127.0.0.1:56545 - "GET /notes/ HTTP/1.1" 500
+2025-08-21 00:00:10,586 ERROR uvicorn.error Exception in ASGI application
+Traceback (most recent call last):
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\connection.py", line 305, in connect_check_health
+    await self.retry.call_with_retry(
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\retry.py", line 50, in call_with_retry
+    return await do()
+           ^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\connection.py", line 760, in _connect
+    reader, writer = await asyncio.open_connection(
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\asyncio\streams.py", line 48, in open_connection
+    transport, _ = await loop.create_connection(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\asyncio\base_events.py", line 1140, in create_connection
+    raise OSError('Multiple exceptions: {}'.format(
+OSError: Multiple exceptions: [Errno 10061] Connect call failed ('::1', 6379, 0, 0), [Errno 10061] Connect call failed ('127.0.0.1', 6379)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\uvicorn\protocols\http\httptools_impl.py", line 409, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\uvicorn\middleware\proxy_headers.py", line 60, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\engineio\async_drivers\asgi.py", line 75, in __call__
+    await self.other_asgi_app(scope, receive, send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\fastapi\applications.py", line 1054, in __call__
+    await super().__call__(scope, receive, send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\applications.py", line 112, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\middleware\errors.py", line 187, in __call__
+    raise exc
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\middleware\errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\prometheus_fastapi_instrumentator\middleware.py", line 177, in __call__
+    raise exc
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\prometheus_fastapi_instrumentator\middleware.py", line 175, in __call__
+    await self.app(scope, receive, send_wrapper)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\middleware\cors.py", line 93, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\middleware\cors.py", line 144, in simple_response
+    await self.app(scope, receive, send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\middleware\exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\routing.py", line 714, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\routing.py", line 734, in app
+    await route.handle(scope, receive, send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\routing.py", line 73, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\fastapi\routing.py", line 302, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\fastapi\routing.py", line 213, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\vscode\mvp_project\note_app\Backend\fastapi_app\utils\cache.py", line 12, in wrapper
+    cached = await redis_client.get(key)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\client.py", line 672, in execute_command
+    conn = self.connection or await pool.get_connection()
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\connection.py", line 1149, in get_connection
+    await self.ensure_connection(connection)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\connection.py", line 1182, in ensure_connection
+    await connection.connect()
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\connection.py", line 296, in connect
+    await self.connect_check_health(check_health=True)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\connection.py", line 315, in connect_check_health
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error Multiple exceptions: [Errno 10061] Connect call failed ('::1', 6379, 0, 0), [Errno 10061] Connect call failed ('127.0.0.1', 6379) connecting to localhost:6379.
+2025-08-21 00:01:12,852 INFO uvicorn.error connection closed
+2025-08-21 00:01:12,863 INFO uvicorn.error connection closed
+2025-08-21 00:01:18,561 INFO uvicorn.error 127.0.0.1:56575 - "WebSocket /socket.io/?EIO=4&transport=websocket" [accepted]
+2025-08-21 00:01:18,562 INFO uvicorn.error connection open
+2025-08-21 00:01:18,565 ERROR engineio.server message async handler error
+Traceback (most recent call last):
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\engineio\async_server.py", line 509, in run_async_handler
+    return await self.handlers[event](*args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\socketio\async_server.py", line 688, in _handle_eio_message
+    await self._handle_connect(eio_sid, pkt.namespace, pkt.data)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\socketio\async_server.py", line 552, in _handle_connect
+    success = await self._trigger_event(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\socketio\async_server.py", line 640, in _trigger_event
+    ret = await handler(*args)
+          ^^^^^^^^^^^^^^^^^^^^
+  File "E:\vscode\mvp_project\note_app\Backend\fastapi_app\main.py", line 87, in connect
+    payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\jose\jwt.py", line 159, in decode
+    payload = jws.verify(token, key, algorithms, verify=verify_signature)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\jose\jws.py", line 74, in verify
+    header, payload, signing_input, signature = _load(token)
+                                                ^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\jose\jws.py", line 180, in _load
+    signing_input, crypto_segment = jwt.rsplit(b".", 1)
+                                    ^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'rsplit'
+2025-08-21 00:01:19,892 INFO uvicorn.error connection closed
+2025-08-21 00:01:20,247 INFO uvicorn.error 127.0.0.1:56582 - "WebSocket /socket.io/?EIO=4&transport=websocket" [accepted]
+2025-08-21 00:01:20,248 INFO uvicorn.error connection open
+2025-08-21 00:01:20,503 INFO uvicorn.error 127.0.0.1:56583 - "WebSocket /socket.io/?EIO=4&transport=websocket" [accepted]
+2025-08-21 00:01:20,504 INFO uvicorn.error connection open
+2025-08-21 00:01:20,508 ERROR engineio.server message async handler error
+Traceback (most recent call last):
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\engineio\async_server.py", line 509, in run_async_handler
+    return await self.handlers[event](*args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\socketio\async_server.py", line 688, in _handle_eio_message
+    await self._handle_connect(eio_sid, pkt.namespace, pkt.data)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\socketio\async_server.py", line 552, in _handle_connect
+    success = await self._trigger_event(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\socketio\async_server.py", line 640, in _trigger_event
+    ret = await handler(*args)
+          ^^^^^^^^^^^^^^^^^^^^
+  File "E:\vscode\mvp_project\note_app\Backend\fastapi_app\main.py", line 87, in connect
+    payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\jose\jwt.py", line 159, in decode
+    payload = jws.verify(token, key, algorithms, verify=verify_signature)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\jose\jws.py", line 74, in verify
+    header, payload, signing_input, signature = _load(token)
+                                                ^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\jose\jws.py", line 180, in _load
+    signing_input, crypto_segment = jwt.rsplit(b".", 1)
+                                    ^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'rsplit'
+2025-08-21 00:01:20,710 INFO uvicorn.error connection closed
+2025-08-21 00:01:23,092 INFO uvicorn.error 127.0.0.1:56617 - "WebSocket /socket.io/?EIO=4&transport=websocket" [accepted]
+2025-08-21 00:01:23,093 INFO uvicorn.error connection open
+2025-08-21 00:01:23,096 ERROR engineio.server message async handler error
+Traceback (most recent call last):
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\engineio\async_server.py", line 509, in run_async_handler
+    return await self.handlers[event](*args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\socketio\async_server.py", line 688, in _handle_eio_message
+    await self._handle_connect(eio_sid, pkt.namespace, pkt.data)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\socketio\async_server.py", line 552, in _handle_connect
+    success = await self._trigger_event(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\socketio\async_server.py", line 640, in _trigger_event
+    ret = await handler(*args)
+          ^^^^^^^^^^^^^^^^^^^^
+  File "E:\vscode\mvp_project\note_app\Backend\fastapi_app\main.py", line 87, in connect
+    payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\jose\jwt.py", line 159, in decode
+    payload = jws.verify(token, key, algorithms, verify=verify_signature)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\jose\jws.py", line 74, in verify
+    header, payload, signing_input, signature = _load(token)
+                                                ^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\jose\jws.py", line 180, in _load
+    signing_input, crypto_segment = jwt.rsplit(b".", 1)
+                                    ^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'rsplit'
+2025-08-21 00:01:23,984 INFO uvicorn.access 127.0.0.1:56574 - "GET /notes/ HTTP/1.1" 500
+2025-08-21 00:01:23,984 ERROR uvicorn.error Exception in ASGI application
+Traceback (most recent call last):
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\connection.py", line 305, in connect_check_health
+    await self.retry.call_with_retry(
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\retry.py", line 50, in call_with_retry
+    return await do()
+           ^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\connection.py", line 760, in _connect
+    reader, writer = await asyncio.open_connection(
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\asyncio\streams.py", line 48, in open_connection
+    transport, _ = await loop.create_connection(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\asyncio\base_events.py", line 1140, in create_connection
+    raise OSError('Multiple exceptions: {}'.format(
+OSError: Multiple exceptions: [Errno 10061] Connect call failed ('::1', 6379, 0, 0), [Errno 10061] Connect call failed ('127.0.0.1', 6379)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\uvicorn\protocols\http\httptools_impl.py", line 409, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\uvicorn\middleware\proxy_headers.py", line 60, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\engineio\async_drivers\asgi.py", line 75, in __call__
+    await self.other_asgi_app(scope, receive, send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\fastapi\applications.py", line 1054, in __call__
+    await super().__call__(scope, receive, send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\applications.py", line 112, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\middleware\errors.py", line 187, in __call__
+    raise exc
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\middleware\errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\prometheus_fastapi_instrumentator\middleware.py", line 177, in __call__
+    raise exc
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\prometheus_fastapi_instrumentator\middleware.py", line 175, in __call__
+    await self.app(scope, receive, send_wrapper)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\middleware\cors.py", line 93, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\middleware\cors.py", line 144, in simple_response
+    await self.app(scope, receive, send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\middleware\exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\routing.py", line 714, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\routing.py", line 734, in app
+    await route.handle(scope, receive, send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\routing.py", line 73, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\fastapi\routing.py", line 302, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\fastapi\routing.py", line 213, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\vscode\mvp_project\note_app\Backend\fastapi_app\utils\cache.py", line 12, in wrapper
+    cached = await redis_client.get(key)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\client.py", line 672, in execute_command
+    conn = self.connection or await pool.get_connection()
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\connection.py", line 1149, in get_connection
+    await self.ensure_connection(connection)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\connection.py", line 1182, in ensure_connection
+    await connection.connect()
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\connection.py", line 296, in connect
+    await self.connect_check_health(check_health=True)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\connection.py", line 315, in connect_check_health
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error Multiple exceptions: [Errno 10061] Connect call failed ('::1', 6379, 0, 0), [Errno 10061] Connect call failed ('127.0.0.1', 6379) connecting to localhost:6379.
+2025-08-21 00:01:28,370 INFO uvicorn.access 127.0.0.1:56624 - "GET /notes/ HTTP/1.1" 500
+2025-08-21 00:01:28,370 ERROR uvicorn.error Exception in ASGI application
+Traceback (most recent call last):
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\connection.py", line 305, in connect_check_health
+    await self.retry.call_with_retry(
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\retry.py", line 50, in call_with_retry
+    return await do()
+           ^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\connection.py", line 760, in _connect
+    reader, writer = await asyncio.open_connection(
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\asyncio\streams.py", line 48, in open_connection
+    transport, _ = await loop.create_connection(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\asyncio\base_events.py", line 1140, in create_connection
+    raise OSError('Multiple exceptions: {}'.format(
+OSError: Multiple exceptions: [Errno 10061] Connect call failed ('::1', 6379, 0, 0), [Errno 10061] Connect call failed ('127.0.0.1', 6379)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\uvicorn\protocols\http\httptools_impl.py", line 409, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\uvicorn\middleware\proxy_headers.py", line 60, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\engineio\async_drivers\asgi.py", line 75, in __call__
+    await self.other_asgi_app(scope, receive, send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\fastapi\applications.py", line 1054, in __call__
+    await super().__call__(scope, receive, send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\applications.py", line 112, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\middleware\errors.py", line 187, in __call__
+    raise exc
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\middleware\errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\prometheus_fastapi_instrumentator\middleware.py", line 177, in __call__
+    raise exc
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\prometheus_fastapi_instrumentator\middleware.py", line 175, in __call__
+    await self.app(scope, receive, send_wrapper)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\middleware\cors.py", line 93, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\middleware\cors.py", line 144, in simple_response
+    await self.app(scope, receive, send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\middleware\exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\routing.py", line 714, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\routing.py", line 734, in app
+    await route.handle(scope, receive, send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\routing.py", line 73, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\fastapi\routing.py", line 302, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\fastapi\routing.py", line 213, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\vscode\mvp_project\note_app\Backend\fastapi_app\utils\cache.py", line 12, in wrapper
+    cached = await redis_client.get(key)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\client.py", line 672, in execute_command
+    conn = self.connection or await pool.get_connection()
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\connection.py", line 1149, in get_connection
+    await self.ensure_connection(connection)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\connection.py", line 1182, in ensure_connection
+    await connection.connect()
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\connection.py", line 296, in connect
+    await self.connect_check_health(check_health=True)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\connection.py", line 315, in connect_check_health
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error Multiple exceptions: [Errno 10061] Connect call failed ('::1', 6379, 0, 0), [Errno 10061] Connect call failed ('127.0.0.1', 6379) connecting to localhost:6379.
+2025-08-21 00:02:38,454 INFO uvicorn.error connection closed
+2025-08-21 00:02:39,008 INFO uvicorn.error 127.0.0.1:56648 - "WebSocket /socket.io/?EIO=4&transport=websocket" [accepted]
+2025-08-21 00:02:39,010 INFO uvicorn.error connection open
+2025-08-21 00:02:39,014 ERROR engineio.server message async handler error
+Traceback (most recent call last):
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\engineio\async_server.py", line 509, in run_async_handler
+    return await self.handlers[event](*args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\socketio\async_server.py", line 688, in _handle_eio_message
+    await self._handle_connect(eio_sid, pkt.namespace, pkt.data)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\socketio\async_server.py", line 552, in _handle_connect
+    success = await self._trigger_event(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\socketio\async_server.py", line 640, in _trigger_event
+    ret = await handler(*args)
+          ^^^^^^^^^^^^^^^^^^^^
+  File "E:\vscode\mvp_project\note_app\Backend\fastapi_app\main.py", line 87, in connect
+    payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\jose\jwt.py", line 159, in decode
+    payload = jws.verify(token, key, algorithms, verify=verify_signature)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\jose\jws.py", line 74, in verify
+    header, payload, signing_input, signature = _load(token)
+                                                ^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\jose\jws.py", line 180, in _load
+    signing_input, crypto_segment = jwt.rsplit(b".", 1)
+                                    ^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'rsplit'
+2025-08-21 00:02:39,204 INFO uvicorn.error connection closed
+2025-08-21 00:02:40,382 INFO uvicorn.error 127.0.0.1:56660 - "WebSocket /socket.io/?EIO=4&transport=websocket" [accepted]
+2025-08-21 00:02:40,383 INFO uvicorn.error connection open
+2025-08-21 00:02:40,392 ERROR engineio.server message async handler error
+Traceback (most recent call last):
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\engineio\async_server.py", line 509, in run_async_handler
+    return await self.handlers[event](*args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\socketio\async_server.py", line 688, in _handle_eio_message
+    await self._handle_connect(eio_sid, pkt.namespace, pkt.data)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\socketio\async_server.py", line 552, in _handle_connect
+    success = await self._trigger_event(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\socketio\async_server.py", line 640, in _trigger_event
+    ret = await handler(*args)
+          ^^^^^^^^^^^^^^^^^^^^
+  File "E:\vscode\mvp_project\note_app\Backend\fastapi_app\main.py", line 87, in connect
+    payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\jose\jwt.py", line 159, in decode
+    payload = jws.verify(token, key, algorithms, verify=verify_signature)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\jose\jws.py", line 74, in verify
+    header, payload, signing_input, signature = _load(token)
+                                                ^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\jose\jws.py", line 180, in _load
+    signing_input, crypto_segment = jwt.rsplit(b".", 1)
+                                    ^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'rsplit'
+2025-08-21 00:02:40,399 INFO uvicorn.error connection closed
+2025-08-21 00:02:41,541 INFO uvicorn.error 127.0.0.1:56673 - "WebSocket /socket.io/?EIO=4&transport=websocket" [accepted]
+2025-08-21 00:02:41,542 INFO uvicorn.error connection open
+2025-08-21 00:02:41,544 ERROR engineio.server message async handler error
+Traceback (most recent call last):
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\engineio\async_server.py", line 509, in run_async_handler
+    return await self.handlers[event](*args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\socketio\async_server.py", line 688, in _handle_eio_message
+    await self._handle_connect(eio_sid, pkt.namespace, pkt.data)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\socketio\async_server.py", line 552, in _handle_connect
+    success = await self._trigger_event(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\socketio\async_server.py", line 640, in _trigger_event
+    ret = await handler(*args)
+          ^^^^^^^^^^^^^^^^^^^^
+  File "E:\vscode\mvp_project\note_app\Backend\fastapi_app\main.py", line 87, in connect
+    payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\jose\jwt.py", line 159, in decode
+    payload = jws.verify(token, key, algorithms, verify=verify_signature)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\jose\jws.py", line 74, in verify
+    header, payload, signing_input, signature = _load(token)
+                                                ^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\jose\jws.py", line 180, in _load
+    signing_input, crypto_segment = jwt.rsplit(b".", 1)
+                                    ^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'rsplit'
+2025-08-21 00:03:08,845 INFO uvicorn.error connection closed
+2025-08-21 00:03:08,850 INFO uvicorn.error connection closed
+2025-08-21 00:03:44,341 INFO uvicorn.error 127.0.0.1:56709 - "WebSocket /socket.io/?EIO=4&transport=websocket" [accepted]
+2025-08-21 00:03:44,342 INFO uvicorn.error connection open
+2025-08-21 00:03:44,456 INFO uvicorn.error 127.0.0.1:56712 - "WebSocket /socket.io/?EIO=4&transport=websocket" [accepted]
+2025-08-21 00:03:44,456 INFO uvicorn.error connection open
+2025-08-21 00:03:44,459 ERROR engineio.server message async handler error
+Traceback (most recent call last):
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\engineio\async_server.py", line 509, in run_async_handler
+    return await self.handlers[event](*args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\socketio\async_server.py", line 688, in _handle_eio_message
+    await self._handle_connect(eio_sid, pkt.namespace, pkt.data)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\socketio\async_server.py", line 552, in _handle_connect
+    success = await self._trigger_event(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\socketio\async_server.py", line 640, in _trigger_event
+    ret = await handler(*args)
+          ^^^^^^^^^^^^^^^^^^^^
+  File "E:\vscode\mvp_project\note_app\Backend\fastapi_app\main.py", line 87, in connect
+    payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\jose\jwt.py", line 159, in decode
+    payload = jws.verify(token, key, algorithms, verify=verify_signature)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\jose\jws.py", line 74, in verify
+    header, payload, signing_input, signature = _load(token)
+                                                ^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\jose\jws.py", line 180, in _load
+    signing_input, crypto_segment = jwt.rsplit(b".", 1)
+                                    ^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'rsplit'
+2025-08-21 00:03:47,261 INFO uvicorn.error connection closed
+2025-08-21 00:03:47,838 INFO uvicorn.error 127.0.0.1:56724 - "WebSocket /socket.io/?EIO=4&transport=websocket" [accepted]
+2025-08-21 00:03:47,839 INFO uvicorn.error connection open
+2025-08-21 00:03:47,844 ERROR engineio.server message async handler error
+Traceback (most recent call last):
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\engineio\async_server.py", line 509, in run_async_handler
+    return await self.handlers[event](*args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\socketio\async_server.py", line 688, in _handle_eio_message
+    await self._handle_connect(eio_sid, pkt.namespace, pkt.data)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\socketio\async_server.py", line 552, in _handle_connect
+    success = await self._trigger_event(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\socketio\async_server.py", line 640, in _trigger_event
+    ret = await handler(*args)
+          ^^^^^^^^^^^^^^^^^^^^
+  File "E:\vscode\mvp_project\note_app\Backend\fastapi_app\main.py", line 87, in connect
+    payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\jose\jwt.py", line 159, in decode
+    payload = jws.verify(token, key, algorithms, verify=verify_signature)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\jose\jws.py", line 74, in verify
+    header, payload, signing_input, signature = _load(token)
+                                                ^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\jose\jws.py", line 180, in _load
+    signing_input, crypto_segment = jwt.rsplit(b".", 1)
+                                    ^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'rsplit'
+2025-08-21 00:03:47,969 INFO uvicorn.error connection closed
+2025-08-21 00:03:48,413 INFO uvicorn.access 127.0.0.1:56710 - "GET /notes/ HTTP/1.1" 500
+2025-08-21 00:03:48,414 ERROR uvicorn.error Exception in ASGI application
+Traceback (most recent call last):
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\connection.py", line 305, in connect_check_health
+    await self.retry.call_with_retry(
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\retry.py", line 50, in call_with_retry
+    return await do()
+           ^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\connection.py", line 760, in _connect
+    reader, writer = await asyncio.open_connection(
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\asyncio\streams.py", line 48, in open_connection
+    transport, _ = await loop.create_connection(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\asyncio\base_events.py", line 1140, in create_connection
+    raise OSError('Multiple exceptions: {}'.format(
+OSError: Multiple exceptions: [Errno 10061] Connect call failed ('::1', 6379, 0, 0), [Errno 10061] Connect call failed ('127.0.0.1', 6379)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\uvicorn\protocols\http\httptools_impl.py", line 409, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\uvicorn\middleware\proxy_headers.py", line 60, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\engineio\async_drivers\asgi.py", line 75, in __call__
+    await self.other_asgi_app(scope, receive, send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\fastapi\applications.py", line 1054, in __call__
+    await super().__call__(scope, receive, send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\applications.py", line 112, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\middleware\errors.py", line 187, in __call__
+    raise exc
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\middleware\errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\prometheus_fastapi_instrumentator\middleware.py", line 177, in __call__
+    raise exc
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\prometheus_fastapi_instrumentator\middleware.py", line 175, in __call__
+    await self.app(scope, receive, send_wrapper)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\middleware\cors.py", line 93, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\middleware\cors.py", line 144, in simple_response
+    await self.app(scope, receive, send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\middleware\exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\routing.py", line 714, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\routing.py", line 734, in app
+    await route.handle(scope, receive, send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\routing.py", line 73, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\fastapi\routing.py", line 302, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\fastapi\routing.py", line 213, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\vscode\mvp_project\note_app\Backend\fastapi_app\utils\cache.py", line 12, in wrapper
+    cached = await redis_client.get(key)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\client.py", line 672, in execute_command
+    conn = self.connection or await pool.get_connection()
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\connection.py", line 1149, in get_connection
+    await self.ensure_connection(connection)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\connection.py", line 1182, in ensure_connection
+    await connection.connect()
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\connection.py", line 296, in connect
+    await self.connect_check_health(check_health=True)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\connection.py", line 315, in connect_check_health
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error Multiple exceptions: [Errno 10061] Connect call failed ('::1', 6379, 0, 0), [Errno 10061] Connect call failed ('127.0.0.1', 6379) connecting to localhost:6379.
+2025-08-21 00:03:49,455 INFO uvicorn.error 127.0.0.1:56738 - "WebSocket /socket.io/?EIO=4&transport=websocket" [accepted]
+2025-08-21 00:03:49,457 INFO uvicorn.error connection open
+2025-08-21 00:03:49,460 ERROR engineio.server message async handler error
+Traceback (most recent call last):
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\engineio\async_server.py", line 509, in run_async_handler
+    return await self.handlers[event](*args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\socketio\async_server.py", line 688, in _handle_eio_message
+    await self._handle_connect(eio_sid, pkt.namespace, pkt.data)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\socketio\async_server.py", line 552, in _handle_connect
+    success = await self._trigger_event(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\socketio\async_server.py", line 640, in _trigger_event
+    ret = await handler(*args)
+          ^^^^^^^^^^^^^^^^^^^^
+  File "E:\vscode\mvp_project\note_app\Backend\fastapi_app\main.py", line 87, in connect
+    payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\jose\jwt.py", line 159, in decode
+    payload = jws.verify(token, key, algorithms, verify=verify_signature)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\jose\jws.py", line 74, in verify
+    header, payload, signing_input, signature = _load(token)
+                                                ^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\jose\jws.py", line 180, in _load
+    signing_input, crypto_segment = jwt.rsplit(b".", 1)
+                                    ^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'rsplit'
+2025-08-21 00:03:52,469 INFO uvicorn.access 127.0.0.1:56713 - "GET /notes/ HTTP/1.1" 500
+2025-08-21 00:03:52,469 ERROR uvicorn.error Exception in ASGI application
+Traceback (most recent call last):
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\connection.py", line 305, in connect_check_health
+    await self.retry.call_with_retry(
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\retry.py", line 50, in call_with_retry
+    return await do()
+           ^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\connection.py", line 760, in _connect
+    reader, writer = await asyncio.open_connection(
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\asyncio\streams.py", line 48, in open_connection
+    transport, _ = await loop.create_connection(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\asyncio\base_events.py", line 1140, in create_connection
+    raise OSError('Multiple exceptions: {}'.format(
+OSError: Multiple exceptions: [Errno 10061] Connect call failed ('::1', 6379, 0, 0), [Errno 10061] Connect call failed ('127.0.0.1', 6379)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\uvicorn\protocols\http\httptools_impl.py", line 409, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\uvicorn\middleware\proxy_headers.py", line 60, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\engineio\async_drivers\asgi.py", line 75, in __call__
+    await self.other_asgi_app(scope, receive, send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\fastapi\applications.py", line 1054, in __call__
+    await super().__call__(scope, receive, send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\applications.py", line 112, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\middleware\errors.py", line 187, in __call__
+    raise exc
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\middleware\errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\prometheus_fastapi_instrumentator\middleware.py", line 177, in __call__
+    raise exc
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\prometheus_fastapi_instrumentator\middleware.py", line 175, in __call__
+    await self.app(scope, receive, send_wrapper)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\middleware\cors.py", line 93, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\middleware\cors.py", line 144, in simple_response
+    await self.app(scope, receive, send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\middleware\exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\routing.py", line 714, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\routing.py", line 734, in app
+    await route.handle(scope, receive, send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\routing.py", line 73, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\fastapi\routing.py", line 302, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\fastapi\routing.py", line 213, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\vscode\mvp_project\note_app\Backend\fastapi_app\utils\cache.py", line 12, in wrapper
+    cached = await redis_client.get(key)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\client.py", line 672, in execute_command
+    conn = self.connection or await pool.get_connection()
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\connection.py", line 1149, in get_connection
+    await self.ensure_connection(connection)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\connection.py", line 1182, in ensure_connection
+    await connection.connect()
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\connection.py", line 296, in connect
+    await self.connect_check_health(check_health=True)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\connection.py", line 315, in connect_check_health
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error Multiple exceptions: [Errno 10061] Connect call failed ('::1', 6379, 0, 0), [Errno 10061] Connect call failed ('127.0.0.1', 6379) connecting to localhost:6379.
+2025-08-21 00:04:28,572 INFO uvicorn.error connection closed
+2025-08-21 00:04:30,850 INFO uvicorn.error 127.0.0.1:56771 - "WebSocket /socket.io/?EIO=4&transport=websocket" [accepted]
+2025-08-21 00:04:30,852 INFO uvicorn.error connection open
+2025-08-21 00:04:30,855 ERROR engineio.server message async handler error
+Traceback (most recent call last):
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\engineio\async_server.py", line 509, in run_async_handler
+    return await self.handlers[event](*args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\socketio\async_server.py", line 688, in _handle_eio_message
+    await self._handle_connect(eio_sid, pkt.namespace, pkt.data)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\socketio\async_server.py", line 552, in _handle_connect
+    success = await self._trigger_event(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\socketio\async_server.py", line 640, in _trigger_event
+    ret = await handler(*args)
+          ^^^^^^^^^^^^^^^^^^^^
+  File "E:\vscode\mvp_project\note_app\Backend\fastapi_app\main.py", line 87, in connect
+    payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\jose\jwt.py", line 159, in decode
+    payload = jws.verify(token, key, algorithms, verify=verify_signature)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\jose\jws.py", line 74, in verify
+    header, payload, signing_input, signature = _load(token)
+                                                ^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\jose\jws.py", line 180, in _load
+    signing_input, crypto_segment = jwt.rsplit(b".", 1)
+                                    ^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'rsplit'
+2025-08-21 00:08:37,402 INFO uvicorn.error connection closed
+2025-08-21 00:08:38,076 INFO uvicorn.error 127.0.0.1:56845 - "WebSocket /socket.io/?EIO=4&transport=websocket" [accepted]
+2025-08-21 00:08:38,077 INFO uvicorn.error connection open
+2025-08-21 00:08:38,080 ERROR engineio.server message async handler error
+Traceback (most recent call last):
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\engineio\async_server.py", line 509, in run_async_handler
+    return await self.handlers[event](*args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\socketio\async_server.py", line 688, in _handle_eio_message
+    await self._handle_connect(eio_sid, pkt.namespace, pkt.data)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\socketio\async_server.py", line 552, in _handle_connect
+    success = await self._trigger_event(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\socketio\async_server.py", line 640, in _trigger_event
+    ret = await handler(*args)
+          ^^^^^^^^^^^^^^^^^^^^
+  File "E:\vscode\mvp_project\note_app\Backend\fastapi_app\main.py", line 87, in connect
+    payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\jose\jwt.py", line 159, in decode
+    payload = jws.verify(token, key, algorithms, verify=verify_signature)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\jose\jws.py", line 74, in verify
+    header, payload, signing_input, signature = _load(token)
+                                                ^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\jose\jws.py", line 180, in _load
+    signing_input, crypto_segment = jwt.rsplit(b".", 1)
+                                    ^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'rsplit'
+2025-08-21 00:08:38,191 INFO uvicorn.error connection closed
+2025-08-21 00:08:38,719 INFO uvicorn.error 127.0.0.1:56849 - "WebSocket /socket.io/?EIO=4&transport=websocket" [accepted]
+2025-08-21 00:08:38,720 INFO uvicorn.error connection open
+2025-08-21 00:08:38,722 ERROR engineio.server message async handler error
+Traceback (most recent call last):
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\engineio\async_server.py", line 509, in run_async_handler
+    return await self.handlers[event](*args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\socketio\async_server.py", line 688, in _handle_eio_message
+    await self._handle_connect(eio_sid, pkt.namespace, pkt.data)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\socketio\async_server.py", line 552, in _handle_connect
+    success = await self._trigger_event(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\socketio\async_server.py", line 640, in _trigger_event
+    ret = await handler(*args)
+          ^^^^^^^^^^^^^^^^^^^^
+  File "E:\vscode\mvp_project\note_app\Backend\fastapi_app\main.py", line 87, in connect
+    payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\jose\jwt.py", line 159, in decode
+    payload = jws.verify(token, key, algorithms, verify=verify_signature)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\jose\jws.py", line 74, in verify
+    header, payload, signing_input, signature = _load(token)
+                                                ^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\jose\jws.py", line 180, in _load
+    signing_input, crypto_segment = jwt.rsplit(b".", 1)
+                                    ^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'rsplit'
+2025-08-21 00:09:19,875 INFO uvicorn.error connection closed
+2025-08-21 00:09:19,877 INFO uvicorn.error connection closed
+2025-08-21 00:09:21,196 INFO uvicorn.error 127.0.0.1:56864 - "WebSocket /socket.io/?EIO=4&transport=websocket" [accepted]
+2025-08-21 00:09:21,196 INFO uvicorn.error connection open
+2025-08-21 00:09:21,201 ERROR engineio.server message async handler error
+Traceback (most recent call last):
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\engineio\async_server.py", line 509, in run_async_handler
+    return await self.handlers[event](*args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\socketio\async_server.py", line 688, in _handle_eio_message
+    await self._handle_connect(eio_sid, pkt.namespace, pkt.data)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\socketio\async_server.py", line 552, in _handle_connect
+    success = await self._trigger_event(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\socketio\async_server.py", line 640, in _trigger_event
+    ret = await handler(*args)
+          ^^^^^^^^^^^^^^^^^^^^
+  File "E:\vscode\mvp_project\note_app\Backend\fastapi_app\main.py", line 87, in connect
+    payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\jose\jwt.py", line 159, in decode
+    payload = jws.verify(token, key, algorithms, verify=verify_signature)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\jose\jws.py", line 74, in verify
+    header, payload, signing_input, signature = _load(token)
+                                                ^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\jose\jws.py", line 180, in _load
+    signing_input, crypto_segment = jwt.rsplit(b".", 1)
+                                    ^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'rsplit'
+2025-08-21 00:09:21,784 INFO uvicorn.error 127.0.0.1:56871 - "WebSocket /socket.io/?EIO=4&transport=websocket" [accepted]
+2025-08-21 00:09:21,786 INFO uvicorn.error connection open
+2025-08-21 00:09:22,090 INFO uvicorn.access 127.0.0.1:56875 - "OPTIONS /notes/ HTTP/1.1" 200
+2025-08-21 00:09:22,090 INFO uvicorn.access 127.0.0.1:56876 - "OPTIONS /notes/ HTTP/1.1" 200
+2025-08-21 00:09:24,868 INFO uvicorn.error connection closed
+2025-08-21 00:09:24,882 INFO uvicorn.error connection closed
+2025-08-21 00:09:26,121 INFO uvicorn.error 127.0.0.1:56892 - "WebSocket /socket.io/?EIO=4&transport=websocket" [accepted]
+2025-08-21 00:09:26,122 INFO uvicorn.error connection open
+2025-08-21 00:09:26,135 ERROR uvicorn.error Exception in ASGI application
+Traceback (most recent call last):
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\connection.py", line 305, in connect_check_health
+    await self.retry.call_with_retry(
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\retry.py", line 50, in call_with_retry
+    return await do()
+           ^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\connection.py", line 760, in _connect
+    reader, writer = await asyncio.open_connection(
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\asyncio\streams.py", line 48, in open_connection
+    transport, _ = await loop.create_connection(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\asyncio\base_events.py", line 1140, in create_connection
+    raise OSError('Multiple exceptions: {}'.format(
+OSError: Multiple exceptions: [Errno 10061] Connect call failed ('::1', 6379, 0, 0), [Errno 10061] Connect call failed ('127.0.0.1', 6379)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\uvicorn\protocols\http\httptools_impl.py", line 409, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\uvicorn\middleware\proxy_headers.py", line 60, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\engineio\async_drivers\asgi.py", line 75, in __call__
+    await self.other_asgi_app(scope, receive, send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\fastapi\applications.py", line 1054, in __call__
+    await super().__call__(scope, receive, send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\applications.py", line 112, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\middleware\errors.py", line 187, in __call__
+    raise exc
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\middleware\errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\prometheus_fastapi_instrumentator\middleware.py", line 177, in __call__
+    raise exc
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\prometheus_fastapi_instrumentator\middleware.py", line 175, in __call__
+    await self.app(scope, receive, send_wrapper)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\middleware\cors.py", line 93, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\middleware\cors.py", line 144, in simple_response
+    await self.app(scope, receive, send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\middleware\exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\routing.py", line 714, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\routing.py", line 734, in app
+    await route.handle(scope, receive, send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\routing.py", line 73, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\fastapi\routing.py", line 302, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\fastapi\routing.py", line 213, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\vscode\mvp_project\note_app\Backend\fastapi_app\utils\cache.py", line 12, in wrapper
+    cached = await redis_client.get(key)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\client.py", line 672, in execute_command
+    conn = self.connection or await pool.get_connection()
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\connection.py", line 1149, in get_connection
+    await self.ensure_connection(connection)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\connection.py", line 1182, in ensure_connection
+    await connection.connect()
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\connection.py", line 296, in connect
+    await self.connect_check_health(check_health=True)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\connection.py", line 315, in connect_check_health
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error Multiple exceptions: [Errno 10061] Connect call failed ('::1', 6379, 0, 0), [Errno 10061] Connect call failed ('127.0.0.1', 6379) connecting to localhost:6379.
+2025-08-21 00:09:26,194 INFO uvicorn.error 127.0.0.1:56894 - "WebSocket /socket.io/?EIO=4&transport=websocket" [accepted]
+2025-08-21 00:09:26,195 INFO uvicorn.error connection open
+2025-08-21 00:09:26,199 ERROR engineio.server message async handler error
+Traceback (most recent call last):
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\engineio\async_server.py", line 509, in run_async_handler
+    return await self.handlers[event](*args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\socketio\async_server.py", line 688, in _handle_eio_message
+    await self._handle_connect(eio_sid, pkt.namespace, pkt.data)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\socketio\async_server.py", line 552, in _handle_connect
+    success = await self._trigger_event(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\socketio\async_server.py", line 640, in _trigger_event
+    ret = await handler(*args)
+          ^^^^^^^^^^^^^^^^^^^^
+  File "E:\vscode\mvp_project\note_app\Backend\fastapi_app\main.py", line 87, in connect
+    payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\jose\jwt.py", line 159, in decode
+    payload = jws.verify(token, key, algorithms, verify=verify_signature)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\jose\jws.py", line 74, in verify
+    header, payload, signing_input, signature = _load(token)
+                                                ^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\jose\jws.py", line 180, in _load
+    signing_input, crypto_segment = jwt.rsplit(b".", 1)
+                                    ^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'rsplit'
+2025-08-21 00:09:30,178 INFO uvicorn.access 127.0.0.1:56875 - "GET /notes/ HTTP/1.1" 500
+2025-08-21 00:09:30,180 ERROR uvicorn.error Exception in ASGI application
+Traceback (most recent call last):
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\connection.py", line 305, in connect_check_health
+    await self.retry.call_with_retry(
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\retry.py", line 50, in call_with_retry
+    return await do()
+           ^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\connection.py", line 760, in _connect
+    reader, writer = await asyncio.open_connection(
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\asyncio\streams.py", line 48, in open_connection
+    transport, _ = await loop.create_connection(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\asyncio\base_events.py", line 1140, in create_connection
+    raise OSError('Multiple exceptions: {}'.format(
+OSError: Multiple exceptions: [Errno 10061] Connect call failed ('::1', 6379, 0, 0), [Errno 10061] Connect call failed ('127.0.0.1', 6379)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\uvicorn\protocols\http\httptools_impl.py", line 409, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\uvicorn\middleware\proxy_headers.py", line 60, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\engineio\async_drivers\asgi.py", line 75, in __call__
+    await self.other_asgi_app(scope, receive, send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\fastapi\applications.py", line 1054, in __call__
+    await super().__call__(scope, receive, send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\applications.py", line 112, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\middleware\errors.py", line 187, in __call__
+    raise exc
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\middleware\errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\prometheus_fastapi_instrumentator\middleware.py", line 177, in __call__
+    raise exc
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\prometheus_fastapi_instrumentator\middleware.py", line 175, in __call__
+    await self.app(scope, receive, send_wrapper)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\middleware\cors.py", line 93, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\middleware\cors.py", line 144, in simple_response
+    await self.app(scope, receive, send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\middleware\exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\routing.py", line 714, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\routing.py", line 734, in app
+    await route.handle(scope, receive, send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\routing.py", line 73, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\fastapi\routing.py", line 302, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\fastapi\routing.py", line 213, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\vscode\mvp_project\note_app\Backend\fastapi_app\utils\cache.py", line 12, in wrapper
+    cached = await redis_client.get(key)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\client.py", line 672, in execute_command
+    conn = self.connection or await pool.get_connection()
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\connection.py", line 1149, in get_connection
+    await self.ensure_connection(connection)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\connection.py", line 1182, in ensure_connection
+    await connection.connect()
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\connection.py", line 296, in connect
+    await self.connect_check_health(check_health=True)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\connection.py", line 315, in connect_check_health
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error Multiple exceptions: [Errno 10061] Connect call failed ('::1', 6379, 0, 0), [Errno 10061] Connect call failed ('127.0.0.1', 6379) connecting to localhost:6379.
+2025-08-21 00:09:34,236 INFO uvicorn.access 127.0.0.1:56878 - "GET /notes/ HTTP/1.1" 500
+2025-08-21 00:09:34,236 ERROR uvicorn.error Exception in ASGI application
+Traceback (most recent call last):
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\connection.py", line 305, in connect_check_health
+    await self.retry.call_with_retry(
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\retry.py", line 50, in call_with_retry
+    return await do()
+           ^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\connection.py", line 760, in _connect
+    reader, writer = await asyncio.open_connection(
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\asyncio\streams.py", line 48, in open_connection
+    transport, _ = await loop.create_connection(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\asyncio\base_events.py", line 1140, in create_connection
+    raise OSError('Multiple exceptions: {}'.format(
+OSError: Multiple exceptions: [Errno 10061] Connect call failed ('::1', 6379, 0, 0), [Errno 10061] Connect call failed ('127.0.0.1', 6379)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\uvicorn\protocols\http\httptools_impl.py", line 409, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\uvicorn\middleware\proxy_headers.py", line 60, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\engineio\async_drivers\asgi.py", line 75, in __call__
+    await self.other_asgi_app(scope, receive, send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\fastapi\applications.py", line 1054, in __call__
+    await super().__call__(scope, receive, send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\applications.py", line 112, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\middleware\errors.py", line 187, in __call__
+    raise exc
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\middleware\errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\prometheus_fastapi_instrumentator\middleware.py", line 177, in __call__
+    raise exc
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\prometheus_fastapi_instrumentator\middleware.py", line 175, in __call__
+    await self.app(scope, receive, send_wrapper)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\middleware\cors.py", line 93, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\middleware\cors.py", line 144, in simple_response
+    await self.app(scope, receive, send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\middleware\exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\routing.py", line 714, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\routing.py", line 734, in app
+    await route.handle(scope, receive, send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\routing.py", line 73, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\fastapi\routing.py", line 302, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\fastapi\routing.py", line 213, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\vscode\mvp_project\note_app\Backend\fastapi_app\utils\cache.py", line 12, in wrapper
+    cached = await redis_client.get(key)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\client.py", line 672, in execute_command
+    conn = self.connection or await pool.get_connection()
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\connection.py", line 1149, in get_connection
+    await self.ensure_connection(connection)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\connection.py", line 1182, in ensure_connection
+    await connection.connect()
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\connection.py", line 296, in connect
+    await self.connect_check_health(check_health=True)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\connection.py", line 315, in connect_check_health
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error Multiple exceptions: [Errno 10061] Connect call failed ('::1', 6379, 0, 0), [Errno 10061] Connect call failed ('127.0.0.1', 6379) connecting to localhost:6379.
+2025-08-21 00:13:26,628 INFO uvicorn.error connection closed
+2025-08-21 00:13:27,284 INFO uvicorn.error 127.0.0.1:56958 - "WebSocket /socket.io/?EIO=4&transport=websocket" [accepted]
+2025-08-21 00:13:27,286 INFO uvicorn.error connection open
+2025-08-21 00:13:27,289 ERROR engineio.server message async handler error
+Traceback (most recent call last):
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\engineio\async_server.py", line 509, in run_async_handler
+    return await self.handlers[event](*args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\socketio\async_server.py", line 688, in _handle_eio_message
+    await self._handle_connect(eio_sid, pkt.namespace, pkt.data)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\socketio\async_server.py", line 552, in _handle_connect
+    success = await self._trigger_event(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\socketio\async_server.py", line 640, in _trigger_event
+    ret = await handler(*args)
+          ^^^^^^^^^^^^^^^^^^^^
+  File "E:\vscode\mvp_project\note_app\Backend\fastapi_app\main.py", line 87, in connect
+    payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\jose\jwt.py", line 159, in decode
+    payload = jws.verify(token, key, algorithms, verify=verify_signature)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\jose\jws.py", line 74, in verify
+    header, payload, signing_input, signature = _load(token)
+                                                ^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\jose\jws.py", line 180, in _load
+    signing_input, crypto_segment = jwt.rsplit(b".", 1)
+                                    ^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'rsplit'
+2025-08-21 00:13:27,480 INFO uvicorn.error connection closed
+2025-08-21 00:13:28,469 INFO uvicorn.error 127.0.0.1:56969 - "WebSocket /socket.io/?EIO=4&transport=websocket" [accepted]
+2025-08-21 00:13:28,469 INFO uvicorn.error connection open
+2025-08-21 00:13:28,472 ERROR engineio.server message async handler error
+Traceback (most recent call last):
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\engineio\async_server.py", line 509, in run_async_handler
+    return await self.handlers[event](*args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\socketio\async_server.py", line 688, in _handle_eio_message
+    await self._handle_connect(eio_sid, pkt.namespace, pkt.data)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\socketio\async_server.py", line 552, in _handle_connect
+    success = await self._trigger_event(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\socketio\async_server.py", line 640, in _trigger_event
+    ret = await handler(*args)
+          ^^^^^^^^^^^^^^^^^^^^
+  File "E:\vscode\mvp_project\note_app\Backend\fastapi_app\main.py", line 87, in connect
+    payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\jose\jwt.py", line 159, in decode
+    payload = jws.verify(token, key, algorithms, verify=verify_signature)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\jose\jws.py", line 74, in verify
+    header, payload, signing_input, signature = _load(token)
+                                                ^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\jose\jws.py", line 180, in _load
+    signing_input, crypto_segment = jwt.rsplit(b".", 1)
+                                    ^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'rsplit'
+2025-08-21 00:15:16,280 INFO uvicorn.error connection closed
+2025-08-21 00:15:18,115 INFO uvicorn.error 127.0.0.1:57016 - "WebSocket /socket.io/?EIO=4&transport=websocket" [accepted]
+2025-08-21 00:15:18,116 INFO uvicorn.error connection open
+2025-08-21 00:15:18,119 ERROR engineio.server message async handler error
+Traceback (most recent call last):
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\engineio\async_server.py", line 509, in run_async_handler
+    return await self.handlers[event](*args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\socketio\async_server.py", line 688, in _handle_eio_message
+    await self._handle_connect(eio_sid, pkt.namespace, pkt.data)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\socketio\async_server.py", line 552, in _handle_connect
+    success = await self._trigger_event(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\socketio\async_server.py", line 640, in _trigger_event
+    ret = await handler(*args)
+          ^^^^^^^^^^^^^^^^^^^^
+  File "E:\vscode\mvp_project\note_app\Backend\fastapi_app\main.py", line 87, in connect
+    payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\jose\jwt.py", line 159, in decode
+    payload = jws.verify(token, key, algorithms, verify=verify_signature)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\jose\jws.py", line 74, in verify
+    header, payload, signing_input, signature = _load(token)
+                                                ^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\jose\jws.py", line 180, in _load
+    signing_input, crypto_segment = jwt.rsplit(b".", 1)
+                                    ^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'rsplit'
+2025-08-21 00:16:08,765 INFO uvicorn.error connection closed
+2025-08-21 00:16:09,353 INFO uvicorn.error 127.0.0.1:57035 - "WebSocket /socket.io/?EIO=4&transport=websocket" [accepted]
+2025-08-21 00:16:09,353 INFO uvicorn.error connection open
+2025-08-21 00:16:09,356 ERROR engineio.server message async handler error
+Traceback (most recent call last):
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\engineio\async_server.py", line 509, in run_async_handler
+    return await self.handlers[event](*args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\socketio\async_server.py", line 688, in _handle_eio_message
+    await self._handle_connect(eio_sid, pkt.namespace, pkt.data)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\socketio\async_server.py", line 552, in _handle_connect
+    success = await self._trigger_event(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\socketio\async_server.py", line 640, in _trigger_event
+    ret = await handler(*args)
+          ^^^^^^^^^^^^^^^^^^^^
+  File "E:\vscode\mvp_project\note_app\Backend\fastapi_app\main.py", line 87, in connect
+    payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\jose\jwt.py", line 159, in decode
+    payload = jws.verify(token, key, algorithms, verify=verify_signature)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\jose\jws.py", line 74, in verify
+    header, payload, signing_input, signature = _load(token)
+                                                ^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\jose\jws.py", line 180, in _load
+    signing_input, crypto_segment = jwt.rsplit(b".", 1)
+                                    ^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'rsplit'
+2025-08-21 00:16:09,461 INFO uvicorn.error connection closed
+2025-08-21 00:16:10,702 INFO uvicorn.error 127.0.0.1:57047 - "WebSocket /socket.io/?EIO=4&transport=websocket" [accepted]
+2025-08-21 00:16:10,703 INFO uvicorn.error connection open
+2025-08-21 00:16:10,705 ERROR engineio.server message async handler error
+Traceback (most recent call last):
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\engineio\async_server.py", line 509, in run_async_handler
+    return await self.handlers[event](*args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\socketio\async_server.py", line 688, in _handle_eio_message
+    await self._handle_connect(eio_sid, pkt.namespace, pkt.data)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\socketio\async_server.py", line 552, in _handle_connect
+    success = await self._trigger_event(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\socketio\async_server.py", line 640, in _trigger_event
+    ret = await handler(*args)
+          ^^^^^^^^^^^^^^^^^^^^
+  File "E:\vscode\mvp_project\note_app\Backend\fastapi_app\main.py", line 87, in connect
+    payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\jose\jwt.py", line 159, in decode
+    payload = jws.verify(token, key, algorithms, verify=verify_signature)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\jose\jws.py", line 74, in verify
+    header, payload, signing_input, signature = _load(token)
+                                                ^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\jose\jws.py", line 180, in _load
+    signing_input, crypto_segment = jwt.rsplit(b".", 1)
+                                    ^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'rsplit'
+2025-08-21 00:16:52,339 INFO uvicorn.error connection closed
+2025-08-21 00:16:52,911 INFO uvicorn.error 127.0.0.1:57069 - "WebSocket /socket.io/?EIO=4&transport=websocket" [accepted]
+2025-08-21 00:16:52,913 INFO uvicorn.error connection open
+2025-08-21 00:16:52,917 ERROR engineio.server message async handler error
+Traceback (most recent call last):
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\engineio\async_server.py", line 509, in run_async_handler
+    return await self.handlers[event](*args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\socketio\async_server.py", line 688, in _handle_eio_message
+    await self._handle_connect(eio_sid, pkt.namespace, pkt.data)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\socketio\async_server.py", line 552, in _handle_connect
+    success = await self._trigger_event(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\socketio\async_server.py", line 640, in _trigger_event
+    ret = await handler(*args)
+          ^^^^^^^^^^^^^^^^^^^^
+  File "E:\vscode\mvp_project\note_app\Backend\fastapi_app\main.py", line 87, in connect
+    payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\jose\jwt.py", line 159, in decode
+    payload = jws.verify(token, key, algorithms, verify=verify_signature)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\jose\jws.py", line 74, in verify
+    header, payload, signing_input, signature = _load(token)
+                                                ^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\jose\jws.py", line 180, in _load
+    signing_input, crypto_segment = jwt.rsplit(b".", 1)
+                                    ^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'rsplit'
+2025-08-21 00:16:52,999 INFO uvicorn.error connection closed
+2025-08-21 00:16:54,395 INFO uvicorn.error 127.0.0.1:57088 - "WebSocket /socket.io/?EIO=4&transport=websocket" [accepted]
+2025-08-21 00:16:54,396 INFO uvicorn.error connection open
+2025-08-21 00:16:54,399 ERROR engineio.server message async handler error
+Traceback (most recent call last):
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\engineio\async_server.py", line 509, in run_async_handler
+    return await self.handlers[event](*args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\socketio\async_server.py", line 688, in _handle_eio_message
+    await self._handle_connect(eio_sid, pkt.namespace, pkt.data)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\socketio\async_server.py", line 552, in _handle_connect
+    success = await self._trigger_event(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\socketio\async_server.py", line 640, in _trigger_event
+    ret = await handler(*args)
+          ^^^^^^^^^^^^^^^^^^^^
+  File "E:\vscode\mvp_project\note_app\Backend\fastapi_app\main.py", line 87, in connect
+    payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\jose\jwt.py", line 159, in decode
+    payload = jws.verify(token, key, algorithms, verify=verify_signature)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\jose\jws.py", line 74, in verify
+    header, payload, signing_input, signature = _load(token)
+                                                ^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\jose\jws.py", line 180, in _load
+    signing_input, crypto_segment = jwt.rsplit(b".", 1)
+                                    ^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'rsplit'
+2025-08-21 00:22:44,001 INFO uvicorn.error connection closed
+2025-08-21 00:22:44,684 INFO uvicorn.error 127.0.0.1:57178 - "WebSocket /socket.io/?EIO=4&transport=websocket" [accepted]
+2025-08-21 00:22:44,684 INFO uvicorn.error connection open
+2025-08-21 00:22:44,688 ERROR engineio.server message async handler error
+Traceback (most recent call last):
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\engineio\async_server.py", line 509, in run_async_handler
+    return await self.handlers[event](*args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\socketio\async_server.py", line 688, in _handle_eio_message
+    await self._handle_connect(eio_sid, pkt.namespace, pkt.data)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\socketio\async_server.py", line 552, in _handle_connect
+    success = await self._trigger_event(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\socketio\async_server.py", line 640, in _trigger_event
+    ret = await handler(*args)
+          ^^^^^^^^^^^^^^^^^^^^
+  File "E:\vscode\mvp_project\note_app\Backend\fastapi_app\main.py", line 87, in connect
+    payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\jose\jwt.py", line 159, in decode
+    payload = jws.verify(token, key, algorithms, verify=verify_signature)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\jose\jws.py", line 74, in verify
+    header, payload, signing_input, signature = _load(token)
+                                                ^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\jose\jws.py", line 180, in _load
+    signing_input, crypto_segment = jwt.rsplit(b".", 1)
+                                    ^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'rsplit'
+2025-08-21 00:22:44,930 INFO uvicorn.error connection closed
+2025-08-21 00:22:45,444 INFO uvicorn.error 127.0.0.1:57182 - "WebSocket /socket.io/?EIO=4&transport=websocket" [accepted]
+2025-08-21 00:22:45,445 INFO uvicorn.error connection open
+2025-08-21 00:22:45,448 ERROR engineio.server message async handler error
+Traceback (most recent call last):
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\engineio\async_server.py", line 509, in run_async_handler
+    return await self.handlers[event](*args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\socketio\async_server.py", line 688, in _handle_eio_message
+    await self._handle_connect(eio_sid, pkt.namespace, pkt.data)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\socketio\async_server.py", line 552, in _handle_connect
+    success = await self._trigger_event(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\socketio\async_server.py", line 640, in _trigger_event
+    ret = await handler(*args)
+          ^^^^^^^^^^^^^^^^^^^^
+  File "E:\vscode\mvp_project\note_app\Backend\fastapi_app\main.py", line 87, in connect
+    payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\jose\jwt.py", line 159, in decode
+    payload = jws.verify(token, key, algorithms, verify=verify_signature)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\jose\jws.py", line 74, in verify
+    header, payload, signing_input, signature = _load(token)
+                                                ^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\jose\jws.py", line 180, in _load
+    signing_input, crypto_segment = jwt.rsplit(b".", 1)
+                                    ^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'rsplit'
+2025-08-21 00:22:45,520 INFO uvicorn.error connection closed
+2025-08-21 00:22:47,499 INFO uvicorn.error 127.0.0.1:57201 - "WebSocket /socket.io/?EIO=4&transport=websocket" [accepted]
+2025-08-21 00:22:47,500 INFO uvicorn.error connection open
+2025-08-21 00:22:47,502 ERROR engineio.server message async handler error
+Traceback (most recent call last):
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\engineio\async_server.py", line 509, in run_async_handler
+    return await self.handlers[event](*args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\socketio\async_server.py", line 688, in _handle_eio_message
+    await self._handle_connect(eio_sid, pkt.namespace, pkt.data)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\socketio\async_server.py", line 552, in _handle_connect
+    success = await self._trigger_event(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\socketio\async_server.py", line 640, in _trigger_event
+    ret = await handler(*args)
+          ^^^^^^^^^^^^^^^^^^^^
+  File "E:\vscode\mvp_project\note_app\Backend\fastapi_app\main.py", line 87, in connect
+    payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\jose\jwt.py", line 159, in decode
+    payload = jws.verify(token, key, algorithms, verify=verify_signature)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\jose\jws.py", line 74, in verify
+    header, payload, signing_input, signature = _load(token)
+                                                ^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\jose\jws.py", line 180, in _load
+    signing_input, crypto_segment = jwt.rsplit(b".", 1)
+                                    ^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'rsplit'
+2025-08-21 00:25:38,219 INFO uvicorn.error connection closed
+2025-08-21 00:25:38,897 INFO uvicorn.error 127.0.0.1:57253 - "WebSocket /socket.io/?EIO=4&transport=websocket" [accepted]
+2025-08-21 00:25:38,897 INFO uvicorn.error connection open
+2025-08-21 00:25:38,900 ERROR engineio.server message async handler error
+Traceback (most recent call last):
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\engineio\async_server.py", line 509, in run_async_handler
+    return await self.handlers[event](*args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\socketio\async_server.py", line 688, in _handle_eio_message
+    await self._handle_connect(eio_sid, pkt.namespace, pkt.data)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\socketio\async_server.py", line 552, in _handle_connect
+    success = await self._trigger_event(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\socketio\async_server.py", line 640, in _trigger_event
+    ret = await handler(*args)
+          ^^^^^^^^^^^^^^^^^^^^
+  File "E:\vscode\mvp_project\note_app\Backend\fastapi_app\main.py", line 87, in connect
+    payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\jose\jwt.py", line 159, in decode
+    payload = jws.verify(token, key, algorithms, verify=verify_signature)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\jose\jws.py", line 74, in verify
+    header, payload, signing_input, signature = _load(token)
+                                                ^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\jose\jws.py", line 180, in _load
+    signing_input, crypto_segment = jwt.rsplit(b".", 1)
+                                    ^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'rsplit'
+2025-08-21 00:26:47,347 INFO uvicorn.error connection closed
+2025-08-21 00:26:47,973 INFO uvicorn.error 127.0.0.1:57284 - "WebSocket /socket.io/?EIO=4&transport=websocket" [accepted]
+2025-08-21 00:26:47,974 INFO uvicorn.error connection open
+2025-08-21 00:26:47,978 ERROR engineio.server message async handler error
+Traceback (most recent call last):
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\engineio\async_server.py", line 509, in run_async_handler
+    return await self.handlers[event](*args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\socketio\async_server.py", line 688, in _handle_eio_message
+    await self._handle_connect(eio_sid, pkt.namespace, pkt.data)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\socketio\async_server.py", line 552, in _handle_connect
+    success = await self._trigger_event(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\socketio\async_server.py", line 640, in _trigger_event
+    ret = await handler(*args)
+          ^^^^^^^^^^^^^^^^^^^^
+  File "E:\vscode\mvp_project\note_app\Backend\fastapi_app\main.py", line 87, in connect
+    payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\jose\jwt.py", line 159, in decode
+    payload = jws.verify(token, key, algorithms, verify=verify_signature)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\jose\jws.py", line 74, in verify
+    header, payload, signing_input, signature = _load(token)
+                                                ^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\jose\jws.py", line 180, in _load
+    signing_input, crypto_segment = jwt.rsplit(b".", 1)
+                                    ^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'rsplit'
+2025-08-21 00:26:55,525 INFO uvicorn.error connection closed
+2025-08-21 00:26:56,096 INFO uvicorn.error 127.0.0.1:57298 - "WebSocket /socket.io/?EIO=4&transport=websocket" [accepted]
+2025-08-21 00:26:56,098 INFO uvicorn.error connection open
+2025-08-21 00:26:56,100 INFO uvicorn.access 127.0.0.1:57300 - "OPTIONS /notes/ HTTP/1.1" 200
+2025-08-21 00:26:56,102 INFO uvicorn.access 127.0.0.1:57299 - "OPTIONS /notes/ HTTP/1.1" 200
+2025-08-21 00:27:00,186 INFO uvicorn.access 127.0.0.1:57300 - "GET /notes/ HTTP/1.1" 500
+2025-08-21 00:27:00,186 ERROR uvicorn.error Exception in ASGI application
+Traceback (most recent call last):
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\connection.py", line 305, in connect_check_health
+    await self.retry.call_with_retry(
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\retry.py", line 50, in call_with_retry
+    return await do()
+           ^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\connection.py", line 760, in _connect
+    reader, writer = await asyncio.open_connection(
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\asyncio\streams.py", line 48, in open_connection
+    transport, _ = await loop.create_connection(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\asyncio\base_events.py", line 1140, in create_connection
+    raise OSError('Multiple exceptions: {}'.format(
+OSError: Multiple exceptions: [Errno 10061] Connect call failed ('::1', 6379, 0, 0), [Errno 10061] Connect call failed ('127.0.0.1', 6379)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\uvicorn\protocols\http\httptools_impl.py", line 409, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\uvicorn\middleware\proxy_headers.py", line 60, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\engineio\async_drivers\asgi.py", line 75, in __call__
+    await self.other_asgi_app(scope, receive, send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\fastapi\applications.py", line 1054, in __call__
+    await super().__call__(scope, receive, send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\applications.py", line 112, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\middleware\errors.py", line 187, in __call__
+    raise exc
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\middleware\errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\prometheus_fastapi_instrumentator\middleware.py", line 177, in __call__
+    raise exc
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\prometheus_fastapi_instrumentator\middleware.py", line 175, in __call__
+    await self.app(scope, receive, send_wrapper)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\middleware\cors.py", line 93, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\middleware\cors.py", line 144, in simple_response
+    await self.app(scope, receive, send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\middleware\exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\routing.py", line 714, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\routing.py", line 734, in app
+    await route.handle(scope, receive, send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\routing.py", line 73, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\fastapi\routing.py", line 302, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\fastapi\routing.py", line 213, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\vscode\mvp_project\note_app\Backend\fastapi_app\utils\cache.py", line 12, in wrapper
+    cached = await redis_client.get(key)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\client.py", line 672, in execute_command
+    conn = self.connection or await pool.get_connection()
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\connection.py", line 1149, in get_connection
+    await self.ensure_connection(connection)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\connection.py", line 1182, in ensure_connection
+    await connection.connect()
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\connection.py", line 296, in connect
+    await self.connect_check_health(check_health=True)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\connection.py", line 315, in connect_check_health
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error Multiple exceptions: [Errno 10061] Connect call failed ('::1', 6379, 0, 0), [Errno 10061] Connect call failed ('127.0.0.1', 6379) connecting to localhost:6379.
+2025-08-21 00:27:04,252 INFO uvicorn.access 127.0.0.1:57299 - "GET /notes/ HTTP/1.1" 500
+2025-08-21 00:27:04,253 ERROR uvicorn.error Exception in ASGI application
+Traceback (most recent call last):
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\connection.py", line 305, in connect_check_health
+    await self.retry.call_with_retry(
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\retry.py", line 50, in call_with_retry
+    return await do()
+           ^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\connection.py", line 760, in _connect
+    reader, writer = await asyncio.open_connection(
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\asyncio\streams.py", line 48, in open_connection
+    transport, _ = await loop.create_connection(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\asyncio\base_events.py", line 1140, in create_connection
+    raise OSError('Multiple exceptions: {}'.format(
+OSError: Multiple exceptions: [Errno 10061] Connect call failed ('::1', 6379, 0, 0), [Errno 10061] Connect call failed ('127.0.0.1', 6379)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\uvicorn\protocols\http\httptools_impl.py", line 409, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\uvicorn\middleware\proxy_headers.py", line 60, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\engineio\async_drivers\asgi.py", line 75, in __call__
+    await self.other_asgi_app(scope, receive, send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\fastapi\applications.py", line 1054, in __call__
+    await super().__call__(scope, receive, send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\applications.py", line 112, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\middleware\errors.py", line 187, in __call__
+    raise exc
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\middleware\errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\prometheus_fastapi_instrumentator\middleware.py", line 177, in __call__
+    raise exc
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\prometheus_fastapi_instrumentator\middleware.py", line 175, in __call__
+    await self.app(scope, receive, send_wrapper)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\middleware\cors.py", line 93, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\middleware\cors.py", line 144, in simple_response
+    await self.app(scope, receive, send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\middleware\exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\routing.py", line 714, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\routing.py", line 734, in app
+    await route.handle(scope, receive, send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\starlette\routing.py", line 73, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\fastapi\routing.py", line 302, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\fastapi\routing.py", line 213, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\vscode\mvp_project\note_app\Backend\fastapi_app\utils\cache.py", line 12, in wrapper
+    cached = await redis_client.get(key)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\client.py", line 672, in execute_command
+    conn = self.connection or await pool.get_connection()
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\connection.py", line 1149, in get_connection
+    await self.ensure_connection(connection)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\connection.py", line 1182, in ensure_connection
+    await connection.connect()
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\connection.py", line 296, in connect
+    await self.connect_check_health(check_health=True)
+  File "E:\Anaconda_env\anaconda_do\envs\myproject\Lib\site-packages\redis\asyncio\connection.py", line 315, in connect_check_health
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error Multiple exceptions: [Errno 10061] Connect call failed ('::1', 6379, 0, 0), [Errno 10061] Connect call failed ('127.0.0.1', 6379) connecting to localhost:6379.
+2025-08-21 00:29:43,983 INFO uvicorn.error connection closed
+2025-08-21 01:00:05,018 INFO uvicorn.error connection closed

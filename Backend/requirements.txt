@@ -1,0 +1,17 @@
+fastapi
+uvicorn[standard]
+sqlalchemy
+pydantic
+python-dotenv
+alembic
+redis
+aioredis
+slowapi
+python-jose
+passlib[bcrypt]
+python-socketio[asyncio_client]
+httpx
+pytest
+pytest-asyncio
+django
+djangorestframework
